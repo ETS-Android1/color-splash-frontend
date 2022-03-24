@@ -18,7 +18,7 @@ public class PlayState extends State{
 
     protected PlayState(GameStateManager gsm) {
         super(gsm);
-        splash = new Texture("./assets/splash.png");
+        splash = new Texture(Gdx.files.internal("splash.png"));
         worldTimer = 60;
         timeCount = 0;
         hud = new Hud();

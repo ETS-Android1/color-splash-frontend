@@ -14,9 +14,9 @@ public class MenuState extends State {
 
     public MenuState(GameStateManager gsm) {
         super(gsm);
-        Texture button = new Texture("./assets/startButton.png");
+        Texture button = new Texture(Gdx.files.internal("start_button.png"));
         playButton = new GameObject(button, (ColorSplash.V_WIDTH/2) - (button.getWidth()/2), ColorSplash.V_HEIGHT/2);
-        background = new Background(new Texture("./assets/background.png"), ColorSplash.V_WIDTH, ColorSplash.V_HEIGHT);
+        background = new Background(new Texture(Gdx.files.internal("background.png")), ColorSplash.V_WIDTH, ColorSplash.V_HEIGHT);
     }
 
     @Override
