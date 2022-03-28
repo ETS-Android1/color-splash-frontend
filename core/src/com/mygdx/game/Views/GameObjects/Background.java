@@ -6,12 +6,12 @@ import com.mygdx.game.ColorSplash;
 
 public class Background extends GameObject{
 
-    public Background(Texture image, int xPos, int yPos ) {
-        super(image, xPos, yPos);
+    public Background(Texture image, double xPos, double yPos, double scale, boolean senterHeight, boolean senterWidth ) {
+        super(image, xPos, yPos, scale, senterHeight, senterWidth);
 
     }
 
     public void drawBackground(SpriteBatch sb) {
-        sb.draw(this.image, 0,0, this.xPos, this.yPos);
+        sb.draw(this.image, 0,0, (float)this.xPos, (float)this.yPos);
     }
 }

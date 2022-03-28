@@ -8,8 +8,8 @@ import com.mygdx.game.Views.MainMenuView;
 
 public class ColorSplash extends Game {
 
-	public static final int V_WIDTH=412;
-	public static final int V_HEIGHT=732;
+	public static final int V_WIDTH=360;
+	public static final int V_HEIGHT=640;
 
 	public static final String TITLE = "Color Splash";
 

@@ -23,7 +23,7 @@ public class PlayView extends View{
         worldTimer = 60;
         timeCount = 0;
         hud = new Hud();
-        background = new Background(new Texture(Gdx.files.internal("background_grey.png")), ColorSplash.V_WIDTH, ColorSplash.V_HEIGHT);
+        background = new Background(new Texture(Gdx.files.internal("background_grey.png")),0,0, 1,false ,false);
     }
 
     @Override
