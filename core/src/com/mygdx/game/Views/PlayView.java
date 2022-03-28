@@ -3,12 +3,14 @@ package com.mygdx.game.Views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.ColorSplash;
 import com.mygdx.game.Scenes.Hud;
+import com.mygdx.game.Views.GameObjects.Background;
 
 public class PlayView extends View{
 
     private Texture splash;
-    private Texture background;
+    private Background background;
     private Hud hud;
 
     private Integer worldTimer;
@@ -21,7 +23,7 @@ public class PlayView extends View{
         worldTimer = 60;
         timeCount = 0;
         hud = new Hud();
-        //background = new Texture();
+        background = new Background(new Texture(Gdx.files.internal("background_grey.png")), ColorSplash.V_WIDTH, ColorSplash.V_HEIGHT);
     }
 
     @Override

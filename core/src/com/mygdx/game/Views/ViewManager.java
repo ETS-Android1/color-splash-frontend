@@ -10,7 +10,7 @@ public class ViewManager {
     private Stack<View> views;
 
     public ViewManager() {
-        views = new Stack<View>();
+        views = new Stack<>();
     }
 
     public void push(View state) {
