@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.ColorSplash;
-import com.mygdx.game.Objects.Background;
-import com.mygdx.game.Objects.GameObject;
+import com.mygdx.game.Models.Background;
+import com.mygdx.game.Models.GameObject;
 
 public class MenuState extends State {
 
