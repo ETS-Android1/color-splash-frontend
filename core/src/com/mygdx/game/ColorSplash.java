@@ -3,8 +3,8 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.States.GameStateManager;
-import com.mygdx.game.States.MenuState;
+import com.mygdx.game.Views.ViewManager;
+import com.mygdx.game.Views.MainMenuView;
 
 public class ColorSplash extends Game {
 
@@ -13,15 +13,15 @@ public class ColorSplash extends Game {
 
 	public static final String TITLE = "Color Splash";
 
-	private GameStateManager gsm;
+	private ViewManager gsm;
 	public SpriteBatch batch;
 
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		gsm = new GameStateManager();
-		gsm.push(new MenuState(gsm));
+		gsm = new ViewManager();
+		gsm.push(new MainMenuView(gsm));
 	}
 
 	@Override

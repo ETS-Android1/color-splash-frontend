@@ -1,21 +1,17 @@
-package com.mygdx.game.States;
+package com.mygdx.game.Views;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 
-import java.util.Vector;
-
-public abstract class State {
+public abstract class View {
 
     protected OrthographicCamera cam;
     protected Vector3 mouse;
-    protected GameStateManager gsm;
+    protected ViewManager vm;
 
-    protected State(GameStateManager gsm) {
-        this.gsm = gsm;
+    protected View(ViewManager vm) {
+        this.vm = vm;
         cam = new OrthographicCamera();
         mouse = new Vector3();
     }
