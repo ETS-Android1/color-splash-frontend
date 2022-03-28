@@ -1,4 +1,4 @@
-package com.mygdx.game.States;
+package com.mygdx.game.Views;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -7,13 +7,13 @@ import com.mygdx.game.ColorSplash;
 import com.mygdx.game.Models.Background;
 import com.mygdx.game.Models.GameObject;
 
-public class MenuState extends State {
+public class MainMenuView extends View {
 
     private Background background;
     private GameObject playButton;
 
-    public MenuState(GameStateManager gsm) {
-        super(gsm);
+    public MainMenuView(ViewManager vm) {
+        super(vm);
         Texture button = new Texture(Gdx.files.internal("start_button.png"));
         playButton = new GameObject(button, (ColorSplash.V_WIDTH/2) - (button.getWidth()/2), ColorSplash.V_HEIGHT/2);
         background = new Background(new Texture(Gdx.files.internal("background.png")), ColorSplash.V_WIDTH, ColorSplash.V_HEIGHT);
@@ -23,7 +23,7 @@ public class MenuState extends State {
     public void handleInput() {
         if(Gdx.input.justTouched()) {
             if (playButton.isObjectClicked()) {
-                gsm.set(new PlayState(gsm));
+                vm.set(new PlayView(vm));
                 dispose();
             }
         }

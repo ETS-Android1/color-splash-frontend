@@ -1,12 +1,11 @@
-package com.mygdx.game.States;
+package com.mygdx.game.Views;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Scenes.Hud;
 
-public class PlayState extends State{
+public class PlayView extends View{
 
     private Texture splash;
     private Texture background;
@@ -16,8 +15,8 @@ public class PlayState extends State{
     private float timeCount;
 
 
-    protected PlayState(GameStateManager gsm) {
-        super(gsm);
+    protected PlayView(ViewManager vm) {
+        super(vm);
         splash = new Texture(Gdx.files.internal("splash.png"));
         worldTimer = 60;
         timeCount = 0;
@@ -28,7 +27,7 @@ public class PlayState extends State{
     @Override
     protected void handleInput() {
         if(Gdx.input.justTouched()) {
-            gsm.set(new MenuState(gsm));
+            vm.set(new MainMenuView(vm));
             dispose();
         }
     }
