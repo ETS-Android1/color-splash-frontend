@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 
 public class GameObject {
     protected Texture image;
@@ -15,6 +16,7 @@ public class GameObject {
     protected boolean isRendered=false;
     protected boolean senterHeight=false;
     protected boolean senterWidth=false;
+    protected Rectangle bounds;
     //protected BitmapFont font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
 
     public GameObject(Texture image, double xPos, double yPos, double scale, boolean senterHeight, boolean senterWidth) {
@@ -26,32 +28,34 @@ public class GameObject {
         this.yPos = yPos*screenHeight;
         this.senterHeight=senterHeight;
         this.senterWidth= senterWidth;
+        this.bounds = new Rectangle((float)this.xPos, (float)(this.yPos), (float)this.getWidth(), (float)this.getHeight());
     }
 
     public Texture getImage() {
         return this.image;
     }
 
-    public int getHeight(){
-        return image.getHeight();
+    public double getHeight(){
+        return image.getHeight()*this.scale;
     }
 
-    public int getWidth(){
-        return image.getWidth();
+    public double getWidth(){
+        return image.getWidth()*this.scale;
     }
 
     public void drawGameObject(SpriteBatch sb) {
         if(this.xPos>screenWidth/2 && !isRendered && !senterWidth){
-            this.xPos-=(this.getWidth()*scale);
+            this.xPos-=(this.getWidth());
+            this.bounds = new Rectangle((float)this.xPos, (float)(this.yPos), (float)this.getWidth(), (float)this.getHeight());
             this.isRendered=true;
         }
         if(senterWidth){
-            this.xPos = (screenWidth-(this.getWidth()*scale))/2;
+            this.xPos = (screenWidth-(this.getWidth()))/2;
         }
         if(senterHeight){
-            this.yPos = (screenHeight-(this.getHeight()*scale))/2;
+            this.yPos = (screenHeight-(this.getHeight()))/2;
         }
-        sb.draw(this.image, (float)this.xPos, (float)(this.yPos), (float)(this.getWidth()*scale), (float)(this.getHeight()*scale));
+        sb.draw(this.image, (float)this.xPos, (float)(this.yPos), (float)(this.getWidth()), (float)(this.getHeight()));
     }
 
 }
