@@ -30,7 +30,7 @@ public class ViewManager {
         views.peek().update(dt);
     }
 
-    public void render(SpriteBatch sp) {
-        views.peek().render(sp);
+    public void render(SpriteBatch sb) {
+        views.peek().render(sb);
     }
 }

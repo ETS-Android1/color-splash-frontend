@@ -43,7 +43,6 @@ public class MainMenuView extends View {
 
 
 
-
     }
 
     @Override
@@ -52,7 +51,12 @@ public class MainMenuView extends View {
             if (this.joinGame.isObjectClicked()) {
                 Gdx.input.getTextInput(listener, "Enter game pin:", "", "Pin");
                 Gdx.input.getTextInput(listener, "Enter your name:", "", "Name");
+                //draw(this.sb);
 
+            }
+            if (this.howToPlay.isObjectClicked()) {
+                vm.push(new HowToPlayView(vm));
+                //dispose();
             }
         }
         /*
@@ -90,4 +94,6 @@ public class MainMenuView extends View {
         joinGame.getImage().dispose();
         logo.getImage().dispose();
     }
+
+
 }
