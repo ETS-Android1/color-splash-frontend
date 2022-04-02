@@ -9,12 +9,11 @@ import com.mygdx.game.Views.Listeners.CreateGameListener;
 public class CreateGameView extends View{
 
     private Button createGame;
-    private CreateGameListener createGameListener;
+    private CreateGameListener createGameListener = new CreateGameListener();
 
     protected CreateGameView(ViewManager vm) {
         super(vm);
-        createGame = new Button(new Texture("button_create.png"), 1,0.3,3, true, true);
-        createGameListener = new CreateGameListener();
+        createGame = new Button(new Texture("button_create.png"), 1,0.3,3, false, false);
     }
 
     @Override
@@ -22,7 +21,7 @@ public class CreateGameView extends View{
         if (Gdx.input.justTouched()) {
             if (this.createGame.isObjectClicked()) {
                 Gdx.input.getTextInput(createGameListener, "Enter your name:", "", "Pin");
-
+                System.out.println("kom seg hit, ja");
                 //draw(this.sb);
 
             }
