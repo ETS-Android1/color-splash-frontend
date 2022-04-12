@@ -11,8 +11,8 @@ public class Button extends GameObject{
 
     //protected Vector3 bounds;
 
-    public Button(Texture image, double xPos, double yPos, double scale, boolean senterHeight, boolean senterWidth) {
-        super(image, xPos, yPos, scale, senterHeight, senterWidth);
+    public Button(Texture image, double xPos, double yPos, double scale, boolean centerHeight, boolean centerWidth) {
+        super(image, xPos, yPos, scale, centerHeight, centerWidth);
 
 
         //position = new Vector2(xPos, yPos);

@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 public class GameObject {
     protected Texture image;
@@ -14,21 +16,28 @@ public class GameObject {
     protected int screenWidth;
     protected int screenHeight;
     protected boolean isRendered=false;
-    protected boolean senterHeight=false;
-    protected boolean senterWidth=false;
     protected Rectangle bounds;
     //protected BitmapFont font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
 
-    public GameObject(Texture image, double xPos, double yPos, double scale, boolean senterHeight, boolean senterWidth) {
+    public GameObject(Texture image, double xPos, double yPos, double scale, boolean centerHeight, boolean centerWidth) {
         this.image = image;
         this.scale=scale;
         this.screenWidth=Gdx.graphics.getWidth();
         this.screenHeight=Gdx.graphics.getHeight();
         this.xPos = xPos*screenWidth;
         this.yPos = yPos*screenHeight;
-        this.senterHeight=senterHeight;
-        this.senterWidth= senterWidth;
         this.bounds = new Rectangle((float)this.xPos, (float)(this.yPos), (float)this.getWidth(), (float)this.getHeight());
+        if(centerWidth){
+            this.xPos = (screenWidth-(this.getWidth()))/2;
+        }
+        if(centerHeight){
+            this.yPos = (screenHeight-(this.getHeight()))/2;
+        }
+        if(this.xPos>screenWidth/2 && !isRendered && !centerWidth){
+            this.xPos-=(this.getWidth());
+            this.bounds = new Rectangle((float)this.xPos, (float)(this.yPos), (float)this.getWidth(), (float)this.getHeight());
+            this.isRendered=true;
+        }
     }
 
     public Texture getImage() {
@@ -43,18 +52,11 @@ public class GameObject {
         return image.getWidth()*this.scale;
     }
 
+    public void drawStage(TextField field){
+        field.setPosition((float) this.xPos, (float) this.yPos, 1);
+    }
+
     public void drawGameObject(SpriteBatch sb) {
-        if(this.xPos>screenWidth/2 && !isRendered && !senterWidth){
-            this.xPos-=(this.getWidth());
-            this.bounds = new Rectangle((float)this.xPos, (float)(this.yPos), (float)this.getWidth(), (float)this.getHeight());
-            this.isRendered=true;
-        }
-        if(senterWidth){
-            this.xPos = (screenWidth-(this.getWidth()))/2;
-        }
-        if(senterHeight){
-            this.yPos = (screenHeight-(this.getHeight()))/2;
-        }
         sb.draw(this.image, (float)this.xPos, (float)(this.yPos), (float)(this.getWidth()), (float)(this.getHeight()));
     }
 
