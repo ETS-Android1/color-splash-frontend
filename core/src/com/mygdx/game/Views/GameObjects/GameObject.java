@@ -52,6 +52,10 @@ public class GameObject {
         return image.getWidth()*this.scale;
     }
 
+    public double getXPos() { return xPos; }
+
+    public double getYPos() { return yPos; }
+
     public void drawStage(TextField field){
         field.setPosition((float) this.xPos, (float) this.yPos, 1);
     }

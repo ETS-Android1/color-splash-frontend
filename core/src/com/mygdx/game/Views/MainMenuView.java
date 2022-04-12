@@ -87,6 +87,7 @@ public class MainMenuView extends View {
         newGame.getImage().dispose();
         joinGame.getImage().dispose();
         logo.getImage().dispose();
+        stage.clear();
     }
 
 

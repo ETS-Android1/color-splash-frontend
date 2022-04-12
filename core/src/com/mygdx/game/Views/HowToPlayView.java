@@ -1,6 +1,7 @@
 package com.mygdx.game.Views;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Views.GameObjects.Background;
@@ -13,13 +14,13 @@ public class HowToPlayView extends View{
 
     protected HowToPlayView(ViewManager vm) {
         super(vm);
-        System.out.println("HELLO VIEW");
         background = new Background(new Texture(Gdx.files.internal("HowToPlayScreen.png")), 1, 1, 2.8,true ,true);
         exitButton = new Button(new Texture(Gdx.files.internal("button_exit.png")),0.92, 0.08, 3,false, false);
     }
 
     @Override
     public void handleInput() {
+        //|| Gdx.input.isKeyPressed(Input.Keys.BACK)
         if (Gdx.input.justTouched()) {
             if (this.exitButton.isObjectClicked()) {
                 dispose();
@@ -28,6 +29,7 @@ public class HowToPlayView extends View{
 
             }
         }
+
     }
 
     @Override
