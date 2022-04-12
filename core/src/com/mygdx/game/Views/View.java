@@ -31,6 +31,7 @@ public abstract class View {
     public void render(SpriteBatch sb) {
         sb.begin();
         background.drawGameObject(sb);
+
     }
     public abstract void dispose();
 

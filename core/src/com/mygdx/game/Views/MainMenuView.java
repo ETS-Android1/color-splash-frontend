@@ -38,16 +38,19 @@ public class MainMenuView extends View {
     public void handleInput() {
         if (Gdx.input.justTouched()) {
             if (this.joinGame.isObjectClicked()) {
+                dispose();
+
                 //draw(this.sb);
 
             }
             if (this.howToPlay.isObjectClicked()) {
-                vm.push(new HowToPlayView(vm));
+                dispose();
+                vm.set(new HowToPlayView(vm));
                 //dispose();
             }
             if (this.newGame.isObjectClicked()) {
-                vm.set(new CreateGameView(vm));
                 dispose();
+                vm.set(new CreateGameView(vm));
             }
         }
         /*
@@ -69,6 +72,7 @@ public class MainMenuView extends View {
         howToPlay.drawGameObject(sb);
         newGame.drawGameObject(sb);
         joinGame.drawGameObject(sb);
+        logo.drawGameObject(sb);
         sb.end();
         gamePin.drawStage(gamePin.getTextField());
         nickname.drawStage(nickname.getTextField());

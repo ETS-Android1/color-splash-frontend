@@ -8,16 +8,16 @@ import com.mygdx.game.Views.MainMenuView;
 
 import java.net.URISyntaxException;
 
-import io.socket.client.Socket;
+/*import io.socket.client.Socket;
 import io.socket.client.IO;
-import io.socket.emitter.Emitter;
+import io.socket.emitter.Emitter;*/
 
 public class ColorSplash extends Game {
 
 	public static final int V_WIDTH=360;
 	public static final int V_HEIGHT=640;
 
-	private Socket socket;
+	//private Socket socket;
 	public static final String TITLE = "Color Splash";
 
 	private ViewManager gsm;
@@ -29,7 +29,7 @@ public class ColorSplash extends Game {
 		batch = new SpriteBatch();
 		gsm = new ViewManager();
 		gsm.push(new MainMenuView(gsm));
-		try {
+		/*try {
 			socket = IO.socket("https://color-splash.herokuapp.com");
 			socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
 				@Override
@@ -42,7 +42,7 @@ public class ColorSplash extends Game {
 			System.out.println(socket.connected());
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	@Override
