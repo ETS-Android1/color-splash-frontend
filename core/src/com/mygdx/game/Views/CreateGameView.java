@@ -13,6 +13,7 @@ import com.mygdx.game.Views.GameObjects.GameObject;
 import com.mygdx.game.Views.GameObjects.InputField;
 import com.mygdx.game.Views.Listeners.CreateGameListener;
 
+
 public class CreateGameView extends View{
 
     private Button createButton;
@@ -35,7 +36,9 @@ public class CreateGameView extends View{
     private BitmapFont font;
     private Stage stage;
     private InputField nickname;
-    private CreateGameListener createGameListener = new CreateGameListener();
+    //private CreateGameListener createGameListener = new CreateGameListener();
+    private String checkedRoundButton = "3";
+    private String checkedDifficultyButton = "easy";
 
     protected CreateGameView(ViewManager vm) {
         super(vm);
@@ -54,8 +57,16 @@ public class CreateGameView extends View{
         easyButton = new Button(new Texture("button_unselected.png"), 0.6, 0.5, 3,false,false);
         mediumButton = new Button(new Texture("button_unselected.png"), 0.6, 0.45, 3,false,false);
         hardButton = new Button(new Texture("button_unselected.png"), 0.6, 0.4, 3,false,false);
-        rounds = new ButtonGroup(threeButton.getButton(), fourButton.getButton(), fiveButton.getButton());
-        difficulty = new ButtonGroup(easyButton.getButton(), mediumButton.getButton(), hardButton.getButton());
+        //rounds = new ButtonGroup(threeButton.getButton(), fourButton.getButton(), fiveButton.getButton());
+        //difficulty = new ButtonGroup(easyButton.getButton(), mediumButton.getButton(), hardButton.getButton(), threeButton.getButton());
+        //easyButton.getButton().setChecked(true);
+        //threeButton.getButton().setChecked(true);
+        //rounds.setUncheckLast(true);
+        //difficulty.setUncheckLast(true);
+        //difficulty.canCheck(easyButton.getButton(), true);
+        //rounds.setChecked(threeButton);
+        //rounds.setChecked();
+
         avatar = new GameObject(new Texture("avatar_orange.png"), 0.08, 0.7, 1,false,false);
         nickname = new InputField("Nickname", new Texture(Gdx.files.internal("textfield.png")), 0.95,0.75,2,false,false);
         stage.addActor(nickname.getTextField());
@@ -73,7 +84,44 @@ public class CreateGameView extends View{
                 dispose();
                 vm.set(new MainMenuView(vm));
             }
+            if (this.easyButton.isObjectClicked()) {
+                this.checkedDifficultyButton = "easy";
+                this.easyButton.setChecked(true);
+                this.mediumButton.setChecked(false);
+                this.hardButton.setChecked(false);
+            }
+            if (this.mediumButton.isObjectClicked()) {
+                this.checkedDifficultyButton = "medium";
+                this.mediumButton.setChecked(true);
+                this.easyButton.setChecked(false);
+                this.hardButton.setChecked(false);
+            }
+            if (this.hardButton.isObjectClicked()) {
+                this.checkedDifficultyButton = "hard";
+                this.hardButton.setChecked(true);
+                this.easyButton.setChecked(false);
+                this.mediumButton.setChecked(false);
+            }
+            if (this.threeButton.isObjectClicked()) {
+                this.checkedRoundButton = "three";
+                this.threeButton.setChecked(true);
+                this.fourButton.setChecked(false);
+                this.fiveButton.setChecked(false);
+            }
+            if (this.fourButton.isObjectClicked()) {
+                this.checkedRoundButton = "four";
+                this.fourButton.setChecked(true);
+                this.threeButton.setChecked(false);
+                this.fiveButton.setChecked(false);
+            }
+            if (this.fiveButton.isObjectClicked()) {
+                this.checkedRoundButton = "five";
+                this.fiveButton.setChecked(true);
+                this.fourButton.setChecked(false);
+                this.threeButton.setChecked(false);
+            }
         }
+
     }
 
     @Override
@@ -103,6 +151,7 @@ public class CreateGameView extends View{
         font.draw(sb, "Hard", (float) hardButton.getXPos()+100, (float) (hardButton.getYPos()+60));
         sb.end();
         nickname.drawStage(nickname.getTextField());
+
         stage.draw();
         stage.act();
     }

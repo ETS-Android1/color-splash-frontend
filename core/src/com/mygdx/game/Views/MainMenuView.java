@@ -27,7 +27,7 @@ public class MainMenuView extends View {
         logo = new GameObject(new Texture(Gdx.files.internal("logo.png")), 1, 0.45, 1.6,false,true);
         gamePin = new InputField("Game Pin", new Texture(Gdx.files.internal("textfield.png")), 0.5,0.35,2,false,false);
         nickname = new InputField("Nickname", new Texture(Gdx.files.internal("textfield.png")), 0.5,0.25,2,false,false);
-        stage= new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+        stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         Gdx.input.setInputProcessor(stage);
         stage.addActor(gamePin.getTextField());
         stage.addActor(nickname.getTextField());
@@ -53,12 +53,7 @@ public class MainMenuView extends View {
                 vm.set(new CreateGameView(vm));
             }
         }
-        /*
-            if (joinGame.isObjectClicked()) {
-                vm.set(new PlayView(vm));
-                dispose();
-            }
-        }*/
+
     }
 
     @Override
