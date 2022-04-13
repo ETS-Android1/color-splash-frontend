@@ -4,12 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 public class GameObject {
     protected Texture image;
+    protected TextureRegion animatedImage;
     protected double xPos;
     protected double yPos;
     protected double scale;
@@ -64,8 +66,14 @@ public class GameObject {
         sb.draw(this.image, (float)this.xPos, (float)(this.yPos), (float)(this.getWidth()), (float)(this.getHeight()));
     }
 
+    public void drawAnimation(SpriteBatch sb) {
+        sb.draw(this.animatedImage, (float)this.xPos, (float)(this.yPos), (float)(this.getWidth()), (float)(this.getHeight()));
+    }
+
     public void setImage(Texture image) {
         this.image=image;
     }
+
+    public void setTextureRegion(TextureRegion image) {this.animatedImage=image;}
 
 }
