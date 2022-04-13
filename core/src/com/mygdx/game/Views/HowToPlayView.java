@@ -15,7 +15,7 @@ public class HowToPlayView extends View{
     protected HowToPlayView(ViewManager vm) {
         super(vm);
         background = new Background(new Texture(Gdx.files.internal("HowToPlayScreen.png")), 1, 1, 2.8,true ,true);
-        exitButton = new Button(new Texture(Gdx.files.internal("button_exit.png")),0.92, 0.08, 3,false, false);
+        exitButton = new Button(new Texture(Gdx.files.internal("button_exit.png")),0.92, 0.02, 3,false, false);
     }
 
     @Override

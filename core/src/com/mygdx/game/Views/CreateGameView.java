@@ -51,9 +51,9 @@ public class CreateGameView extends View{
         System.out.println("COLOR");
         createButton = new Button(new Texture("button_create.png"), 0.92, 0.08, 3,false, false);
         cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false);
-        threeButton = new Button(new Texture("button_unselected.png"), 0.1, 0.5, 3,false,false);
-        fourButton = new Button(new Texture("button_unselected.png"), 0.1, 0.45, 3,false,false);
-        fiveButton = new Button(new Texture("button_unselected.png"), 0.1, 0.4, 3,false,false);
+        threeButton = new Button(new Texture("button_unselected.png"), 0.2, 0.5, 3,false,false);
+        fourButton = new Button(new Texture("button_unselected.png"), 0.2, 0.45, 3,false,false);
+        fiveButton = new Button(new Texture("button_unselected.png"), 0.2, 0.4, 3,false,false);
         easyButton = new Button(new Texture("button_unselected.png"), 0.6, 0.5, 3,false,false);
         mediumButton = new Button(new Texture("button_unselected.png"), 0.6, 0.45, 3,false,false);
         hardButton = new Button(new Texture("button_unselected.png"), 0.6, 0.4, 3,false,false);
@@ -70,15 +70,16 @@ public class CreateGameView extends View{
         avatar = new GameObject(new Texture("avatar_orange.png"), 0.08, 0.7, 1,false,false);
         nickname = new InputField("Nickname", new Texture(Gdx.files.internal("textfield.png")), 0.95,0.75,2,false,false);
         stage.addActor(nickname.getTextField());
+        threeButton.setChecked(true);
+        easyButton.setChecked(true);
     }
 
     @Override
     protected void handleInput() {
         if (Gdx.input.justTouched()) {
             if (this.createButton.isObjectClicked()) {
-                System.out.println("kom seg hit, ja");
-                //draw(this.sb);
-
+                dispose();
+                vm.set(new GameLobbyView(vm));
             }
             if (this.cancelButton.isObjectClicked()) {
                 dispose();

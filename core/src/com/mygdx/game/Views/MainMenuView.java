@@ -39,6 +39,7 @@ public class MainMenuView extends View {
         if (Gdx.input.justTouched()) {
             if (this.joinGame.isObjectClicked()) {
                 dispose();
+                vm.set(new GameLobbyView(vm));
 
                 //draw(this.sb);
 
