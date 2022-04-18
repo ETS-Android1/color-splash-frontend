@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.game.Views.GameObjects.Dots;
 import com.mygdx.game.Views.GameObjects.GameObject;
 import com.mygdx.game.Views.GameObjects.Splash;
 
@@ -13,20 +14,19 @@ import java.util.List;
 
 public class SplashView extends View{
     private Splash splash;
-    private Splash greenSplash;
-    private Splash redSplash;
-    private Splash yellowSplash;
     private float splashTimer = 0;
     private float colorTimer = 0;
-    private List<Integer> backend = Arrays.asList(0,3,2,0,1);
     private int colorCounter = 0;
     private int frameCounter = 0;
+    //list for testing, should be replaced with real backend data
+    private List<Integer> backend = Arrays.asList(0,3,2,0,1);
+
+    private Dots dots = new Dots();
 
     protected SplashView(ViewManager vm) {
         super(vm);
         splash = new Splash(new Texture(Gdx.files.internal("splash_1_blue.png")),0.5,0.6,3,true,true);
         this.splash.setFilePath(splash.getSplashes().get(backend.get(this.colorCounter)).get(this.frameCounter));
-
 
     }
 
@@ -49,7 +49,6 @@ public class SplashView extends View{
             this.colorCounter++;
             this.colorTimer=0;
             this.frameCounter=0;
-
         }
         if (colorTimer>3 && this.colorCounter==(backend.size()-1)){
             vm.set(new GameLobbyView(vm));
@@ -60,6 +59,7 @@ public class SplashView extends View{
     public void render(SpriteBatch sb) {
         super.render(sb);
         splash.drawGameObject(sb);
+        dots.drawDots(sb);
         sb.end();
     }
 
@@ -67,5 +67,6 @@ public class SplashView extends View{
     public void dispose() {
 
     }
+
 }
 

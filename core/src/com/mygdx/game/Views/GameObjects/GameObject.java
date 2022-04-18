@@ -66,16 +66,11 @@ public class GameObject {
         sb.draw(this.image, (float)this.xPos, (float)(this.yPos), (float)(this.getWidth()), (float)(this.getHeight()));
     }
 
-    public void drawAnimation(SpriteBatch sb) {
-        sb.draw(this.animatedImage, (float)this.xPos, (float)(this.yPos), (float)(this.getWidth()/5), (float)(this.getHeight()));
-    }
-
     public void setImage(Texture image) {
         this.image=image;
     }
 
     public void setFilePath(String filepath){this.image=new Texture(Gdx.files.internal(filepath));}
 
-    public void setTextureRegion(TextureRegion image) {this.animatedImage=image;}
 
 }
