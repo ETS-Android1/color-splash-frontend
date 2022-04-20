@@ -10,7 +10,7 @@ import com.mygdx.game.Views.GameObjects.Background;
 public class PlayView extends View{
 
     private Texture splash;
-    private Background background;
+
     private Hud hud;
 
     private Integer worldTimer;
@@ -23,7 +23,6 @@ public class PlayView extends View{
         worldTimer = 60;
         timeCount = 0;
         hud = new Hud();
-        background = new Background(new Texture(Gdx.files.internal("background_grey.png")), ColorSplash.V_WIDTH, ColorSplash.V_HEIGHT);
     }
 
     @Override
@@ -42,7 +41,7 @@ public class PlayView extends View{
 
     @Override
     public void render(SpriteBatch sb) {
-        sb.begin();
+        super.render(sb);
         sb.draw(splash, 0, 0);
         hud.draw(sb, 100, 100);
         sb.end();
@@ -53,5 +52,7 @@ public class PlayView extends View{
         splash.dispose();
         hud.dispose();
     }
+
+
 
 }
