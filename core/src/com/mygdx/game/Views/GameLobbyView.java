@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class GameLobbyView extends View {
 
-    private boolean isHost;
+    private boolean isHost = true;
     private String gamePin = "12345";
     private GameObject gamePinText;
     private GameObject avatar1;
@@ -58,8 +58,8 @@ public class GameLobbyView extends View {
                 vm.set(new MainMenuView(vm));
             }
             if (this.startButton.isObjectClicked()) {
-                System.out.println("kom seg hit, ja");
-                //draw(this.sb);
+                dispose();
+                vm.set(new SplashView(vm));
 
             }
         }
@@ -76,7 +76,9 @@ public class GameLobbyView extends View {
     public void render(SpriteBatch sb) {
         super.render(sb);
         cancelButton.drawGameObject(sb);
-        startButton.drawGameObject(sb);
+        if (this.isHost){
+            startButton.drawGameObject(sb);
+        }
         font.getData().setScale((float)1.5);
         this.drawPlayers(sb);
         font.draw(sb, "Game pin:", (float) avatar1.getXPos()+150, (float) avatar1.getYPos()+600);
@@ -89,6 +91,9 @@ public class GameLobbyView extends View {
 
     @Override
     public void dispose() {
+        cancelButton.getImage().dispose();
+        startButton.getImage().dispose();
+
 
     }
 
