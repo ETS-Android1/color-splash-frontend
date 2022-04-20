@@ -35,7 +35,7 @@ public class GameObject {
         if(centerHeight){
             this.yPos = (screenHeight-(this.getHeight()))/2;
         }
-        if(this.xPos>screenWidth/2 && !isRendered && !centerWidth){
+        if(this.xPos>screenWidth/2.0 && !isRendered && !centerWidth){
             this.xPos-=(this.getWidth());
             this.bounds = new Rectangle((float)this.xPos, (float)(this.yPos), (float)this.getWidth(), (float)this.getHeight());
             this.isRendered=true;
@@ -73,4 +73,10 @@ public class GameObject {
     public void setFilePath(String filepath){this.image=new Texture(Gdx.files.internal(filepath));}
 
 
+    @Override
+    public String toString() {
+        return "GameObject{" +
+                "xPos=" + xPos +
+                '}';
+    }
 }
