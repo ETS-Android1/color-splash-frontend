@@ -52,4 +52,8 @@ public class SocketManager {
         this.socket.emit(EventsConstants.joinGame, json);
     }
 
+    public String getSocketId() {
+        return socket.id();
+    }
+
 }
