@@ -47,6 +47,7 @@ public class SplashView extends View{
         }
         if (colorTimer>3 && this.colorCounter<(backend.size()-1)){
             this.colorCounter++;
+            this.dots.setDarkGreyDot(colorCounter);
             this.colorTimer=0;
             this.frameCounter=0;
         }
