@@ -55,7 +55,7 @@ public class GameLobbyView extends View {
         if (Gdx.input.justTouched()) {
             if (this.cancelButton.isObjectClicked()) {
                 dispose();
-                vm.set(new MainMenuView(vm));
+                vm.set(new JoinGameView(vm));
             }
             if (this.startButton.isObjectClicked()) {
                 dispose();
