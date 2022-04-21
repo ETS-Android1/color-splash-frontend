@@ -68,7 +68,7 @@ public class CreateGameView extends View{
         //rounds.setChecked();
 
         avatar = new GameObject(new Texture("avatar_orange.png"), 0.08, 0.7, 1,false,false);
-        nickname = new InputField("Nickname", new Texture(Gdx.files.internal("textfield.png")), 0.95,0.75,2,false,false);
+        nickname = new InputField("Nickname", new Texture(Gdx.files.internal("textfield_light.png")), 0.95,0.75,2,false,false);
         stage.addActor(nickname.getTextField());
         threeButton.setChecked(true);
         easyButton.setChecked(true);

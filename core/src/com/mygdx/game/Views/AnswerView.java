@@ -42,6 +42,7 @@ public class AnswerView extends View{
         this.timer = 9;
         this.timeCount = 0;
         this.font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
+        this.dots.getDots().get(0).setFilePath("circle_lightgrey.png");
 
 
     }
