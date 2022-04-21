@@ -8,10 +8,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.mygdx.game.Views.GameObjects.Button;
-import com.mygdx.game.Views.GameObjects.GameObject;
-import com.mygdx.game.Views.GameObjects.InputField;
-import com.mygdx.game.Views.Listeners.CreateGameListener;
+import com.mygdx.game.Models.Button;
+import com.mygdx.game.Models.GameObject;
+import com.mygdx.game.Models.InputField;
 
 
 public class CreateGameView extends View{

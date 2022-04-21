@@ -1,11 +1,10 @@
 package com.mygdx.game.Views;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.Views.GameObjects.Background;
-import com.mygdx.game.Views.GameObjects.Button;
+import com.mygdx.game.Models.Background;
+import com.mygdx.game.Models.Button;
 
 public class HowToPlayView extends View{
 
