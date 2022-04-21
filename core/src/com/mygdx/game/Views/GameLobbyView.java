@@ -56,7 +56,7 @@ public class GameLobbyView extends View {
             }
             if (this.startButton.isObjectClicked()) {
                 dispose();
-                vm.set(new SplashView(vm));
+                vm.set(new GetReadyView(vm));
 
             }
         }

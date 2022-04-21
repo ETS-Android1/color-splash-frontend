@@ -21,7 +21,7 @@ public class AnswerView extends View{
     private GameObject timerBackground;
     private Dots dots;
     private Integer timer;
-    private List<Integer> correctColors = Arrays.asList(0,1,2,3);
+    private List<Integer> correctColors = Arrays.asList(0,1,2,3,0,1,1,2);
 
 
 
@@ -81,13 +81,13 @@ public class AnswerView extends View{
                 //FIRE EVENT TO BACKEND
                 this.playerFinished=true;
                 this.finishedTime = this.timer;
-                if(this.finishedTime > 7){
+                if(this.finishedTime > 6){
                     this.feedback = "Too fast..?";
                 }
-                else if(this.finishedTime > 5){
+                else if(this.finishedTime > 4){
                     this.feedback = "  Speedy!!";
                 }
-                else if(this.finishedTime > 1) {
+                else if(this.finishedTime > 2) {
                     this.feedback = "Too slow..?";
                 }
             }
@@ -111,7 +111,7 @@ public class AnswerView extends View{
         }
         if(this.timer==-3){
             System.out.println(this.playerAnswer);
-            vm.set(new MainMenuView(vm));
+            vm.set(new ScoreBoardView(vm));
         }
 
     }

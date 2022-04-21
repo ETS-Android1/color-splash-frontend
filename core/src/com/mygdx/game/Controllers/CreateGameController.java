@@ -1,4 +1,4 @@
-package com.mygdx.game.controllers;
+package com.mygdx.game.Controllers;
 
 import com.mygdx.game.ColorSplash;
 

@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.Models.Button;
 import com.mygdx.game.Models.GameObject;
 import com.mygdx.game.Models.InputField;
-import com.mygdx.game.controllers.JoinGameController;
+import com.mygdx.game.Controllers.JoinGameController;
 
 public class JoinGameView extends View{
 
@@ -30,6 +30,8 @@ public class JoinGameView extends View{
         nickname = new InputField("Nickname", new Texture(Gdx.files.internal("textfield_light.png")), 0.5,0.51,2,false,false);
         timerBackground = new GameObject(new Texture(Gdx.files.internal("splash_orange.png")),1,0.15,5.3,false,true);
         stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+        gamePin.getTextField().setMaxLength(5);
+        nickname.getTextField().setMaxLength(12);
         Gdx.input.setInputProcessor(stage);
         stage.addActor(gamePin.getTextField());
         stage.addActor(nickname.getTextField());

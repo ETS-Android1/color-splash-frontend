@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.Models.Button;
 import com.mygdx.game.Models.GameObject;
 import com.mygdx.game.Models.InputField;
-import com.mygdx.game.controllers.CreateGameController;
+import com.mygdx.game.Controllers.CreateGameController;
 
 
 public class CreateGameView extends View{
@@ -58,18 +58,9 @@ public class CreateGameView extends View{
         easyButton = new Button(new Texture("button_unselected.png"), 0.6, 0.5, 3,false,false);
         mediumButton = new Button(new Texture("button_unselected.png"), 0.6, 0.45, 3,false,false);
         hardButton = new Button(new Texture("button_unselected.png"), 0.6, 0.4, 3,false,false);
-        //rounds = new ButtonGroup(threeButton.getButton(), fourButton.getButton(), fiveButton.getButton());
-        //difficulty = new ButtonGroup(easyButton.getButton(), mediumButton.getButton(), hardButton.getButton(), threeButton.getButton());
-        //easyButton.getButton().setChecked(true);
-        //threeButton.getButton().setChecked(true);
-        //rounds.setUncheckLast(true);
-        //difficulty.setUncheckLast(true);
-        //difficulty.canCheck(easyButton.getButton(), true);
-        //rounds.setChecked(threeButton);
-        //rounds.setChecked();
-
         avatar = new GameObject(new Texture("avatar_orange.png"), 0.08, 0.7, 1,false,false);
         nickname = new InputField("Nickname", new Texture(Gdx.files.internal("textfield_light.png")), 0.95,0.75,2,false,false);
+        nickname.getTextField().setMaxLength(12);
         stage.addActor(nickname.getTextField());
         threeButton.setChecked(true);
         easyButton.setChecked(true);

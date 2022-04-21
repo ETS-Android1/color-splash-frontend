@@ -1,0 +1,248 @@
+@startuml
+
+title __VIEWS's Class Diagram__\n
+
+  namespace com.mygdx.game {
+    namespace Views {
+      class com.mygdx.game.Views.AnswerView {
+          - buttonCount : int
+          - correctColors : List<Integer>
+          - feedback : String
+          - finishedTime : double
+          - font : BitmapFont
+          - localScore : int
+          - playerAnswer : List<Integer>
+          - playerFinished : boolean
+          - timeCount : float
+          - timer : Integer
+          + dispose()
+          + gameFinished()
+          + render()
+          + update()
+          # AnswerView()
+          # handleInput()
+      }
+    }
+  }
+  
+
+  namespace com.mygdx.game {
+    namespace Views {
+      class com.mygdx.game.Views.CreateGameView {
+          - checkedDifficultyButton : String
+          - checkedRoundButton : String
+          - difficulty : ButtonGroup
+          - font : BitmapFont
+          - rounds : ButtonGroup
+          - stage : Stage
+          + dispose()
+          + render()
+          + update()
+          # CreateGameView()
+          # handleInput()
+      }
+    }
+  }
+  
+
+  namespace com.mygdx.game {
+    namespace Views {
+      class com.mygdx.game.Views.GameLobbyView {
+          - avatars : ArrayList<GameObject>
+          - font : BitmapFont
+          - gamePin : String
+          - isHost : boolean
+          - players : ArrayList<String>
+          + dispose()
+          + render()
+          + update()
+          # GameLobbyView()
+          # handleInput()
+          - drawPlayers()
+      }
+    }
+  }
+  
+
+  namespace com.mygdx.game {
+    namespace Views {
+      class com.mygdx.game.Views.HowToPlayView {
+          + dispose()
+          + handleInput()
+          + render()
+          + update()
+          # HowToPlayView()
+      }
+    }
+  }
+  
+
+  namespace com.mygdx.game {
+    namespace Views {
+      class com.mygdx.game.Views.JoinGameView {
+          - stage : Stage
+          + JoinGameView()
+          + dispose()
+          + handleInput()
+          + render()
+          + update()
+      }
+    }
+  }
+  
+
+  namespace com.mygdx.game {
+    namespace Views {
+      class com.mygdx.game.Views.MainMenuView {
+          - stage : Stage
+          + MainMenuView()
+          + dispose()
+          + handleInput()
+          + render()
+          + update()
+      }
+    }
+  }
+  
+
+  namespace com.mygdx.game {
+    namespace Views {
+      class com.mygdx.game.Views.ScoreBoardView {
+          - avatarFiles : List<String>
+          - avatars : ArrayList<GameObject>
+          - font : BitmapFont
+          - isHost : boolean
+          - player_avatar : List<Integer>
+          - players : List<String>
+          - score : List<String>
+          + dispose()
+          + render()
+          + update()
+          # ScoreBoardView()
+          # handleInput()
+          - drawscore()
+      }
+    }
+  }
+  
+
+  namespace com.mygdx.game {
+    namespace Views {
+      class com.mygdx.game.Views.SplashView {
+          - backend : List<Integer>
+          - colorCounter : int
+          - colorTimer : float
+          - frameCounter : int
+          - splashTimer : float
+          + dispose()
+          + getBackend()
+          + render()
+          + update()
+          # SplashView()
+          # handleInput()
+      }
+    }
+  }
+  
+
+  namespace com.mygdx.game {
+    namespace Views {
+      abstract class com.mygdx.game.Views.View {
+          # cam : OrthographicCamera
+          # mouse : Vector3
+          # sb : SpriteBatch
+          {abstract} + dispose()
+          + render()
+          {abstract} + update()
+          # View()
+          {abstract} # handleInput()
+      }
+    }
+  }
+  
+
+  namespace com.mygdx.game {
+    namespace Views {
+      class com.mygdx.game.Views.ViewManager {
+          - views : Stack<View>
+          + ViewManager()
+          + pop()
+          + push()
+          + render()
+          + set()
+          + update()
+      }
+    }
+  }
+  
+
+  com.mygdx.game.Views.AnswerView -up-|> com.mygdx.game.Views.View
+  com.mygdx.game.Views.AnswerView o-- com.mygdx.game.Models.Button : blueButton
+  com.mygdx.game.Views.AnswerView o-- com.mygdx.game.Models.Dots : dots
+  com.mygdx.game.Views.AnswerView o-- com.mygdx.game.Models.Button : greenButton
+  com.mygdx.game.Views.AnswerView o-- com.mygdx.game.Models.Button : redButton
+  com.mygdx.game.Views.AnswerView o-- com.mygdx.game.Models.GameObject : timerBackground
+  com.mygdx.game.Views.AnswerView o-- com.mygdx.game.Models.Button : yellowButton
+  com.mygdx.game.Views.CreateGameView -up-|> com.mygdx.game.Views.View
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Models.GameObject : avatar
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Models.Button : cancelButton
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Controllers.CreateGameController : controller
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Models.Button : createButton
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Models.Button : easyButton
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Models.GameObject : easyText
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Models.Button : fiveButton
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Models.GameObject : fiveText
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Models.Button : fourButton
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Models.GameObject : fourText
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Models.Button : hardButton
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Models.GameObject : hardText
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Models.Button : mediumButton
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Models.GameObject : mediumText
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Models.InputField : nickname
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Models.Button : threeButton
+  com.mygdx.game.Views.CreateGameView o-- com.mygdx.game.Models.GameObject : threeText
+  com.mygdx.game.Views.GameLobbyView -up-|> com.mygdx.game.Views.View
+  com.mygdx.game.Views.GameLobbyView o-- com.mygdx.game.Models.GameObject : avatar1
+  com.mygdx.game.Views.GameLobbyView o-- com.mygdx.game.Models.GameObject : avatar2
+  com.mygdx.game.Views.GameLobbyView o-- com.mygdx.game.Models.GameObject : avatar3
+  com.mygdx.game.Views.GameLobbyView o-- com.mygdx.game.Models.GameObject : avatar4
+  com.mygdx.game.Views.GameLobbyView o-- com.mygdx.game.Models.Button : cancelButton
+  com.mygdx.game.Views.GameLobbyView o-- com.mygdx.game.Models.GameObject : gamePinText
+  com.mygdx.game.Views.GameLobbyView o-- com.mygdx.game.Models.Button : startButton
+  com.mygdx.game.Views.HowToPlayView -up-|> com.mygdx.game.Views.View
+  com.mygdx.game.Views.HowToPlayView o-- com.mygdx.game.Models.Background : background
+  com.mygdx.game.Views.HowToPlayView o-- com.mygdx.game.Models.Button : exitButton
+  com.mygdx.game.Views.JoinGameView -up-|> com.mygdx.game.Views.View
+  com.mygdx.game.Views.JoinGameView o-- com.mygdx.game.Models.Button : cancelButton
+  com.mygdx.game.Views.JoinGameView o-- com.mygdx.game.Controllers.JoinGameController : controller
+  com.mygdx.game.Views.JoinGameView o-- com.mygdx.game.Models.InputField : gamePin
+  com.mygdx.game.Views.JoinGameView o-- com.mygdx.game.Models.Button : joinGame
+  com.mygdx.game.Views.JoinGameView o-- com.mygdx.game.Models.InputField : nickname
+  com.mygdx.game.Views.JoinGameView o-- com.mygdx.game.Models.GameObject : timerBackground
+  com.mygdx.game.Views.MainMenuView -up-|> com.mygdx.game.Views.View
+  com.mygdx.game.Views.MainMenuView o-- com.mygdx.game.Models.Button : howToPlay
+  com.mygdx.game.Views.MainMenuView o-- com.mygdx.game.Models.Button : joinGame
+  com.mygdx.game.Views.MainMenuView o-- com.mygdx.game.Models.GameObject : logo
+  com.mygdx.game.Views.MainMenuView o-- com.mygdx.game.Models.Button : newGame
+  com.mygdx.game.Views.ScoreBoardView -up-|> com.mygdx.game.Views.View
+  com.mygdx.game.Views.ScoreBoardView o-- com.mygdx.game.Models.GameObject : avatar1
+  com.mygdx.game.Views.ScoreBoardView o-- com.mygdx.game.Models.GameObject : avatar2
+  com.mygdx.game.Views.ScoreBoardView o-- com.mygdx.game.Models.GameObject : avatar3
+  com.mygdx.game.Views.ScoreBoardView o-- com.mygdx.game.Models.GameObject : avatar4
+  com.mygdx.game.Views.ScoreBoardView o-- com.mygdx.game.Controllers.ScoreBoardController : controller
+  com.mygdx.game.Views.ScoreBoardView o-- com.mygdx.game.Models.Button : nextButton
+  com.mygdx.game.Views.SplashView -up-|> com.mygdx.game.Views.View
+  com.mygdx.game.Views.SplashView o-- com.mygdx.game.Models.Dots : dots
+  com.mygdx.game.Views.SplashView o-- com.mygdx.game.Models.Splash : splash
+  com.mygdx.game.Views.View o-- com.mygdx.game.Models.Background : background
+  com.mygdx.game.Views.View o-- com.mygdx.game.Views.ViewManager : vm
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

@@ -19,13 +19,10 @@ public class HowToPlayView extends View{
 
     @Override
     public void handleInput() {
-        //|| Gdx.input.isKeyPressed(Input.Keys.BACK)
         if (Gdx.input.justTouched()) {
             if (this.exitButton.isObjectClicked()) {
                 dispose();
                 vm.set(new MainMenuView(vm));
-                //draw(this.sb);
-
             }
         }
 

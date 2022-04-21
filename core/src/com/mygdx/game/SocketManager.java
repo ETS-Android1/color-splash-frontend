@@ -46,4 +46,15 @@ public class SocketManager {
         this.socket.emit(EventsConstants.joinGame, json);
     }
 
+    /*public void getEndRoundResult(String nickname, String playerId, int totalScore, int avatarIndex) {
+        JSONObject json = new JSONObject();
+        json.put("nickname", nickname);
+        json.put("playerId", playerId);
+        json.put("totalScore", totalScore);
+        json.put("avatarIndex", avatarIndex);
+        this.socket.emit(EventsConstants.getEndRoundResult, json);
+    }*/
+
+
+
 }
