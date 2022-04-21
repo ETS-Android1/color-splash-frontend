@@ -9,6 +9,7 @@ import com.mygdx.game.Views.GameObjects.Dots;
 import com.mygdx.game.Views.GameObjects.GameObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AnswerView extends View{
@@ -20,6 +21,7 @@ public class AnswerView extends View{
     private GameObject timerBackground;
     private Dots dots;
     private Integer timer;
+    private List<Integer> correctColors = Arrays.asList(0,1,2,3);
 
 
 
@@ -30,19 +32,20 @@ public class AnswerView extends View{
     private double finishedTime = 0;
     private String feedback = "";
     private List<Integer> playerAnswer = new ArrayList<>();
+    private int localScore = 0;
 
     protected AnswerView(ViewManager vm) {
         super(vm);
-        this.redButton = new Button(new Texture(Gdx.files.internal("button_red.png")),0.1,0.24,3,false,false);
-        this.blueButton = new Button(new Texture(Gdx.files.internal("button_blue.png")),0.1,0.1,3,false,false);
-        this.greenButton = new Button(new Texture(Gdx.files.internal("button_green.png")),0.9,0.24,3,false,false);
-        this.yellowButton = new Button(new Texture(Gdx.files.internal("button_yellow.png")),0.9,0.1,3,false,false);
-        this.timerBackground = new GameObject(new Texture(Gdx.files.internal("splash_grey.png")),1,0.5,2.5,false,true);
-        this.dots = new Dots();
-        this.timer = 9;
-        this.timeCount = 0;
-        this.font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
-        this.dots.getDots().get(0).setFilePath("circle_lightgrey.png");
+        redButton = new Button(new Texture(Gdx.files.internal("button_red.png")),0.1,0.24,3,false,false);
+        blueButton = new Button(new Texture(Gdx.files.internal("button_blue.png")),0.1,0.1,3,false,false);
+        greenButton = new Button(new Texture(Gdx.files.internal("button_green.png")),0.9,0.24,3,false,false);
+        yellowButton = new Button(new Texture(Gdx.files.internal("button_yellow.png")),0.9,0.1,3,false,false);
+        timerBackground = new GameObject(new Texture(Gdx.files.internal("splash_grey.png")),1,0.5,2.5,false,true);
+        dots = new Dots();
+        timer = 8;
+        timeCount = 0;
+        font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
+        dots.getDots().get(0).setFilePath("circle_lightgrey.png");
 
 
     }
@@ -53,22 +56,22 @@ public class AnswerView extends View{
 
         if (Gdx.input.justTouched() && !this.playerFinished) {
 
-            if (this.redButton.isObjectClicked()){
+            if (redButton.isObjectClicked()){
                 this.dots.getDots().get(buttonCount).setFilePath("circle_red.png");
                 this.playerAnswer.add(1);
                 this.buttonCount++;
             }
-            if (this.greenButton.isObjectClicked()){
+            if (greenButton.isObjectClicked()){
                 this.dots.getDots().get(buttonCount).setFilePath("circle_green.png");
                 this.playerAnswer.add(2);
                 this.buttonCount++;
             }
-            if (this.blueButton.isObjectClicked()){
+            if (blueButton.isObjectClicked()){
                 this.dots.getDots().get(buttonCount).setFilePath("circle_blue.png");
                 this.playerAnswer.add(0);
                 this.buttonCount++;
             }
-            if (this.yellowButton.isObjectClicked()){
+            if (yellowButton.isObjectClicked()){
                 this.dots.getDots().get(buttonCount).setFilePath("circle_yellow.png");
                 this.playerAnswer.add(3);
                 this.buttonCount++;
@@ -101,11 +104,12 @@ public class AnswerView extends View{
             this.timer--;
             this.timeCount = 0;
         }
-        if(this.timer==0 && !this.playerFinished){
+        if(this.timer==0){
             this.playerFinished=true;
             this.feedback="Time's up!";
+            this.gameFinished();
         }
-        if(this.timer==-1){
+        if(this.timer==-3){
             System.out.println(this.playerAnswer);
             vm.set(new MainMenuView(vm));
         }
@@ -115,18 +119,22 @@ public class AnswerView extends View{
     @Override
     public void render(SpriteBatch sb){
         super.render(sb);
-        this.redButton.drawGameObject(sb);
-        this.blueButton.drawGameObject(sb);
-        this.greenButton.drawGameObject(sb);
-        this.yellowButton.drawGameObject(sb);
-        this.dots.drawDots(sb);
+        redButton.drawGameObject(sb);
+        blueButton.drawGameObject(sb);
+        greenButton.drawGameObject(sb);
+        yellowButton.drawGameObject(sb);
+        dots.drawDots(sb);
         if (this.playerFinished) {
             this.font.getData().setScale(2);
             this.font.draw(sb,feedback,(float)(timerBackground.getXPos())+100,(float)(timerBackground.getYPos()-100));
             this.timerBackground.drawGameObject(sb);
-            this.font.getData().setScale(3);
-            this.font.draw(sb,timer.toString(),(float)(timerBackground.getXPos())+310,(float)(timerBackground.getYPos()+380));
-
+            if(this.timer>0) {
+                this.font.getData().setScale(3);
+                this.font.draw(sb, timer.toString(), (float) (timerBackground.getXPos()) + 310, (float) (timerBackground.getYPos() + 380));
+            }
+            else{
+                this.font.draw(sb, ""+this.localScore+"/"+this.correctColors.size(), (float) (timerBackground.getXPos()) + 270, (float) (timerBackground.getYPos() + 350));
+            }
         }
         if (!this.playerFinished){
             this.font.getData().setScale(3);
@@ -139,5 +147,23 @@ public class AnswerView extends View{
     @Override
     public void dispose() {
 
+    }
+
+    public void gameFinished() {
+        this.localScore = 0;
+        for (int i = 0; i<this.correctColors.size(); i ++) {
+            try {
+                if (this.correctColors.get(i) == this.playerAnswer.get(i)) {
+                    this.localScore++;
+                    this.dots.getDots().get(i).setFilePath("result_right.png");
+                }
+                else {
+                    this.dots.getDots().get(i).setFilePath("result_wrong.png");
+                }
+            }
+            catch (IndexOutOfBoundsException e) {
+                this.dots.getDots().get(i).setFilePath("result_wrong.png");
+            }
+        }
     }
 }

@@ -69,5 +69,9 @@ public class SplashView extends View{
 
     }
 
+    public List<Integer> getBackend(){
+        return this.backend;
+    }
+
 }
 

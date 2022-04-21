@@ -48,6 +48,7 @@ public class HowToPlayView extends View{
     @Override
     public void dispose() {
         background.getImage().dispose();
+        exitButton.getImage().dispose();
 
     }
 
