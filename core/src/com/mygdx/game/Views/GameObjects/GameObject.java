@@ -4,12 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 public class GameObject {
     protected Texture image;
+    protected TextureRegion animatedImage;
     protected double xPos;
     protected double yPos;
     protected double scale;
@@ -33,7 +35,7 @@ public class GameObject {
         if(centerHeight){
             this.yPos = (screenHeight-(this.getHeight()))/2;
         }
-        if(this.xPos>screenWidth/2 && !isRendered && !centerWidth){
+        if(this.xPos>screenWidth/2.0 && !isRendered && !centerWidth){
             this.xPos-=(this.getWidth());
             this.bounds = new Rectangle((float)this.xPos, (float)(this.yPos), (float)this.getWidth(), (float)this.getHeight());
             this.isRendered=true;
@@ -68,4 +70,13 @@ public class GameObject {
         this.image=image;
     }
 
+    public void setFilePath(String filepath){this.image=new Texture(Gdx.files.internal(filepath));}
+
+
+    @Override
+    public String toString() {
+        return "GameObject{" +
+                "xPos=" + xPos +
+                '}';
+    }
 }
