@@ -6,7 +6,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Views.GameObjects.Button;
+import com.mygdx.game.Views.GameObjects.GameObject;
 import com.mygdx.game.controllers.GameLobbyController;
+import com.mygdx.game.dataClasses.Player;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class GameLobbyView extends View {
@@ -16,20 +22,36 @@ public class GameLobbyView extends View {
     private BitmapFont font;
     private GameLobbyController controller;
 
+    private List<GameObject> avatars = new ArrayList<>();
+    private List<String> avatarPics = new ArrayList<>(Arrays.asList("avatar_orange.png", "avatar_green.png", "avatar_pink.png", "avatar_purple.png"));
+
+
     protected GameLobbyView(ViewManager vm) {
         super(vm);
         controller = new GameLobbyController();
 
         controller.gameCreated();
 
+        for (int i = 0; i < 4; i++) {
+            avatars.add(new GameObject(new Texture(Gdx.files.internal("empty.png")), 0.2, 0.6 - 0.12 * i, 1, false, false));
+        }
+
+        boolean loading = true;
+
+        while (loading) {
+            loading = controller.isLoading;
+            if (!loading) {
+                for (Player player : controller.gameInfo.players) {
+                    avatars.get(player.getAvatarIndex()).setFilePath(avatarPics.get(player.getAvatarIndex()));
+                }
+            }
+        }
 
         startButton = new Button(new Texture("button_start.png"), 0.92, 0.08, 3,false, false);
         cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         font.setColor(Color.WHITE);
     }
-
-
 
     @Override
     protected void handleInput() {
@@ -41,10 +63,8 @@ public class GameLobbyView extends View {
             if (this.startButton.isObjectClicked()) {
                 dispose();
                 vm.set(new SplashView(vm));
-
             }
         }
-
     }
 
     @Override
@@ -61,13 +81,11 @@ public class GameLobbyView extends View {
         }
         font.getData().setScale((float)1.5);
         this.drawPlayers(sb);
-        try {
-            font.draw(sb, "Game pin:", (float) controller.gameInfo.players.get(0).avatar.getXPos() + 150, (float) controller.gameInfo.players.get(0).avatar.getYPos() + 600);
-            font.getData().setScale(3);
-            font.draw(sb,String.valueOf(this.controller.gameInfo.gameId), (float) controller.gameInfo.players.get(0).avatar.getXPos()+110, (float) controller.gameInfo.players.get(0).avatar.getYPos()+450);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        font.draw(sb, "Game pin:", (float) avatars.get(0).getXPos() + 150, (float) avatars.get(0).getYPos() + 600);
+        font.getData().setScale(3);
+        font.draw(sb,String.valueOf(this.controller.gameInfo.gameId), (float) avatars.get(0).getXPos()+110, (float) avatars.get(0).getYPos()+450);
+
         sb.end();
     }
 
@@ -78,15 +96,17 @@ public class GameLobbyView extends View {
     }
 
     private void drawPlayers(SpriteBatch sb) {
-        try {
-            for (int i = 0; i < controller.gameInfo.players.size(); i++) {
 
-
-                font.draw(sb, this.controller.gameInfo.players.get(i).name, (float) this.controller.gameInfo.players.get(i).avatar.getXPos() + 250, (float) this.controller.gameInfo.players.get(i).avatar.getYPos() + 130);
-                this.controller.gameInfo.players.get(i).avatar.drawGameObject(sb);
+        for (int i = 0; i < 4; i++) {
+            try {
+                for (Player player : controller.gameInfo.players) {
+                    avatars.get(player.getAvatarIndex()).setFilePath(avatarPics.get(player.getAvatarIndex()));
+                }
+                font.draw(sb, this.controller.gameInfo.players.get(i).name, (float) avatars.get(i).getXPos() + 250, (float) avatars.get(i).getYPos() + 130);
+            } catch (Exception e) {
+                //e.printStackTrace();
             }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
+            avatars.get(i).drawGameObject(sb);
         }
     }
 }

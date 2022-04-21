@@ -12,11 +12,9 @@ public class Player {
 
     public String name;
     private int avatarIndex;
-    public GameObject avatar;
-    private List<String> avatars = new ArrayList<>(Arrays.asList("avatar_orange.png", "avatar_green.png", "avatar_pink.png", "avatar_purple.png"));
 
-    public void setAvatar() {
-        this.avatar = new GameObject(new Texture(Gdx.files.internal("avatar_orange.png")), 0.2, 0.6 - 0.12 * avatarIndex, 1,false,false);
+    public int getAvatarIndex() {
+        return this.avatarIndex;
     }
 
     @Override
