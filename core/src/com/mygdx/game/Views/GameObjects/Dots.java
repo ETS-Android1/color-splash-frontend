@@ -55,4 +55,9 @@ public class Dots {
         }
     }
 
+    public List<GameObject> getDots() {
+        return this.dots;
+    }
+
+
 }
