@@ -9,13 +9,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Dots {
-    private List<Integer> backend;
+    private List<Integer> colors;
     private List<GameObject> dots;
     private Texture lightGreyDot = new Texture(Gdx.files.internal("circle_lightgrey.png"));
     private Texture darkGreyDot = new Texture(Gdx.files.internal("circle_darkgrey.png"));
 
     public Dots() {
-        this.backend = Arrays.asList(0,1,2,3);
+        this.colors = Arrays.asList(0,1,2,3,0,1);
         this.dots = new ArrayList<>();
         this.makeList();
     }
@@ -28,10 +28,10 @@ public class Dots {
         double width = this.lightGreyDot.getWidth()/1000.0;
 
         List<GameObject> tempDots = new ArrayList<>();
-        for (int i = 0; i < backend.size()/2; i++) {
+        for (int i = 0; i < colors.size()/2; i++) {
             double x = i + move;
             double xPos = screenWidth/2000.0 - x * space - width;
-            GameObject newDot = new GameObject(this.lightGreyDot, xPos,0.88, scale,false,false);
+            GameObject newDot = new GameObject(this.lightGreyDot, xPos, 0.88, scale, false, false);
             tempDots.add(newDot);
         }
 
@@ -39,13 +39,14 @@ public class Dots {
             this.dots.add(tempDots.get(i));
         }
 
-        for (int i = 0 ; i < backend.size()/2; i++) {
+        for (int i = 0; i < colors.size()/2; i++) {
             double x = i + move;
             double xPos = screenWidth/2000.0 + x * space;
             System.out.println(xPos);
             GameObject newDot = new GameObject(this.lightGreyDot, xPos,0.88, scale,false,false);
             this.dots.add(newDot);
         }
+        this.setDarkGreyDot(0);
 
     }
 
@@ -53,6 +54,14 @@ public class Dots {
         for (GameObject dot : this.dots) {
             dot.drawGameObject(sb);
         }
+    }
+
+    public void setDarkGreyDot(int index) {
+        this.dots.get(index).setImage(darkGreyDot);
+    }
+
+    public int getColor(int index) {
+        return this.colors.get(index);
     }
 
 }
