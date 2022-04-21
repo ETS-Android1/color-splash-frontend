@@ -15,7 +15,7 @@ public class Dots {
     private Texture darkGreyDot = new Texture(Gdx.files.internal("circle_darkgrey.png"));
 
     public Dots() {
-        this.colors = Arrays.asList(0,1,2,3,0,1);
+        this.colors = Arrays.asList(0,1,2,3);
         this.dots = new ArrayList<>();
         this.makeList();
     }
@@ -54,6 +54,10 @@ public class Dots {
         for (GameObject dot : this.dots) {
             dot.drawGameObject(sb);
         }
+    }
+
+    public List<GameObject> getDots() {
+        return this.dots;
     }
 
     public void setDarkGreyDot(int index) {

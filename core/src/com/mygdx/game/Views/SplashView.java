@@ -19,7 +19,7 @@ public class SplashView extends View{
     private int colorCounter = 0;
     private int frameCounter = 0;
     //list for testing, should be replaced with real backend data
-    private List<Integer> backend = Arrays.asList(0,3,2,0);
+    private List<Integer> backend = Arrays.asList(0,1,2,3,0,1);
 
     private Dots dots = new Dots();
 
@@ -52,7 +52,7 @@ public class SplashView extends View{
             this.frameCounter=0;
         }
         if (colorTimer>3 && this.colorCounter==(backend.size()-1)){
-            vm.set(new GameLobbyView(vm));
+            vm.set(new AnswerView(vm));
         }
     }
 
