@@ -46,10 +46,6 @@ public class CreateGameView extends View{
         Gdx.input.setInputProcessor(stage);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         controller = new CreateGameController();
-        font.setColor(Color.WHITE);
-        System.out.println("COLOR");
-        System.out.println(font.getColor());
-        System.out.println("COLOR");
         createButton = new Button(new Texture("button_create.png"), 0.92, 0.08, 3,false, false);
         cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false);
         threeButton = new Button(new Texture("button_unselected.png"), 0.2, 0.5, 3,false,false);
