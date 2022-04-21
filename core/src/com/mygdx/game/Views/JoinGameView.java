@@ -7,24 +7,32 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.Views.GameObjects.Button;
 import com.mygdx.game.Views.GameObjects.GameObject;
+import com.mygdx.game.Views.GameObjects.InputField;
 
-public class MainMenuView extends View {
+public class JoinGameView extends View{
 
-    private Button howToPlay;
-    private Button newGame;
     private Button joinGame;
     private GameObject logo;
     private Stage stage;
+    private InputField gamePin;
+    private InputField nickname;
+    private Button cancelButton;
+    private GameObject ledg;
 
-    public MainMenuView(ViewManager vm) {
+    public JoinGameView(ViewManager vm) {
         super(vm);
 
-        howToPlay = new Button(new Texture(Gdx.files.internal("button_howtoplay.png")), 0.08, 0.88, 3,false ,false);
-        newGame = new Button(new Texture(Gdx.files.internal("button_newgame.png")), 0.08, 0.23, 3,false,false);
+        cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.23, 3,false,false);
         joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.23, 3,false, false);
-        logo = new GameObject(new Texture(Gdx.files.internal("logo.png")), 1, 0.43, 1.8,false,true);
+        logo = new GameObject(new Texture(Gdx.files.internal("logo.png")), 1, 0.67, 1.4,false,true);
+        gamePin = new InputField("Game Pin", new Texture(Gdx.files.internal("textfield.png")), 0.5,0.61,2,false,false);
+        nickname = new InputField("Nickname", new Texture(Gdx.files.internal("textfield.png")), 0.5,0.51,2,false,false);
+
+        //ledg = new GameObject(new Texture(Gdx.files.internal("ledg.png")), 1, 0, 1.4,false,true);
         stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         Gdx.input.setInputProcessor(stage);
+        stage.addActor(gamePin.getTextField());
+        stage.addActor(nickname.getTextField());
 
     }
 
@@ -33,23 +41,13 @@ public class MainMenuView extends View {
         if (Gdx.input.justTouched()) {
             if (this.joinGame.isObjectClicked()) {
                 dispose();
-                vm.set(new JoinGameView(vm));
-
-                //draw(this.sb);
-
+                vm.set(new GameLobbyView(vm));
             }
-            if (this.howToPlay.isObjectClicked()) {
+            if (this.cancelButton.isObjectClicked()) {
                 dispose();
-                //vm.set(new HowToPlayView(vm));
-                vm.set(new AnswerView(vm));
-                //dispose();
-            }
-            if (this.newGame.isObjectClicked()) {
-                dispose();
-                vm.set(new CreateGameView(vm));
+                vm.set(new MainMenuView(vm));
             }
         }
-
     }
 
     @Override
@@ -60,11 +58,13 @@ public class MainMenuView extends View {
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
-        howToPlay.drawGameObject(sb);
-        newGame.drawGameObject(sb);
-        logo.drawGameObject(sb);
         joinGame.drawGameObject(sb);
+        logo.drawGameObject(sb);
+        cancelButton.drawGameObject(sb);
+        //ledg.drawGameObject(sb);
         sb.end();
+        gamePin.drawStage(gamePin.getTextField());
+        nickname.drawStage(nickname.getTextField());
         stage.draw();
         stage.act();
     }
@@ -72,12 +72,8 @@ public class MainMenuView extends View {
     @Override
     public void dispose() {
         background.getImage().dispose();
-        howToPlay.getImage().dispose();
-        newGame.getImage().dispose();
-        joinGame.getImage().dispose();
         logo.getImage().dispose();
         stage.clear();
     }
-
 
 }
