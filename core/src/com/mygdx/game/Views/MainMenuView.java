@@ -21,12 +21,22 @@ public class MainMenuView extends View {
 
     public MainMenuView(ViewManager vm) {
         super(vm);
+        /*
         howToPlay = new Button(new Texture(Gdx.files.internal("button_howtoplay.png")), 0.08, 0.88, 3,false ,false);
         newGame = new Button(new Texture(Gdx.files.internal("button_newgame.png")), 0.08, 0.08, 3,false,false);
         joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.08, 3,false, false);
         logo = new GameObject(new Texture(Gdx.files.internal("logo.png")), 1, 0.45, 1.6,false,true);
         gamePin = new InputField("Game Pin", new Texture(Gdx.files.internal("textfield.png")), 0.5,0.35,2,false,false);
         nickname = new InputField("Nickname", new Texture(Gdx.files.internal("textfield.png")), 0.5,0.25,2,false,false);
+
+         */
+        //howToPlay = new Button(new Texture(Gdx.files.internal("button_howtoplay.png")), 0.08, 0.88, 3,false ,false);
+        newGame = new Button(new Texture(Gdx.files.internal("button_newgame.png")), 0.08, 0.08, 3,false,false);
+        joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.08, 3,false, false);
+        logo = new GameObject(new Texture(Gdx.files.internal("logo.png")), 1, 0.50, 1.6,false,true);
+        gamePin = new InputField("Game Pin", new Texture(Gdx.files.internal("textfield.png")), 0.5,0.35,2,false,false);
+        nickname = new InputField("Nickname", new Texture(Gdx.files.internal("textfield.png")), 0.5,0.25,2,false,false);
+
         stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         Gdx.input.setInputProcessor(stage);
         stage.addActor(gamePin.getTextField());
