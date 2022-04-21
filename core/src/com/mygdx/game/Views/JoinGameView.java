@@ -17,16 +17,17 @@ public class JoinGameView extends View{
     private InputField gamePin;
     private InputField nickname;
     private Button cancelButton;
-    private GameObject ledg;
+    private GameObject timerBackground;
 
     public JoinGameView(ViewManager vm) {
         super(vm);
 
-        cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.23, 3,false,false);
-        joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.23, 3,false, false);
+        cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.1, 3,false,false);
+        joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.1, 3,false, false);
         logo = new GameObject(new Texture(Gdx.files.internal("logo.png")), 1, 0.67, 1.4,false,true);
-        gamePin = new InputField("Game Pin", new Texture(Gdx.files.internal("textfield.png")), 0.5,0.61,2,false,false);
-        nickname = new InputField("Nickname", new Texture(Gdx.files.internal("textfield.png")), 0.5,0.51,2,false,false);
+        gamePin = new InputField("Game Pin", new Texture(Gdx.files.internal("textfield_light.png")), 0.5,0.61,2,false,false);
+        nickname = new InputField("Nickname", new Texture(Gdx.files.internal("textfield_light.png")), 0.5,0.51,2,false,false);
+        this.timerBackground = new GameObject(new Texture(Gdx.files.internal("splash_orange.png")),1,0.23,5.3,false,true);
 
         //ledg = new GameObject(new Texture(Gdx.files.internal("ledg.png")), 1, 0, 1.4,false,true);
         stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
@@ -58,8 +59,9 @@ public class JoinGameView extends View{
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
+        timerBackground.drawGameObject(sb);
         joinGame.drawGameObject(sb);
-        logo.drawGameObject(sb);
+        //logo.drawGameObject(sb);
         cancelButton.drawGameObject(sb);
         //ledg.drawGameObject(sb);
         sb.end();

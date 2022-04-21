@@ -19,7 +19,7 @@ public class SplashView extends View{
     private int colorCounter = 0;
     private int frameCounter = 0;
     //list for testing, should be replaced with real backend data
-    private List<Integer> backend = Arrays.asList(0,1,2,3,0,1);
+    private List<Integer> backend = Arrays.asList(0,1,2,3);
 
     private Dots dots;
 
@@ -45,7 +45,7 @@ public class SplashView extends View{
             this.splash.setFilePath(splash.getSplashes().get(backend.get(this.colorCounter)).get(this.frameCounter));
             this.splashTimer=0;
         }
-        if (colorTimer>3 && this.colorCounter<(backend.size()-1)){
+        if (colorTimer>2 && this.colorCounter<(backend.size()-1)){
             this.dots.setDarkGreyDot(colorCounter + 1);
             this.colorCounter++;
             this.colorTimer=0;
