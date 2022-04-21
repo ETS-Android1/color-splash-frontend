@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.Views.GameObjects.Button;
 import com.mygdx.game.Views.GameObjects.GameObject;
-import com.mygdx.game.Views.GameObjects.InputField;
 
 public class MainMenuView extends View {
 
@@ -21,8 +20,8 @@ public class MainMenuView extends View {
         super(vm);
 
         howToPlay = new Button(new Texture(Gdx.files.internal("button_howtoplay.png")), 0.08, 0.88, 3,false ,false);
-        newGame = new Button(new Texture(Gdx.files.internal("button_newgame.png")), 0.08, 0.18, 3,false,false);
-        joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.18, 3,false, false);
+        newGame = new Button(new Texture(Gdx.files.internal("button_newgame.png")), 0.08, 0.23, 3,false,false);
+        joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.23, 3,false, false);
         logo = new GameObject(new Texture(Gdx.files.internal("logo.png")), 1, 0.43, 1.8,false,true);
         stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         Gdx.input.setInputProcessor(stage);
