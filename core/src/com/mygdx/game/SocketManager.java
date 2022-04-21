@@ -5,9 +5,11 @@ import com.mygdx.game.Events.EventsConstants;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
+import java.util.concurrent.Callable;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
 public class SocketManager {
     private Socket socket;
@@ -28,6 +30,10 @@ public class SocketManager {
 			e.printStackTrace();
 		}
 
+    }
+
+    public void createListener(String event, Emitter.Listener listener) {
+        this.socket.on(event, listener);
     }
 
     public void createGame(String nickname, int rounds, String difficulty, int maxPlayers) {

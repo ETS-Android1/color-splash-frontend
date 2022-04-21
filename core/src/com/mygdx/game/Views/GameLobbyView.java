@@ -1,17 +1,19 @@
 package com.mygdx.game.Views;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Events.EventsConstants;
 import com.mygdx.game.Views.GameObjects.Button;
 import com.mygdx.game.Views.GameObjects.GameObject;
+import com.mygdx.game.controllers.GameLobbyController;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import io.socket.emitter.Emitter;
 
 public class GameLobbyView extends View {
 
@@ -27,9 +29,14 @@ public class GameLobbyView extends View {
     private Button cancelButton;
     private Button startButton;
     private BitmapFont font;
+    private GameLobbyController controller;
 
     protected GameLobbyView(ViewManager vm) {
         super(vm);
+        controller = new GameLobbyController();
+
+        controller.gameCreated();
+
         startButton = new Button(new Texture("button_start.png"), 0.92, 0.08, 3,false, false);
         cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false);
         //gamePinText = new GameObject(new Texture("button_cancel.png"), 0.4, 0.88, 1,false,false);
@@ -48,6 +55,7 @@ public class GameLobbyView extends View {
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         font.setColor(Color.WHITE);
     }
+
 
 
     @Override
