@@ -8,10 +8,6 @@ import com.mygdx.game.Views.MainMenuView;
 
 import java.net.URISyntaxException;
 
-/*import io.socket.client.Socket;
-import io.socket.client.IO;
-import io.socket.emitter.Emitter;*/
-
 public class ColorSplash extends Game {
 
 	public static final int V_WIDTH=360;
@@ -21,13 +17,13 @@ public class ColorSplash extends Game {
 
 	private ViewManager gsm;
 	public SpriteBatch batch;
-	private SockerManager socketManager;
+	public static final SocketManager socketManager = new SocketManager();
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		gsm = new ViewManager();
 		gsm.push(new MainMenuView(gsm));
-		socketManager = new SockerManager();
 	}
 
 	@Override

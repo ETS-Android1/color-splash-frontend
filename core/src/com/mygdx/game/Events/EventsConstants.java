@@ -1,18 +1,23 @@
-public String error = "Error";//ServerEvent
-public String hostCreateGame = "HostCreateGame";//clientEvent
-public String gameCreated = "GameCreated";//ServerEvent
-public String joinGame = "JoinGame";//clientEvent
-public String gameInfo = "GameInfo";//ServerEvent
-public String startGame = "StartGame";//clientEvent
-public String displayColors = "DisplayColors";//ServerEvent
-public String colorsDisplayedFinished = "ColorsDisplayedFinished";//clientEvent
-public String roundStarted = "RoundStarted";//ServerEvent
-public String playerFinished = "PlayerFinished";//clientEvent
-public String timesUp = "TimesUp";//ServerEvent
-public String endRound = "EndRound";//ServerEvent
-public String nextRound = "NextRound";//clientEvent
-public String gameFinished = "GameFinished";//ServerEvent
-public String endGame = "EndGame";//clientEvent
-public String gameDeleted = "GameDeleted";//ServerEvent
-public String disconnect = "disconnect";//clientEvent
-public String getEndRoundResult = "GetEndRoundResult";//clientEvent
+package com.mygdx.game.Events;
+
+public class EventsConstants {
+
+    public static String error = "Error";//ServerEvent
+    public static String hostCreateGame = "HostCreateGame";//clientEvent
+    public static String gameCreated = "GameCreated";//ServerEvent
+    public static String joinGame = "JoinGame";//clientEvent
+    public static String gameInfo = "GameInfo";//ServerEvent
+    public static String startGame = "StartGame";//clientEvent
+    public static String displayColors = "DisplayColors";//ServerEvent
+    public static String colorsDisplayedFinished = "ColorsDisplayedFinished";//clientEvent
+    public static String roundStarted = "RoundStarted";//ServerEvent
+    public static String playerFinished = "PlayerFinished";//clientEvent
+    public static String timesUp = "TimesUp";//ServerEvent
+    public static String endRound = "EndRound";//ServerEvent
+    public static String nextRound = "NextRound";//clientEvent
+    public static String gameFinished = "GameFinished";//ServerEvent
+    public static String endGame = "EndGame";//clientEvent
+    public static String gameDeleted = "GameDeleted";//ServerEvent
+    public static String disconnect = "disconnect";//clientEvent
+    public static String getEndRoundResult = "GetEndRoundResult";//clientEvent
+}
