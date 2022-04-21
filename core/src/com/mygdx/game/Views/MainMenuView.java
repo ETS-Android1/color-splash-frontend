@@ -22,7 +22,7 @@ public class MainMenuView extends View {
         howToPlay = new Button(new Texture(Gdx.files.internal("button_howtoplay.png")), 0.08, 0.88, 3,false ,false);
         newGame = new Button(new Texture(Gdx.files.internal("button_newgame.png")), 0.08, 0.1, 3,false,false);
         joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.1, 3,false, false);
-        logo = new GameObject(new Texture(Gdx.files.internal("logo.png")), 1, 0.3, 1.8,false,true);
+        logo = new GameObject(new Texture(Gdx.files.internal("logo.png")), 1, 0.3, 3.5,false,true);
         stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         Gdx.input.setInputProcessor(stage);
 
