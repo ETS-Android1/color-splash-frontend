@@ -52,7 +52,7 @@ public class SplashView extends View{
             this.frameCounter=0;
         }
         if (colorTimer>3 && this.colorCounter==(backend.size()-1)){
-            vm.set(new GameLobbyView(vm));
+            vm.set(new AnswerView(vm));
         }
     }
 

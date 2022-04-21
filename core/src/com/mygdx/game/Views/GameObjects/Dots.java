@@ -56,6 +56,10 @@ public class Dots {
         }
     }
 
+    public List<GameObject> getDots() {
+        return this.dots;
+    }
+
     public void setDarkGreyDot(int index) {
         this.dots.get(index).setImage(darkGreyDot);
     }

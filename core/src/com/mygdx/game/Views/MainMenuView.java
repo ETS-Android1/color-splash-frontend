@@ -40,7 +40,8 @@ public class MainMenuView extends View {
             }
             if (this.howToPlay.isObjectClicked()) {
                 dispose();
-                vm.set(new HowToPlayView(vm));
+                //vm.set(new HowToPlayView(vm));
+                vm.set(new AnswerView(vm));
                 //dispose();
             }
             if (this.newGame.isObjectClicked()) {
