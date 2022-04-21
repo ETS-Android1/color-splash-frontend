@@ -1,7 +1,5 @@
 package com.mygdx.game.dataClasses;
 
-import com.mygdx.game.Views.GameObjects.GameObject;
-
 import java.util.List;
 
 public class GameInfo {

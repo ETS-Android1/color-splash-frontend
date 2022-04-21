@@ -5,20 +5,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.Events.EventsConstants;
 import com.mygdx.game.Views.GameObjects.Button;
-import com.mygdx.game.Views.GameObjects.GameObject;
 import com.mygdx.game.controllers.GameLobbyController;
-import com.mygdx.game.dataClasses.GameInfo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import io.socket.emitter.Emitter;
 
 public class GameLobbyView extends View {
 
-    private boolean isHost = true;
     private Button cancelButton;
     private Button startButton;
     private BitmapFont font;
@@ -29,6 +21,7 @@ public class GameLobbyView extends View {
         controller = new GameLobbyController();
 
         controller.gameCreated();
+
 
         startButton = new Button(new Texture("button_start.png"), 0.92, 0.08, 3,false, false);
         cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false);
@@ -57,21 +50,24 @@ public class GameLobbyView extends View {
     @Override
     public void update(float dt) {
         handleInput();
-
     }
 
     @Override
     public void render(SpriteBatch sb) {
         super.render(sb);
         cancelButton.drawGameObject(sb);
-        if (this.isHost){
+        if (controller.isHost){
             startButton.drawGameObject(sb);
         }
         font.getData().setScale((float)1.5);
         this.drawPlayers(sb);
-        font.draw(sb, "Game pin:", (float) controller.gameInfo.players.get(0).avatar.getXPos()+150, (float) controller.gameInfo.players.get(0).avatar.getYPos()+600);
-        font.getData().setScale(3);
-        font.draw(sb,String.valueOf(this.controller.gameInfo.gameId), (float) controller.gameInfo.players.get(0).avatar.getXPos()+110, (float) controller.gameInfo.players.get(0).avatar.getYPos()+450);
+        try {
+            font.draw(sb, "Game pin:", (float) controller.gameInfo.players.get(0).avatar.getXPos() + 150, (float) controller.gameInfo.players.get(0).avatar.getYPos() + 600);
+            font.getData().setScale(3);
+            font.draw(sb,String.valueOf(this.controller.gameInfo.gameId), (float) controller.gameInfo.players.get(0).avatar.getXPos()+110, (float) controller.gameInfo.players.get(0).avatar.getYPos()+450);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         sb.end();
     }
 
@@ -82,9 +78,15 @@ public class GameLobbyView extends View {
     }
 
     private void drawPlayers(SpriteBatch sb) {
-        for (int i=0  ; i<controller.gameInfo.players.size() ; i++) {
-            this.controller.gameInfo.players.get(i).avatar.drawGameObject(sb);
-            font.draw(sb, this.controller.gameInfo.players.get(i).name, (float) this.controller.gameInfo.players.get(i).avatar.getXPos()+250, (float) this.controller.gameInfo.players.get(i).avatar.getYPos()+130);
+        try {
+            for (int i = 0; i < controller.gameInfo.players.size(); i++) {
+
+
+                font.draw(sb, this.controller.gameInfo.players.get(i).name, (float) this.controller.gameInfo.players.get(i).avatar.getXPos() + 250, (float) this.controller.gameInfo.players.get(i).avatar.getYPos() + 130);
+                this.controller.gameInfo.players.get(i).avatar.drawGameObject(sb);
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
     }
 }
