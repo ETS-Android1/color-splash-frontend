@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.Models.Button;
 import com.mygdx.game.Models.GameObject;
 import com.mygdx.game.Models.InputField;
+import com.mygdx.game.controllers.CreateGameController;
 
 
 public class CreateGameView extends View{
@@ -35,15 +36,16 @@ public class CreateGameView extends View{
     private BitmapFont font;
     private Stage stage;
     private InputField nickname;
-    //private CreateGameListener createGameListener = new CreateGameListener();
     private String checkedRoundButton = "3";
     private String checkedDifficultyButton = "easy";
+    private CreateGameController controller;
 
     protected CreateGameView(ViewManager vm) {
         super(vm);
         stage= new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         Gdx.input.setInputProcessor(stage);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
+        controller = new CreateGameController();
         font.setColor(Color.WHITE);
         System.out.println("COLOR");
         System.out.println(font.getColor());
@@ -77,6 +79,23 @@ public class CreateGameView extends View{
     protected void handleInput() {
         if (Gdx.input.justTouched()) {
             if (this.createButton.isObjectClicked()) {
+                int rounds;
+                if (this.threeButton.getIsChecked()) {
+                    rounds = 3;
+                } else if (this.fourButton.getIsChecked()) {
+                    rounds = 4;
+                } else {
+                    rounds = 5;
+                }
+                String difficulty;
+                if (this.easyButton.getIsChecked()) {
+                    difficulty = "easy";
+                } else if (this.mediumButton.getIsChecked()) {
+                    difficulty = "medium";
+                } else {
+                    difficulty = "hard";
+                }
+                this.controller.createGame(this.nickname.getTextField().getText(), rounds, difficulty, 4);
                 dispose();
                 vm.set(new GameLobbyView(vm));
             }

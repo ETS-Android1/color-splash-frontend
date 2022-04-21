@@ -16,15 +16,15 @@ public class SplashView extends View{
     private int colorCounter = 0;
     private int frameCounter = 0;
     //list for testing, should be replaced with real backend data
-    private List<Integer> backend = Arrays.asList(0,1,2,3);
+    private List<Integer> backend = Arrays.asList(0,1,2,3,0,1);
 
-    private Dots dots;
+    private Dots dots = new Dots();
 
     protected SplashView(ViewManager vm) {
         super(vm);
         splash = new Splash(new Texture(Gdx.files.internal("splash_1_blue.png")),0.5,0.6,3,true,true);
         this.splash.setFilePath(splash.getSplashes().get(backend.get(this.colorCounter)).get(this.frameCounter));
-        this.dots = new Dots();
+
     }
 
     @Override
@@ -42,9 +42,9 @@ public class SplashView extends View{
             this.splash.setFilePath(splash.getSplashes().get(backend.get(this.colorCounter)).get(this.frameCounter));
             this.splashTimer=0;
         }
-        if (colorTimer>2 && this.colorCounter<(backend.size()-1)){
-            this.dots.setDarkGreyDot(colorCounter + 1);
+        if (colorTimer>3 && this.colorCounter<(backend.size()-1)){
             this.colorCounter++;
+            this.dots.setDarkGreyDot(colorCounter);
             this.colorTimer=0;
             this.frameCounter=0;
         }

@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.Models.Button;
 import com.mygdx.game.Models.GameObject;
 import com.mygdx.game.Models.InputField;
+import com.mygdx.game.controllers.JoinGameController;
 
 public class JoinGameView extends View{
 
@@ -17,10 +18,12 @@ public class JoinGameView extends View{
     private InputField nickname;
     private Button cancelButton;
     private GameObject timerBackground;
+    private JoinGameController controller;
 
     public JoinGameView(ViewManager vm) {
         super(vm);
 
+        controller = new JoinGameController();
         cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.1, 3,false,false);
         joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.1, 3,false, false);
         gamePin = new InputField("Game Pin", new Texture(Gdx.files.internal("textfield_light.png")), 0.5,0.61,2,false,false);
@@ -37,6 +40,9 @@ public class JoinGameView extends View{
     public void handleInput() {
         if (Gdx.input.justTouched()) {
             if (this.joinGame.isObjectClicked()) {
+                System.out.println("GameId: " + Integer.parseInt(this.gamePin.getTextField().getText()));
+                System.out.println("Nickname: " + this.nickname.getTextField().getText());
+                this.controller.joinGame(Integer.parseInt(this.gamePin.getTextField().getText()), this.nickname.getTextField().getText());
                 dispose();
                 vm.set(new GameLobbyView(vm));
             }
