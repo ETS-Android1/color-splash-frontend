@@ -25,7 +25,7 @@ public class ScoreBoardView extends View{
     private List<String> trophy_avatar = Arrays.asList("trophy_orange.png","trophy_green.png", "trophy_pink.png", "trophy_purple.png");
 
 
-    protected ScoreBoardView(ViewManager vm) {
+    public ScoreBoardView(ViewManager vm) {
         super();
         controller = new ScoreBoardController(vm);
         controller.roundFinished();

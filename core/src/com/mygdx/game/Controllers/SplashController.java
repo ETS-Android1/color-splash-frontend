@@ -6,6 +6,7 @@ import com.mygdx.game.Views.ViewManager;
 public class SplashController {
     private ViewManager viewManager;
 
+
     public SplashController(ViewManager viewManager) {
         this.viewManager = viewManager;
     }
