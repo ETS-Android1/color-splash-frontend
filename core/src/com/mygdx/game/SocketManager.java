@@ -8,6 +8,7 @@ import java.net.URISyntaxException;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
 public class SocketManager {
     private Socket socket;
@@ -30,6 +31,10 @@ public class SocketManager {
 
     }
 
+    public void createListener(String event, Emitter.Listener listener) {
+        this.socket.on(event, listener);
+    }
+
     public void createGame(String nickname, int rounds, String difficulty, int maxPlayers) {
         JSONObject json = new JSONObject();
         json.put("nickname", nickname);
@@ -46,15 +51,14 @@ public class SocketManager {
         this.socket.emit(EventsConstants.joinGame, json);
     }
 
-    /*public void getEndRoundResult(String nickname, String playerId, int totalScore, int avatarIndex) {
+    public void startGame(int gameId) {
         JSONObject json = new JSONObject();
-        json.put("nickname", nickname);
-        json.put("playerId", playerId);
-        json.put("totalScore", totalScore);
-        json.put("avatarIndex", avatarIndex);
-        this.socket.emit(EventsConstants.getEndRoundResult, json);
-    }*/
+        json.put("gameId", gameId);
+        this.socket.emit(EventsConstants.startGame, json);
+    }
 
-
+    public String getSocketId() {
+        return socket.id();
+    }
 
 }
