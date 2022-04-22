@@ -25,6 +25,8 @@ public class GameLobbyView extends View {
     private List<GameObject> avatars = new ArrayList<>();
     private List<String> avatarPics = new ArrayList<>(Arrays.asList("avatar_orange.png", "avatar_green.png", "avatar_pink.png", "avatar_purple.png"));
 
+    private String difficulty = "medium";
+    private String rounds = "8";
 
     protected GameLobbyView(ViewManager vm) {
         super(vm);
@@ -50,7 +52,6 @@ public class GameLobbyView extends View {
         startButton = new Button(new Texture("button_start.png"), 0.92, 0.08, 3,false, false);
         cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
-        font.setColor(Color.WHITE);
     }
 
     @Override
@@ -64,6 +65,7 @@ public class GameLobbyView extends View {
                 this.controller.startGame(controller.gameInfo.gameId);
                 dispose();
                 vm.set(new GetReadyView(vm));
+
 
             }
         }
@@ -81,6 +83,8 @@ public class GameLobbyView extends View {
         if (controller.isHost){
             startButton.drawGameObject(sb);
         }
+        font.getData().setScale(1);
+        font.draw(sb, "Difficulty: "+this.difficulty+"    Rounds: "+this.rounds,(float)avatar1.getXPos()-30,(float)avatar1.getYPos()+400);
         font.getData().setScale((float)1.5);
         this.drawPlayers(sb);
 
