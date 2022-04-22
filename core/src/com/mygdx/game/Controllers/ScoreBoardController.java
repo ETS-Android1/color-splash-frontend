@@ -30,6 +30,8 @@ public class ScoreBoardController {
         ColorSplash.socketManager.nextRound(gameId);
     }
 
+    public void endGame(int gameId) {ColorSplash.socketManager.endGame(gameId);}
+
     public Emitter.Listener scoreBoardListener() {
         return new Emitter.Listener() {
             @Override

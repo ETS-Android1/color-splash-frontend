@@ -57,10 +57,12 @@ public class ScoreBoardView extends View{
         if (Gdx.input.justTouched()) {
             if (this.nextButton.isObjectClicked()) {
                 dispose();
+                controller.nextRound(controller.getScoreBoardInfo().gameId);
                 controller.setGetReadyView();
             }
             if (exitButton.isObjectClicked()){
                 dispose();
+                controller.endGame(controller.getScoreBoardInfo().gameId);
                 controller.setMainMenuView();
             }
         }
