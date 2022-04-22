@@ -3,17 +3,24 @@ package com.mygdx.game.Controllers;
 import com.google.gson.Gson;
 import com.mygdx.game.ColorSplash;
 import com.mygdx.game.Events.EventsConstants;
-import com.mygdx.game.dataClasses.GameInfo;
+import com.mygdx.game.Views.GetReadyView;
+import com.mygdx.game.Views.MainMenuView;
+import com.mygdx.game.Views.View;
+import com.mygdx.game.Views.ViewManager;
 import com.mygdx.game.dataClasses.ScoreBoardInfo;
 
 import io.socket.emitter.Emitter;
 
 public class ScoreBoardController {
 
-
     private ScoreBoardInfo scoreBoardInfo;
     private boolean isHost;
     private boolean isLoading = true;
+    private ViewManager viewManager;
+
+    public ScoreBoardController(ViewManager vm){
+        this.viewManager = vm;
+    }
 
     public void roundFinished() {
         ColorSplash.socketManager.createListener(EventsConstants.getEndRoundResult, scoreBoardListener());
@@ -46,5 +53,13 @@ public class ScoreBoardController {
 
     public boolean isLoading() {
         return isLoading;
+    }
+
+    public void setGetReadyView() {
+        viewManager.set(new GetReadyView(viewManager));
+    }
+
+    public void setMainMenuView() {
+        viewManager.set(new MainMenuView(viewManager));
     }
 }

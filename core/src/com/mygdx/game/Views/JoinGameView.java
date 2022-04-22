@@ -21,9 +21,9 @@ public class JoinGameView extends View{
     private JoinGameController controller;
 
     public JoinGameView(ViewManager vm) {
-        super(vm);
+        super();
 
-        controller = new JoinGameController();
+        controller = new JoinGameController(vm);
         cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.1, 3,false,false);
         joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.1, 3,false, false);
         gamePin = new InputField("Game Pin", new Texture(Gdx.files.internal("textfield_light.png")), 0.5,0.61,2,false,false);
@@ -46,11 +46,11 @@ public class JoinGameView extends View{
                 System.out.println("Nickname: " + this.nickname.getTextField().getText());
                 this.controller.joinGame(Integer.parseInt(this.gamePin.getTextField().getText()), this.nickname.getTextField().getText());
                 dispose();
-                vm.set(new GameLobbyView(vm));
+                controller.setGameLobbyView();
             }
             if (this.cancelButton.isObjectClicked()) {
                 dispose();
-                vm.set(new MainMenuView(vm));
+                controller.setMainMenuView();
             }
         }
     }

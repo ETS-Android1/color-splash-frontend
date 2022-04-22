@@ -23,15 +23,7 @@ public class CreateGameView extends View{
     private Button easyButton;
     private Button mediumButton;
     private Button hardButton;
-    private ButtonGroup rounds;
-    private ButtonGroup difficulty;
     private GameObject avatar;
-    private GameObject threeText;
-    private GameObject fourText;
-    private GameObject fiveText;
-    private GameObject easyText;
-    private GameObject mediumText;
-    private GameObject hardText;
     private BitmapFont font;
     private Stage stage;
     private InputField nickname;
@@ -39,12 +31,12 @@ public class CreateGameView extends View{
     private String checkedDifficultyButton = "easy";
     private CreateGameController controller;
 
-    protected CreateGameView(ViewManager vm) {
-        super(vm);
+    public CreateGameView(ViewManager vm) {
+        super();
         stage= new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         Gdx.input.setInputProcessor(stage);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
-        controller = new CreateGameController();
+        controller = new CreateGameController(vm);
         createButton = new Button(new Texture("button_create.png"), 0.92, 0.08, 3,false, false);
         cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false);
         threeButton = new Button(new Texture("button_unselected.png"), 0.2, 0.5, 3,false,false);
@@ -83,11 +75,11 @@ public class CreateGameView extends View{
                 }
                 this.controller.createGame(this.nickname.getTextField().getText(), rounds, difficulty, 4);
                 dispose();
-                vm.set(new GameLobbyView(vm));
+                controller.setGameLobbyView();
             }
             if (this.cancelButton.isObjectClicked()) {
                 dispose();
-                vm.set(new MainMenuView(vm));
+                controller.setMainMenuView();
             }
             if (this.easyButton.isObjectClicked()) {
                 this.checkedDifficultyButton = "easy";

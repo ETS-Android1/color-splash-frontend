@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Controllers.AnswerController;
 import com.mygdx.game.Models.Button;
 import com.mygdx.game.Models.Dots;
 import com.mygdx.game.Models.GameObject;
@@ -22,7 +23,7 @@ public class AnswerView extends View{
     private Dots dots;
     private Integer timer;
     private List<Integer> correctColors = Arrays.asList(0,1,2,3,0,1,1,2);
-
+    private AnswerController controller;
 
 
     private float timeCount;
@@ -34,8 +35,9 @@ public class AnswerView extends View{
     private List<Integer> playerAnswer = new ArrayList<>();
     private int localScore = 0;
 
-    protected AnswerView(ViewManager vm) {
-        super(vm);
+    public AnswerView(ViewManager vm) {
+        super();
+        this.controller = new AnswerController(vm);
         redButton = new Button(new Texture(Gdx.files.internal("button_red.png")),0.1,0.24,3,false,false);
         blueButton = new Button(new Texture(Gdx.files.internal("button_blue.png")),0.1,0.1,3,false,false);
         greenButton = new Button(new Texture(Gdx.files.internal("button_green.png")),0.9,0.24,3,false,false);
@@ -112,7 +114,7 @@ public class AnswerView extends View{
         }
         if(this.timer==-3){
             System.out.println(this.playerAnswer);
-            vm.set(new ScoreBoardView(vm));
+            controller.setScoreBoardView();
         }
 
     }

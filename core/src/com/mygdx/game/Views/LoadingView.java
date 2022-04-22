@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Controllers.LoadingController;
 import com.mygdx.game.Models.GameObject;
 
 public class LoadingView extends View{
@@ -12,9 +13,11 @@ public class LoadingView extends View{
     private GameObject placeholder;
     private GameObject background;
     private float timer = 0;
+    private LoadingController controller;
 
     protected LoadingView(ViewManager vm) {
-        super(vm);
+        super();
+        controller = new LoadingController(vm);
         background = new GameObject(new Texture(Gdx.files.internal("splash_orange.png")),1,0.15,5.3,false,true);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         placeholder = new GameObject(new Texture(Gdx.files.internal("splash.png")),0.3,0.6,1,false,false);
@@ -31,7 +34,7 @@ public class LoadingView extends View{
         this.timer+=dt;
         if(this.timer>=2){
             dispose();
-            vm.set(new SplashView(vm));
+            controller.setSplashView();
         }
     }
 

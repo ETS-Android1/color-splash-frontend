@@ -6,8 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Views.ViewManager;
 import com.mygdx.game.Views.MainMenuView;
 
-import java.net.URISyntaxException;
-
 public class ColorSplash extends Game {
 
 	public static final int V_WIDTH=360;
@@ -15,21 +13,21 @@ public class ColorSplash extends Game {
 
 	public static final String TITLE = "Color Splash";
 
-	private ViewManager gsm;
+	private ViewManager viewManager;
 	public SpriteBatch batch;
 	public static final SocketManager socketManager = new SocketManager();
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		gsm = new ViewManager();
-		gsm.push(new MainMenuView(gsm));
+		viewManager = new ViewManager();
+		viewManager.push(new MainMenuView(viewManager));
 	}
 
 	@Override
 	public void render () {
 		super.render();
-		gsm.update(Gdx.graphics.getDeltaTime());
-		gsm.render(batch);
+		viewManager.update(Gdx.graphics.getDeltaTime());
+		viewManager.render(batch);
 	}
 }

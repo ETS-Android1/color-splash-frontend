@@ -25,11 +25,9 @@ public class ScoreBoardView extends View{
     private List<String> trophy_avatar = Arrays.asList("trophy_orange.png","trophy_green.png", "trophy_pink.png", "trophy_purple.png");
 
 
-
-
     protected ScoreBoardView(ViewManager vm) {
-        super(vm);
-        controller = new ScoreBoardController();
+        super();
+        controller = new ScoreBoardController(vm);
         controller.roundFinished();
 
         boolean loading = true;
@@ -47,6 +45,7 @@ public class ScoreBoardView extends View{
             }
         }
 
+
         nextButton = new Button(new Texture("button_next.png"), 0.92, 0.08, 3,false, false);
         exitButton = new Button(new Texture("button_exit.png"), 0.92, 0.08, 3,false, false);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
@@ -58,11 +57,11 @@ public class ScoreBoardView extends View{
         if (Gdx.input.justTouched()) {
             if (this.nextButton.isObjectClicked()) {
                 dispose();
-                vm.set(new GetReadyView(vm));
+                controller.setGetReadyView();
             }
             if (exitButton.isObjectClicked()){
                 dispose();
-                vm.set(new MainMenuView(vm));
+                controller.setMainMenuView();
             }
         }
     }

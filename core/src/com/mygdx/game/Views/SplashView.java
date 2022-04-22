@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Controllers.SplashController;
 import com.mygdx.game.Models.Dots;
 import com.mygdx.game.Models.GameObject;
 import com.mygdx.game.Models.Splash;
@@ -26,8 +27,11 @@ public class SplashView extends View{
 
     private Dots dots = new Dots();
 
-    protected SplashView(ViewManager vm) {
-        super(vm);
+    private SplashController controller;
+
+    public SplashView(ViewManager vm) {
+        super();
+        this.controller = new SplashController(vm);
         textPlaceholder = new GameObject(new Texture(Gdx.files.internal("splash.png")),0.33,0.1,1,false,false);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         font.getData().setScale((float)1.5);
@@ -58,7 +62,7 @@ public class SplashView extends View{
             this.frameCounter=0;
         }
         if (colorTimer>2 && this.colorCounter==(backend.size()-1)){
-            vm.set(new AnswerView(vm));
+            controller.setAnswerView();
         }
     }
 
