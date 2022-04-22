@@ -24,6 +24,8 @@ public class GameLobbyView extends View {
     private Button cancelButton;
     private Button startButton;
     private BitmapFont font;
+    private String difficulty = "medium";
+    private String rounds = "8";
 
     protected GameLobbyView(ViewManager vm) {
         super(vm);
@@ -43,7 +45,6 @@ public class GameLobbyView extends View {
         players.add("marius");
         players.add("fabian");
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
-        font.setColor(Color.WHITE);
     }
 
 
@@ -76,11 +77,13 @@ public class GameLobbyView extends View {
         if (this.isHost){
             startButton.drawGameObject(sb);
         }
+        font.getData().setScale(1);
+        font.draw(sb, "Difficulty: "+this.difficulty+"    Rounds: "+this.rounds,(float)avatar1.getXPos()-30,(float)avatar1.getYPos()+400);
         font.getData().setScale((float)1.5);
         this.drawPlayers(sb);
-        font.draw(sb, "Game pin:", (float) avatar1.getXPos()+150, (float) avatar1.getYPos()+600);
+        font.draw(sb, "Game pin:", (float) avatar1.getXPos()+200, (float) avatar1.getYPos()+750);
         font.getData().setScale(3);
-        font.draw(sb,this.gamePin, (float) avatar1.getXPos()+110, (float) avatar1.getYPos()+450);
+        font.draw(sb,this.gamePin, (float) avatar1.getXPos()+150, (float) avatar1.getYPos()+650);
         sb.end();
 
 

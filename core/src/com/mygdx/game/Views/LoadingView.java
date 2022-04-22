@@ -6,18 +6,18 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Models.GameObject;
 
-public class GetReadyView extends View{
+public class LoadingView extends View{
 
     private BitmapFont font;
     private GameObject placeholder;
     private GameObject background;
     private float timer = 0;
 
-    protected GetReadyView(ViewManager vm) {
+    protected LoadingView(ViewManager vm) {
         super(vm);
         background = new GameObject(new Texture(Gdx.files.internal("splash_orange.png")),1,0.15,5.3,false,true);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
-        placeholder = new GameObject(new Texture(Gdx.files.internal("splash.png")),0.1,0.6,1,false,false);
+        placeholder = new GameObject(new Texture(Gdx.files.internal("splash.png")),0.3,0.6,1,false,false);
         font.getData().setScale(4);
     }
 
@@ -39,7 +39,7 @@ public class GetReadyView extends View{
     public void render(SpriteBatch sb) {
         super.render(sb);
         background.drawGameObject(sb);
-        font.draw(sb, "Get \nReady...",(float)placeholder.getXPos(),(float)placeholder.getYPos());
+        font.draw(sb, "Loading",(float)placeholder.getXPos(),(float)placeholder.getYPos());
         sb.end();
     }
 
