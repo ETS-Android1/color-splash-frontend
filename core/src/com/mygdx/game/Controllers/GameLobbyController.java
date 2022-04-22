@@ -1,14 +1,9 @@
-package com.mygdx.game.controllers;
+package com.mygdx.game.Controllers;
 
 import com.google.gson.Gson;
 import com.mygdx.game.ColorSplash;
 import com.mygdx.game.Events.EventsConstants;
-import com.mygdx.game.Views.GameLobbyView;
 import com.mygdx.game.dataClasses.GameInfo;
-import com.mygdx.game.dataClasses.Player;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import io.socket.emitter.Emitter;
 

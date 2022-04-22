@@ -5,9 +5,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.Views.GameObjects.Button;
-import com.mygdx.game.Views.GameObjects.GameObject;
-import com.mygdx.game.controllers.GameLobbyController;
+import com.mygdx.game.Models.Button;
+import com.mygdx.game.Models.GameObject;
+import com.mygdx.game.Controllers.GameLobbyController;
 import com.mygdx.game.dataClasses.Player;
 
 import java.util.ArrayList;

@@ -4,9 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.Views.GameObjects.Button;
-import com.mygdx.game.Views.GameObjects.Dots;
-import com.mygdx.game.Views.GameObjects.GameObject;
+import com.mygdx.game.Models.Button;
+import com.mygdx.game.Models.Dots;
+import com.mygdx.game.Models.GameObject;
 
 import java.util.ArrayList;
 import java.util.List;

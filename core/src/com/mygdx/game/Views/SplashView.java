@@ -3,11 +3,8 @@ package com.mygdx.game.Views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.Array;
-import com.mygdx.game.Views.GameObjects.Dots;
-import com.mygdx.game.Views.GameObjects.GameObject;
-import com.mygdx.game.Views.GameObjects.Splash;
+import com.mygdx.game.Models.Dots;
+import com.mygdx.game.Models.Splash;
 
 import java.util.Arrays;
 import java.util.List;
