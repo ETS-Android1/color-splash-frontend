@@ -25,9 +25,6 @@ public class GameLobbyView extends View {
     private List<GameObject> avatars = new ArrayList<>();
     private List<String> avatarPics = new ArrayList<>(Arrays.asList("avatar_orange.png", "avatar_green.png", "avatar_pink.png", "avatar_purple.png"));
 
-    private String difficulty = "medium";
-    private String rounds = "8";
-
     protected GameLobbyView(ViewManager vm) {
         super(vm);
         controller = new GameLobbyController();
@@ -84,13 +81,13 @@ public class GameLobbyView extends View {
             startButton.drawGameObject(sb);
         }
         font.getData().setScale(1);
-        font.draw(sb, "Difficulty: "+this.difficulty+"    Rounds: "+this.rounds,(float)avatars.get(0).getXPos()-30,(float)avatars.get(0).getYPos()+400);
+        font.draw(sb, "Difficulty: "+controller.gameInfo.difficulty+"    Rounds: "+controller.gameInfo.rounds,(float)avatars.get(0).getXPos()-30,(float)avatars.get(0).getYPos()+400);
         font.getData().setScale((float)1.5);
         this.drawPlayers(sb);
 
-        font.draw(sb, "Game pin:", (float) avatars.get(0).getXPos() + 150, (float) avatars.get(0).getYPos() + 600);
+        font.draw(sb, "Game pin:", (float) avatars.get(0).getXPos() + 150, (float) avatars.get(0).getYPos() + 750);
         font.getData().setScale(3);
-        font.draw(sb,String.valueOf(this.controller.gameInfo.gameId), (float) avatars.get(0).getXPos()+110, (float) avatars.get(0).getYPos()+450);
+        font.draw(sb,String.valueOf(this.controller.gameInfo.gameId), (float) avatars.get(0).getXPos()+110, (float) avatars.get(0).getYPos()+600);
 
         sb.end();
     }
