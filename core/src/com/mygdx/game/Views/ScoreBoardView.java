@@ -40,8 +40,9 @@ public class ScoreBoardView extends View{
 
 
 
-    protected ScoreBoardView(ViewManager vm) {
-        super(vm);
+    public ScoreBoardView(ViewManager vm) {
+        super();
+        this.controller = new ScoreBoardController(vm);
         nextButton = new Button(new Texture("button_next.png"), 0.92, 0.08, 3,false, false);
         exitButton = new Button(new Texture("button_exit.png"), 0.92, 0.08, 3,false, false);
         avatar1 = new GameObject(new Texture("avatar_orange.png"), 0.05, 0.6, 1,false,false);
@@ -62,11 +63,11 @@ public class ScoreBoardView extends View{
         if (Gdx.input.justTouched()) {
             if (this.nextButton.isObjectClicked()) {
                 dispose();
-                vm.set(new GetReadyView(vm));
+                controller.setGetReadyView();
             }
             if (exitButton.isObjectClicked()){
                 dispose();
-                vm.set(new MainMenuView(vm));
+                controller.setMainMenuView();
             }
         }
     }
