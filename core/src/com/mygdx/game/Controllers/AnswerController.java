@@ -3,22 +3,26 @@ package com.mygdx.game.Controllers;
 import com.google.gson.Gson;
 import com.mygdx.game.ColorSplash;
 import com.mygdx.game.Events.EventsConstants;
+import com.mygdx.game.Views.GetReadyView;
 import com.mygdx.game.Views.ScoreBoardView;
 import com.mygdx.game.Views.ViewManager;
 import com.mygdx.game.dataClasses.DisplayColors;
+import com.mygdx.game.dataClasses.ScoreBoardInfo;
 
 import java.util.List;
 
 import io.socket.emitter.Emitter;
 
-public class AnswerController {
-    private ViewManager viewManager;
+public class AnswerController extends ErrorController{
     private DisplayColors colorInfo;
     private boolean isLoading = true;
+    private ScoreBoardInfo scoreBoardInfo;
+    private boolean isHost;
 
     public AnswerController(ViewManager viewManager) {
+        super(viewManager);
         this.getColors();
-        this.viewManager = viewManager;
+        this.roundFinished();
     }
 
     public void getColors() {
@@ -31,6 +35,7 @@ public class AnswerController {
             public void call(Object... args) {
                 isLoading = true;
                 Gson gson = new Gson();
+                System.out.println(args[0]);
                 colorInfo = gson.fromJson(args[0].toString(), DisplayColors.class);
                 isLoading = false;
             }
@@ -38,11 +43,16 @@ public class AnswerController {
     }
 
     public void playerFinished(int gameId, List<Integer> answer) {
+        System.out.println("SENT");
         ColorSplash.socketManager.playerFinished(gameId, answer);
     }
 
     public void setScoreBoardView() {
-        viewManager.set(new ScoreBoardView(viewManager));
+        while (scoreBoardInfo == null) {
+            //System.out.println("loading");
+        }
+        System.out.println("not loading");
+        viewManager.set(new ScoreBoardView(viewManager, scoreBoardInfo));
     }
 
     public DisplayColors getColorInfo() {
@@ -51,5 +61,22 @@ public class AnswerController {
 
     public boolean isLoading() {
         return isLoading;
+    }
+
+    public void roundFinished() {
+        ColorSplash.socketManager.createListener(EventsConstants.getEndRoundResult, scoreBoardListener());
+    }
+
+    public Emitter.Listener scoreBoardListener() {
+        return new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                isLoading = true;
+                Gson gson = new Gson();
+                scoreBoardInfo = gson.fromJson(args[0].toString(), ScoreBoardInfo.class);
+                isHost = scoreBoardInfo.hostId.equals(ColorSplash.socketManager.getSocketId());
+                isLoading = false;
+            }
+        };
     }
 }

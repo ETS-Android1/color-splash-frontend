@@ -5,12 +5,10 @@ import com.mygdx.game.Views.GameLobbyView;
 import com.mygdx.game.Views.MainMenuView;
 import com.mygdx.game.Views.ViewManager;
 
-public class JoinGameController {
-
-    private ViewManager viewManager;
+public class JoinGameController extends ErrorController{
 
     public JoinGameController(ViewManager viewManager) {
-        this.viewManager = viewManager;
+        super(viewManager);
     }
 
     public void joinGame(int gameId, String nickname) {

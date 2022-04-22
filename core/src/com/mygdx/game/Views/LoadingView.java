@@ -34,7 +34,7 @@ public class LoadingView extends View{
         this.timer+=dt;
         if(this.timer>=2){
             dispose();
-            controller.setSplashView();
+            //controller.setSplashView();
         }
     }
 
@@ -44,6 +44,7 @@ public class LoadingView extends View{
         background.drawGameObject(sb);
         font.draw(sb, "Loading...",(float)placeholder.getXPos(),(float)placeholder.getYPos());
         sb.end();
+        super.renderStage();
     }
 
     @Override

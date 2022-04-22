@@ -1,10 +1,12 @@
 package com.mygdx.game;
 
+import com.google.gson.Gson;
 import com.mygdx.game.Events.EventsConstants;
 
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
+import java.util.Arrays;
 import java.util.List;
 
 import io.socket.client.IO;
@@ -71,9 +73,13 @@ public class SocketManager {
     }
 
     public void playerFinished(int gameId, List<Integer> answer) {
+        System.out.println("PLAYERFINISHED");
+        System.out.println(answer);
+        Gson gson = new Gson();
         JSONObject json = new JSONObject();
         json.put("gameId", gameId);
-        json.put("answer", answer);
+        json.put("answer", gson.toJson(answer));
+        System.out.println(gson.toJson(answer));
         this.socket.emit(EventsConstants.playerFinished, json);
     }
 

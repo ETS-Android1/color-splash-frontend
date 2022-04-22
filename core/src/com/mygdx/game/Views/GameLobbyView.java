@@ -36,9 +36,9 @@ public class GameLobbyView extends View {
         boolean loading = true;
 
         while (loading) {
-            loading = controller.isLoading;
+            loading = controller.isLoading();
             if (!loading) {
-                for (Player player : controller.gameInfo.players) {
+                for (Player player : controller.getGameInfo().players) {
                     avatars.get(player.getAvatarIndex()).setFilePath(avatarPics.get(player.getAvatarIndex()));
                 }
             }
@@ -57,9 +57,15 @@ public class GameLobbyView extends View {
                 controller.setMainMenuView();
             }
             if (this.startButton.isObjectClicked()) {
-                this.controller.startGame(controller.gameInfo.gameId);
-                dispose();
-                controller.setGetReadyView();
+                this.controller.startGame(controller.getGameInfo().gameId);
+                boolean loading = true;
+                while (loading){
+                    loading= controller.isLoading();
+                    if (!loading){
+                        dispose();
+                        controller.setGetReadyView();
+                    }
+                }
             }
         }
     }
@@ -73,19 +79,20 @@ public class GameLobbyView extends View {
     public void render(SpriteBatch sb) {
         super.render(sb);
         cancelButton.drawGameObject(sb);
-        if (controller.isHost){
+        if (controller.isHost()){
             startButton.drawGameObject(sb);
         }
         font.getData().setScale(1);
-        font.draw(sb, "Difficulty: "+controller.gameInfo.difficulty+"    Rounds: "+controller.gameInfo.rounds,(float)avatars.get(0).getXPos()-30,(float)avatars.get(0).getYPos()+400);
+        font.draw(sb, "Difficulty: "+controller.getGameInfo().difficulty+"    Rounds: "+controller.getGameInfo().rounds,(float)avatars.get(0).getXPos()-30,(float)avatars.get(0).getYPos()+400);
         font.getData().setScale((float)1.5);
         this.drawPlayers(sb);
 
         font.draw(sb, "Game pin:", (float) avatars.get(0).getXPos() + 150, (float) avatars.get(0).getYPos() + 750);
         font.getData().setScale(3);
-        font.draw(sb,String.valueOf(this.controller.gameInfo.gameId), (float) avatars.get(0).getXPos()+110, (float) avatars.get(0).getYPos()+600);
+        font.draw(sb,String.valueOf(this.controller.getGameInfo().gameId), (float) avatars.get(0).getXPos()+110, (float) avatars.get(0).getYPos()+600);
 
         sb.end();
+        super.renderStage();
     }
 
     @Override
@@ -98,10 +105,10 @@ public class GameLobbyView extends View {
 
         for (int i = 0; i < 4; i++) {
             try {
-                for (Player player : controller.gameInfo.players) {
+                for (Player player : controller.getGameInfo().players) {
                     avatars.get(player.getAvatarIndex()).setFilePath(avatarPics.get(player.getAvatarIndex()));
                 }
-                font.draw(sb, this.controller.gameInfo.players.get(i).name, (float) avatars.get(i).getXPos() + 250, (float) avatars.get(i).getYPos() + 130);
+                font.draw(sb, this.controller.getGameInfo().players.get(i).name, (float) avatars.get(i).getXPos() + 250, (float) avatars.get(i).getYPos() + 130);
             } catch (Exception e) {
                 //e.printStackTrace();
             }

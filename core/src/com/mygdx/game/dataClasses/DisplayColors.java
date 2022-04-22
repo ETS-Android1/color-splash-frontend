@@ -6,25 +6,16 @@ public class DisplayColors {
     private int gameId;
     private int round;
     private int maxRounds;
-    private List<Integer> number;
+    private List<Integer> colors;
 
 
-    public DisplayColors(int gameId, int round, int maxRounds, List<Integer> number) {
+    public DisplayColors(int gameId, int round, int maxRounds, List<Integer> colors) {
         this.gameId = gameId;
         this.round = round;
         this.maxRounds = maxRounds;
-        this.number = number;
+        this.colors = colors;
     }
 
-    @Override
-    public String toString() {
-        return "DisplayColors{" +
-                "gameId=" + gameId +
-                ", round=" + round +
-                ", maxRounds=" + maxRounds +
-                ", number=" + number +
-                '}';
-    }
 
     public int getGameId() {
         return gameId;
@@ -39,6 +30,16 @@ public class DisplayColors {
     }
 
     public List<Integer> getNumber() {
-        return number;
+        return colors;
+    }
+
+    @Override
+    public String toString() {
+        return "DisplayColors{" +
+                "gameId=" + gameId +
+                ", round=" + round +
+                ", maxRounds=" + maxRounds +
+                ", colors=" + colors +
+                '}';
     }
 }

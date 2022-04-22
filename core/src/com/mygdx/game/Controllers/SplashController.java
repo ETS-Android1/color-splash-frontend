@@ -10,23 +10,20 @@ import com.mygdx.game.dataClasses.GameInfo;
 
 import io.socket.emitter.Emitter;
 
-public class SplashController {
-    private ViewManager viewManager;
+public class SplashController extends ErrorController{
+
     private DisplayColors colorInfo;
     private boolean isLoading = true;
 
 
-    public SplashController(ViewManager viewManager) {
+    public SplashController(ViewManager viewManager, DisplayColors colorInfo) {
+        super(viewManager);
+        this.colorInfo = colorInfo;
         this.displayColors();
-        this.viewManager = viewManager;
     }
 
     public void displayColors() {
         ColorSplash.socketManager.createListener(EventsConstants.displayColors, colorListener());
-    }
-
-    public void displayFinished(int gameId) {
-        ColorSplash.socketManager.colorsDisplayFinished(gameId);
     }
 
     public Emitter.Listener colorListener() {
@@ -39,6 +36,10 @@ public class SplashController {
                 isLoading = false;
             }
         };
+    }
+
+    public void displayFinished(int gameId) {
+        ColorSplash.socketManager.colorsDisplayFinished(gameId);
     }
 
     public void setAnswerView() {

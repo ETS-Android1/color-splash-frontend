@@ -8,6 +8,7 @@ import com.mygdx.game.Controllers.SplashController;
 import com.mygdx.game.Models.Dots;
 import com.mygdx.game.Models.GameObject;
 import com.mygdx.game.Models.Splash;
+import com.mygdx.game.dataClasses.DisplayColors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +29,26 @@ public class SplashView extends View {
 
     private SplashController controller;
 
-    public SplashView(ViewManager vm) {
+    public SplashView(ViewManager vm, DisplayColors colorinfo) {
         super();
-        this.controller = new SplashController(vm);
-        this.colorList = controller.getColorInfo().getNumber();
-        this.round = controller.getColorInfo().getRound();
-        this.totalRounds = controller.getColorInfo().getMaxRounds();
+
+        this.controller = new SplashController(vm, colorinfo);
+        this.colorList = colorinfo.getNumber();
+        this.round = colorinfo.getRound();
+        this.totalRounds = colorinfo.getMaxRounds();
+
+        /*boolean loading = true;
+
+        while(loading){
+            loading= controller.isLoading();
+            if(!loading){
+                this.colorList = colorinfo.getNumber();
+                this.round = colorinfo.getRound();
+                this.totalRounds = colorinfo.getMaxRounds();
+            }
+        }*/
+        System.out.println("colorInfo:"+colorinfo);
+
         this.dots = new Dots(this.colorList);
         textPlaceholder = new GameObject(new Texture(Gdx.files.internal("splash.png")),0.33,0.1,1,false,false);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
@@ -58,13 +73,13 @@ public class SplashView extends View {
             this.splash.setFilePath(splash.getSplashes().get(colorList.get(this.colorCounter)).get(this.frameCounter));
             this.splashTimer=0;
         }
-        if (colorTimer>2 && this.colorCounter<(colorList.size()-1)){
+        if (colorTimer>0.5 && this.colorCounter<(colorList.size()-1)){
             this.colorCounter++;
             this.dots.setDarkGreyDot(colorCounter);
             this.colorTimer=0;
             this.frameCounter=0;
         }
-        if (colorTimer>2 && this.colorCounter==(colorList.size()-1)){
+        if (colorTimer>0.5 && this.colorCounter==(colorList.size()-1)){
             controller.displayFinished(controller.getColorInfo().getGameId());
             controller.setAnswerView();
         }
@@ -77,6 +92,7 @@ public class SplashView extends View {
         dots.drawDots(sb);
         font.draw(sb,"Round "+this.round+"/"+this.totalRounds, (float)textPlaceholder.getXPos(),(float)textPlaceholder.getYPos());
         sb.end();
+        super.renderStage();
     }
 
     @Override

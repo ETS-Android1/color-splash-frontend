@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Controllers.GetReadyController;
 import com.mygdx.game.Models.GameObject;
+import com.mygdx.game.dataClasses.DisplayColors;
 
 public class GetReadyView extends View{
 
@@ -13,10 +14,14 @@ public class GetReadyView extends View{
     private GameObject placeholder;
     private GameObject background;
     private float timer = 0;
+    private DisplayColors colorinfo;
     private GetReadyController controller;
 
-    public GetReadyView(ViewManager vm) {
+    public GetReadyView(ViewManager vm, DisplayColors colorinfo) {
         super();
+        System.out.println("FROM GET READY VIEW");
+        System.out.println(colorinfo);
+        this.colorinfo = colorinfo;
         controller = new GetReadyController(vm);
         background = new GameObject(new Texture(Gdx.files.internal("splash_orange.png")),1,0.15,5.3,false,true);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
@@ -34,7 +39,7 @@ public class GetReadyView extends View{
         this.timer+=dt;
         if(this.timer>=2){
             dispose();
-            controller.setSplashView();
+            controller.setSplashView(colorinfo);
         }
     }
 
@@ -44,6 +49,7 @@ public class GetReadyView extends View{
         background.drawGameObject(sb);
         font.draw(sb, "Get \nReady...",(float)placeholder.getXPos(),(float)placeholder.getYPos());
         sb.end();
+        super.renderStage();
     }
 
     @Override

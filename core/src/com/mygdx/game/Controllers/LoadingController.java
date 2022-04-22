@@ -3,14 +3,13 @@ package com.mygdx.game.Controllers;
 import com.mygdx.game.Views.SplashView;
 import com.mygdx.game.Views.ViewManager;
 
-public class LoadingController {
-    private ViewManager viewManager;
+public class LoadingController extends ErrorController {
 
     public LoadingController(ViewManager viewManager) {
-        this.viewManager = viewManager;
+        super(viewManager);
     }
 
     public void setSplashView() {
-        viewManager.set(new SplashView(viewManager));
+        //viewManager.set(new SplashView(viewManager));
     }
 }
