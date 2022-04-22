@@ -30,7 +30,6 @@ public class GameLobbyController {
                 gameInfo = gson.fromJson(args[0].toString(), GameInfo.class);
                 isHost = gameInfo.hostId.equals(ColorSplash.socketManager.getSocketId());
                 isLoading = false;
-
             }
         };
     }

@@ -5,6 +5,7 @@ import com.mygdx.game.Events.EventsConstants;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
+import java.util.List;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -56,6 +57,21 @@ public class SocketManager {
         json.put("gameId", gameId);
         this.socket.emit(EventsConstants.startGame, json);
     }
+
+    public void nextRound(int gameId) {
+        JSONObject json = new JSONObject();
+        json.put("gameId", gameId);
+        this.socket.emit(EventsConstants.nextRound, json);
+    }
+
+    public void playerFinished(int gameId, List<Integer> answer) {
+        JSONObject json = new JSONObject();
+        json.put("gameId", gameId);
+        json.put("answer", answer);
+        this.socket.emit(EventsConstants.playerFinished, json);
+    }
+
+
 
     public String getSocketId() {
         return socket.id();

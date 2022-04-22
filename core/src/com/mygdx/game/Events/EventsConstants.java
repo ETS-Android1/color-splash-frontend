@@ -20,4 +20,5 @@ public class EventsConstants {
     public static String gameDeleted = "GameDeleted";//ServerEvent
     public static String disconnect = "disconnect";//clientEvent
     public static String getEndRoundResult = "GetEndRoundResult";//clientEvent
+    public static String leaveGame = "LeaveGame";//clientEvent
 }

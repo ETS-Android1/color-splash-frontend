@@ -107,6 +107,7 @@ public class AnswerView extends View{
         if(this.timer==0){
             this.playerFinished=true;
             this.feedback="Time's up!";
+
             this.gameFinished();
         }
         if(this.timer==-3){
