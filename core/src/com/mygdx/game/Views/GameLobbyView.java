@@ -61,6 +61,7 @@ public class GameLobbyView extends View {
                 vm.set(new MainMenuView(vm));
             }
             if (this.startButton.isObjectClicked()) {
+                this.controller.startGame(controller.gameInfo.gameId);
                 dispose();
                 vm.set(new SplashView(vm));
             }

@@ -52,6 +52,12 @@ public class SocketManager {
         this.socket.emit(EventsConstants.joinGame, json);
     }
 
+    public void startGame(int gameId) {
+        JSONObject json = new JSONObject();
+        json.put("gameId", gameId);
+        this.socket.emit(EventsConstants.startGame, json);
+    }
+
     public String getSocketId() {
         return socket.id();
     }

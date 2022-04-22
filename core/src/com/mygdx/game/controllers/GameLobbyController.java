@@ -22,6 +22,10 @@ public class GameLobbyController {
         ColorSplash.socketManager.createListener(EventsConstants.gameInfo, joe());
     }
 
+    public void startGame(int gameId) {
+        ColorSplash.socketManager.startGame(gameId);
+    }
+
     public Emitter.Listener joe() {
         return new Emitter.Listener() {
             @Override
