@@ -25,6 +25,10 @@ public class SplashController {
         ColorSplash.socketManager.createListener(EventsConstants.displayColors, colorListener());
     }
 
+    public void displayFinished(int gameId) {
+        ColorSplash.socketManager.colorsDisplayFinished(gameId);
+    }
+
     public Emitter.Listener colorListener() {
         return new Emitter.Listener() {
             @Override
@@ -39,5 +43,13 @@ public class SplashController {
 
     public void setAnswerView() {
         viewManager.set(new AnswerView(viewManager));
+    }
+
+    public DisplayColors getColorInfo() {
+        return colorInfo;
+    }
+
+    public boolean isLoading() {
+        return isLoading;
     }
 }

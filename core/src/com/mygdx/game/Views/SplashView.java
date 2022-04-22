@@ -9,34 +9,37 @@ import com.mygdx.game.Models.Dots;
 import com.mygdx.game.Models.GameObject;
 import com.mygdx.game.Models.Splash;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
-public class SplashView extends View{
+public class SplashView extends View {
     private Splash splash;
     private GameObject textPlaceholder;
     private float splashTimer = 0;
     private float colorTimer = 0;
     private int colorCounter = 0;
     private int frameCounter = 0;
-    private int round = 1;
-    private int totalRounds = 4;
+    private int round;
+    private int totalRounds;
     private BitmapFont font;
-    //list for testing, should be replaced with real backend data
-    private List<Integer> backend = Arrays.asList(0,1,2,3,0,1,1,2);
+    private List<Integer> colorList = new ArrayList<>();
 
-    private Dots dots = new Dots();
+    private Dots dots;
 
     private SplashController controller;
 
     public SplashView(ViewManager vm) {
         super();
         this.controller = new SplashController(vm);
+        this.colorList = controller.getColorInfo().getNumber();
+        this.round = controller.getColorInfo().getRound();
+        this.totalRounds = controller.getColorInfo().getMaxRounds();
+        this.dots = new Dots(this.colorList);
         textPlaceholder = new GameObject(new Texture(Gdx.files.internal("splash.png")),0.33,0.1,1,false,false);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         font.getData().setScale((float)1.5);
         splash = new Splash(new Texture(Gdx.files.internal("splash_1_blue.png")),0.5,0.6,3,true,true);
-        this.splash.setFilePath(splash.getSplashes().get(backend.get(this.colorCounter)).get(this.frameCounter));
+        this.splash.setFilePath(splash.getSplashes().get(colorList.get(this.colorCounter)).get(this.frameCounter));
 
     }
 
@@ -52,16 +55,17 @@ public class SplashView extends View{
 
         if (this.splashTimer>0.05 && this.frameCounter<4){
             this.frameCounter++;
-            this.splash.setFilePath(splash.getSplashes().get(backend.get(this.colorCounter)).get(this.frameCounter));
+            this.splash.setFilePath(splash.getSplashes().get(colorList.get(this.colorCounter)).get(this.frameCounter));
             this.splashTimer=0;
         }
-        if (colorTimer>2 && this.colorCounter<(backend.size()-1)){
+        if (colorTimer>2 && this.colorCounter<(colorList.size()-1)){
             this.colorCounter++;
             this.dots.setDarkGreyDot(colorCounter);
             this.colorTimer=0;
             this.frameCounter=0;
         }
-        if (colorTimer>2 && this.colorCounter==(backend.size()-1)){
+        if (colorTimer>2 && this.colorCounter==(colorList.size()-1)){
+            controller.displayFinished(controller.getColorInfo().getGameId());
             controller.setAnswerView();
         }
     }
@@ -81,7 +85,7 @@ public class SplashView extends View{
     }
 
     public List<Integer> getBackend(){
-        return this.backend;
+        return this.colorList;
     }
 
 }

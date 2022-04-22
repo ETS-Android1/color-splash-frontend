@@ -64,13 +64,18 @@ public class SocketManager {
         this.socket.emit(EventsConstants.nextRound, json);
     }
 
+    public void colorsDisplayFinished(int gameId) {
+        JSONObject json = new JSONObject();
+        json.put("gameId", gameId);
+        this.socket.emit(EventsConstants.colorsDisplayedFinished, json);
+    }
+
     public void playerFinished(int gameId, List<Integer> answer) {
         JSONObject json = new JSONObject();
         json.put("gameId", gameId);
         json.put("answer", answer);
         this.socket.emit(EventsConstants.playerFinished, json);
     }
-
 
 
     public String getSocketId() {

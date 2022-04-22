@@ -18,6 +18,7 @@ public class ScoreBoardController {
     private ViewManager viewManager;
 
     public ScoreBoardController(ViewManager vm){
+        this.roundFinished();
         this.viewManager = vm;
     }
 

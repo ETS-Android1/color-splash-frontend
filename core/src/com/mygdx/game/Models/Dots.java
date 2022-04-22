@@ -14,8 +14,8 @@ public class Dots {
     private Texture lightGreyDot = new Texture(Gdx.files.internal("circle_lightgrey.png"));
     private Texture darkGreyDot = new Texture(Gdx.files.internal("circle_darkgrey.png"));
 
-    public Dots() {
-        this.colors = Arrays.asList(0,1,2,3,0,1,1,2);
+    public Dots(List<Integer> colorList) {
+        this.colors = colorList;
         this.dots = new ArrayList<>();
         this.makeList();
     }

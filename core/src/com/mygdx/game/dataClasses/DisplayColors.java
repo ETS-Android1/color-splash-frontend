@@ -26,4 +26,19 @@ public class DisplayColors {
                 '}';
     }
 
+    public int getGameId() {
+        return gameId;
+    }
+
+    public int getRound() {
+        return round;
+    }
+
+    public int getMaxRounds() {
+        return maxRounds;
+    }
+
+    public List<Integer> getNumber() {
+        return number;
+    }
 }
