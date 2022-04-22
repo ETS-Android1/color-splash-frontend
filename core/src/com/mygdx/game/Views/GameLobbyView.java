@@ -84,7 +84,7 @@ public class GameLobbyView extends View {
             startButton.drawGameObject(sb);
         }
         font.getData().setScale(1);
-        font.draw(sb, "Difficulty: "+this.difficulty+"    Rounds: "+this.rounds,(float)avatar1.getXPos()-30,(float)avatar1.getYPos()+400);
+        font.draw(sb, "Difficulty: "+this.difficulty+"    Rounds: "+this.rounds,(float)avatars.get(0).getXPos()-30,(float)avatars.get(0).getYPos()+400);
         font.getData().setScale((float)1.5);
         this.drawPlayers(sb);
 
