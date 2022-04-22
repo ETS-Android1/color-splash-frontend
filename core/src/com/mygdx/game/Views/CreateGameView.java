@@ -36,7 +36,6 @@ public class CreateGameView extends View{
     private BitmapFont font;
     private Stage stage;
     private InputField nickname;
-    //private CreateGameListener createGameListener = new CreateGameListener();
     private String checkedRoundButton = "3";
     private String checkedDifficultyButton = "easy";
     private CreateGameController controller;
@@ -47,10 +46,6 @@ public class CreateGameView extends View{
         Gdx.input.setInputProcessor(stage);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         controller = new CreateGameController();
-        font.setColor(Color.WHITE);
-        System.out.println("COLOR");
-        System.out.println(font.getColor());
-        System.out.println("COLOR");
         createButton = new Button(new Texture("button_create.png"), 0.92, 0.08, 3,false, false);
         cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false);
         threeButton = new Button(new Texture("button_unselected.png"), 0.2, 0.5, 3,false,false);
@@ -59,18 +54,9 @@ public class CreateGameView extends View{
         easyButton = new Button(new Texture("button_unselected.png"), 0.6, 0.5, 3,false,false);
         mediumButton = new Button(new Texture("button_unselected.png"), 0.6, 0.45, 3,false,false);
         hardButton = new Button(new Texture("button_unselected.png"), 0.6, 0.4, 3,false,false);
-        //rounds = new ButtonGroup(threeButton.getButton(), fourButton.getButton(), fiveButton.getButton());
-        //difficulty = new ButtonGroup(easyButton.getButton(), mediumButton.getButton(), hardButton.getButton(), threeButton.getButton());
-        //easyButton.getButton().setChecked(true);
-        //threeButton.getButton().setChecked(true);
-        //rounds.setUncheckLast(true);
-        //difficulty.setUncheckLast(true);
-        //difficulty.canCheck(easyButton.getButton(), true);
-        //rounds.setChecked(threeButton);
-        //rounds.setChecked();
-
         avatar = new GameObject(new Texture("avatar_orange.png"), 0.08, 0.7, 1,false,false);
         nickname = new InputField("Nickname", new Texture(Gdx.files.internal("textfield_light.png")), 0.95,0.75,2,false,false);
+        nickname.getTextField().setMaxLength(12);
         stage.addActor(nickname.getTextField());
         threeButton.setChecked(true);
         easyButton.setChecked(true);

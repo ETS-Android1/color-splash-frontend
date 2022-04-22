@@ -5,7 +5,6 @@ import com.mygdx.game.Events.EventsConstants;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
-import java.util.concurrent.Callable;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;

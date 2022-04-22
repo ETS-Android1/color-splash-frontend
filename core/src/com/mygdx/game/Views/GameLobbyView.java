@@ -63,7 +63,8 @@ public class GameLobbyView extends View {
             if (this.startButton.isObjectClicked()) {
                 this.controller.startGame(controller.gameInfo.gameId);
                 dispose();
-                vm.set(new SplashView(vm));
+                vm.set(new GetReadyView(vm));
+
             }
         }
     }

@@ -34,15 +34,10 @@ public class MainMenuView extends View {
             if (this.joinGame.isObjectClicked()) {
                 dispose();
                 vm.set(new JoinGameView(vm));
-
-                //draw(this.sb);
-
             }
             if (this.howToPlay.isObjectClicked()) {
                 dispose();
-                //vm.set(new HowToPlayView(vm));
-                vm.set(new AnswerView(vm));
-                //dispose();
+                vm.set(new HowToPlayView(vm));
             }
             if (this.newGame.isObjectClicked()) {
                 dispose();

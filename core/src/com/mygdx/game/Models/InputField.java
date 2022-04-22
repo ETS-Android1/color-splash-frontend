@@ -33,7 +33,6 @@ public class InputField extends GameObject {
         this.textField.setHeight((float) (Gdx.graphics.getHeight()*0.07));
         this.textField.setAlignment(1);
     }
-
     private void setCursor(Label.LabelStyle cursorStyle){
         Label label = new Label("|", cursorStyle);
         cursorColor = new Pixmap((int)label.getWidth(),(int)label.getHeight(), Pixmap.Format.RGB888);
