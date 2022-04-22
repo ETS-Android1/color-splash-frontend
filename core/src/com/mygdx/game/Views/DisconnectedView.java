@@ -6,14 +6,13 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Models.GameObject;
 
-public class LoadingView extends View{
-
+public class DisconnectedView extends View{
     private BitmapFont font;
     private GameObject placeholder;
     private GameObject background;
     private float timer = 0;
 
-    protected LoadingView(ViewManager vm) {
+    protected DisconnectedView(ViewManager vm) {
         super(vm);
         background = new GameObject(new Texture(Gdx.files.internal("splash_orange.png")),1,0.15,5.3,false,true);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
@@ -31,7 +30,7 @@ public class LoadingView extends View{
         this.timer+=dt;
         if(this.timer>=2){
             dispose();
-            vm.set(new SplashView(vm));
+            vm.set(new MainMenuView(vm));
         }
     }
 
@@ -39,7 +38,7 @@ public class LoadingView extends View{
     public void render(SpriteBatch sb) {
         super.render(sb);
         background.drawGameObject(sb);
-        font.draw(sb, "Loading...",(float)placeholder.getXPos(),(float)placeholder.getYPos());
+        font.draw(sb, "Host\n disconnected",(float)placeholder.getXPos(),(float)placeholder.getYPos());
         sb.end();
     }
 

@@ -59,6 +59,7 @@ public class GameLobbyView extends View {
                 dispose();
                 vm.set(new GetReadyView(vm));
 
+
             }
         }
 
