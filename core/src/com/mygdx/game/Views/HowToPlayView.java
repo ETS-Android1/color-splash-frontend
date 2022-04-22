@@ -3,6 +3,7 @@ package com.mygdx.game.Views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Controllers.HowToPlayController;
 import com.mygdx.game.Models.Background;
 import com.mygdx.game.Models.Button;
 
@@ -10,9 +11,11 @@ public class HowToPlayView extends View{
 
     private Background background;
     private Button exitButton;
+    private HowToPlayController controller;
 
-    protected HowToPlayView(ViewManager vm) {
-        super(vm);
+    public HowToPlayView(ViewManager vm) {
+        super();
+        this.controller = new HowToPlayController(vm);
         background = new Background(new Texture(Gdx.files.internal("HowToPlayScreen.png")), 1, 1, 2.8,true ,true);
         exitButton = new Button(new Texture(Gdx.files.internal("button_exit.png")),0.92, 0.02, 3,false, false);
     }
@@ -22,7 +25,7 @@ public class HowToPlayView extends View{
         if (Gdx.input.justTouched()) {
             if (this.exitButton.isObjectClicked()) {
                 dispose();
-                vm.set(new MainMenuView(vm));
+                controller.setMainMenuView();
             }
         }
 

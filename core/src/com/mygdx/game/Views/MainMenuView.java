@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.mygdx.game.Controllers.MainMenuController;
 import com.mygdx.game.Models.Button;
 import com.mygdx.game.Models.GameObject;
 
@@ -15,10 +16,11 @@ public class MainMenuView extends View {
     private Button joinGame;
     private GameObject logo;
     private Stage stage;
+    private MainMenuController controller;
 
     public MainMenuView(ViewManager vm) {
-        super(vm);
-
+        super();
+        this.controller = new MainMenuController(vm);
         howToPlay = new Button(new Texture(Gdx.files.internal("button_howtoplay.png")), 0.08, 0.88, 3,false ,false);
         newGame = new Button(new Texture(Gdx.files.internal("button_newgame.png")), 0.08, 0.08, 3,false,false);
         joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.08, 3,false, false);
@@ -33,15 +35,15 @@ public class MainMenuView extends View {
         if (Gdx.input.justTouched()) {
             if (this.joinGame.isObjectClicked()) {
                 dispose();
-                vm.set(new JoinGameView(vm));
+                controller.setJoinGameView();
             }
             if (this.howToPlay.isObjectClicked()) {
                 dispose();
-                vm.set(new HowToPlayView(vm));
+                controller.setHowToPlayView();
             }
             if (this.newGame.isObjectClicked()) {
                 dispose();
-                vm.set(new CreateGameView(vm));
+                controller.setCreateGameView();
             }
         }
 

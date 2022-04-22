@@ -25,11 +25,9 @@ public class GameLobbyView extends View {
     private List<GameObject> avatars = new ArrayList<>();
     private List<String> avatarPics = new ArrayList<>(Arrays.asList("avatar_orange.png", "avatar_green.png", "avatar_pink.png", "avatar_purple.png"));
 
-    protected GameLobbyView(ViewManager vm) {
-        super(vm);
-        controller = new GameLobbyController();
-
-        controller.gameCreated();
+    public GameLobbyView(ViewManager vm) {
+        super();
+        controller = new GameLobbyController(vm);
 
         for (int i = 0; i < 4; i++) {
             avatars.add(new GameObject(new Texture(Gdx.files.internal("empty.png")), 0.2, 0.6 - 0.12 * i, 1, false, false));
@@ -56,14 +54,12 @@ public class GameLobbyView extends View {
         if (Gdx.input.justTouched()) {
             if (this.cancelButton.isObjectClicked()) {
                 dispose();
-                vm.set(new MainMenuView(vm));
+                controller.setMainMenuView();
             }
             if (this.startButton.isObjectClicked()) {
                 this.controller.startGame(controller.gameInfo.gameId);
                 dispose();
-                vm.set(new GetReadyView(vm));
-
-
+                controller.setGetReadyView();
             }
         }
     }
