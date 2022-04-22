@@ -17,7 +17,7 @@ public abstract class View {
     protected View() {
         cam = new OrthographicCamera();
         mouse = new Vector3();
-        this.sb = new SpriteBatch();
+        sb = new SpriteBatch();
         background = new Background(new Texture(Gdx.files.internal("background_grey.png")),0,0, 5,true ,true);
 
     }
