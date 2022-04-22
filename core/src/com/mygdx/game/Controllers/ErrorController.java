@@ -25,8 +25,6 @@ public class ErrorController {
             @Override
             public void call(Object... args) {
                 System.out.println("ERROR" + args[0]);
-                System.out.println(viewManager.peek());
-                System.out.println(viewManager.peek().toString());
                 viewManager.peek().setError("ERROR: " + args[0]);
             }
         };

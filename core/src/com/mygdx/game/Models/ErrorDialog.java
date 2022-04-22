@@ -31,9 +31,6 @@ public class ErrorDialog {
         btnStyle.up = new Image(new Texture(Gdx.files.internal("button_ok.png"))).getDrawable();
         btnStyle.checked = new Image(new Texture(Gdx.files.internal("button_ok.png"))).getDrawable();
         button = new Button(btnStyle);
-        if(message.length()>20){
-            message=message.substring(0,24)+"\n   "+message.substring(24);
-        }
         dialog = new Dialog("\n\n\n   "+message, style);
         dialog.button(button);
     }

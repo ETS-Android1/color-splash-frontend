@@ -25,8 +25,6 @@ public abstract class View {
     }
 
     public void setError(String message){
-        System.out.println("HELLO ERROR MESSAGE SETTER");
-        System.out.println(message);
         error = new ErrorDialog(message);
         error.getDialog().show(stage);
         renderStage();

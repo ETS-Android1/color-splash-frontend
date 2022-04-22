@@ -38,7 +38,7 @@ public class JoinGameView extends View{
     @Override
     public void handleInput() {
         if (Gdx.input.justTouched()) {
-            if (this.joinGame.isObjectClicked()) {
+            if (this.joinGame.isObjectClicked() && this.gamePin.getTextField().getText()!="" && this.nickname.getTextField().getText()!="") {
                 try{
                     System.out.println("GameId: " + Integer.parseInt(this.gamePin.getTextField().getText()));
                     System.out.println("Nickname: " + this.nickname.getTextField().getText());
@@ -46,9 +46,23 @@ public class JoinGameView extends View{
                     dispose();
                     controller.setGameLobbyView();
                 }
-                catch (Exception e) {
-                    System.out.println("Error joining game");
+                catch (Exception e){
+                    setError("Not valid Game Pin");
                 }
+            }
+            if (this.joinGame.isObjectClicked() && this.gamePin.getTextField().getText()=="" && this.nickname.getTextField().getText()!="") {
+                setError("Fill in Game Pin");
+            }
+            if (this.joinGame.isObjectClicked() && this.gamePin.getTextField().getText()!="" && this.nickname.getTextField().getText()=="") {
+                try {
+                    Double.parseDouble(this.gamePin.getTextField().getText());
+                    setError("Fill in nickname");
+                } catch(NumberFormatException e){
+                    setError("Fill in nickname and \n   valid Game Pin");
+                }
+            }
+            if (this.joinGame.isObjectClicked() && this.gamePin.getTextField().getText()=="" && this.nickname.getTextField().getText()=="") {
+                setError("Fill in Game Pin and nickname");
             }
             if (this.cancelButton.isObjectClicked()) {
                 dispose();

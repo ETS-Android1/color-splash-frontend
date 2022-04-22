@@ -52,8 +52,12 @@ public class CreateGameView extends View{
 
     @Override
     protected void handleInput() {
+        super.handleInput();
         if (Gdx.input.justTouched()) {
-            if (this.createButton.isObjectClicked()) {
+            if(this.createButton.isObjectClicked() && this.nickname.getTextField().getText()==""){
+                setError("Please choose a nickname");
+            }
+            if (this.createButton.isObjectClicked() && this.nickname.getTextField().getText()!="") {
                 int rounds;
                 if (this.threeButton.getIsChecked()) {
                     rounds = 3;
