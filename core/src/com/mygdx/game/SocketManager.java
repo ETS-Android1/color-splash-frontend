@@ -35,6 +35,10 @@ public class SocketManager {
         this.socket.on(event, listener);
     }
 
+    public Socket getSocket() {
+        return this.socket;
+    }
+
     public void createGame(String nickname, int rounds, String difficulty, int maxPlayers) {
         JSONObject json = new JSONObject();
         json.put("nickname", nickname);

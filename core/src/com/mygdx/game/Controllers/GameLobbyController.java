@@ -1,5 +1,6 @@
 package com.mygdx.game.Controllers;
 
+import com.badlogic.gdx.Gdx;
 import com.google.gson.Gson;
 import com.mygdx.game.ColorSplash;
 import com.mygdx.game.Events.EventsConstants;
@@ -40,7 +41,13 @@ public class GameLobbyController {
         return new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                //setGetReadyView();
+                Gdx.app.postRunnable (new Runnable() {
+                    @Override
+                    public void run() {
+                        setGetReadyView();
+                    }
+                });
+
             }
         };
     }
