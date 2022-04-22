@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.mygdx.game.Views.GameObjects.Button;
-import com.mygdx.game.Views.GameObjects.GameObject;
+import com.mygdx.game.Models.Button;
+import com.mygdx.game.Models.GameObject;
 
 public class MainMenuView extends View {
 
@@ -34,15 +34,10 @@ public class MainMenuView extends View {
             if (this.joinGame.isObjectClicked()) {
                 dispose();
                 vm.set(new JoinGameView(vm));
-
-                //draw(this.sb);
-
             }
             if (this.howToPlay.isObjectClicked()) {
                 dispose();
-                //vm.set(new HowToPlayView(vm));
-                vm.set(new AnswerView(vm));
-                //dispose();
+                vm.set(new HowToPlayView(vm));
             }
             if (this.newGame.isObjectClicked()) {
                 dispose();

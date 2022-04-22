@@ -1,4 +1,4 @@
-package com.mygdx.game.Views.GameObjects;
+package com.mygdx.game.Models;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,7 +15,7 @@ public class Dots {
     private Texture darkGreyDot = new Texture(Gdx.files.internal("circle_darkgrey.png"));
 
     public Dots() {
-        this.colors = Arrays.asList(0,1,2,3);
+        this.colors = Arrays.asList(0,1,2,3,0,1,1,2);
         this.dots = new ArrayList<>();
         this.makeList();
     }

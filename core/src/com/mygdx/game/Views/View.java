@@ -3,11 +3,9 @@ package com.mygdx.game.Views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
-import com.mygdx.game.ColorSplash;
-import com.mygdx.game.Views.GameObjects.Background;
+import com.mygdx.game.Models.Background;
 
 public abstract class View {
 

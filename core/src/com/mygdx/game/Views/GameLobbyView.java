@@ -1,16 +1,13 @@
 package com.mygdx.game.Views;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.Views.GameObjects.Button;
-import com.mygdx.game.Views.GameObjects.GameObject;
+import com.mygdx.game.Models.Button;
+import com.mygdx.game.Models.GameObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GameLobbyView extends View {
@@ -59,7 +56,7 @@ public class GameLobbyView extends View {
             }
             if (this.startButton.isObjectClicked()) {
                 dispose();
-                vm.set(new SplashView(vm));
+                vm.set(new GetReadyView(vm));
 
             }
         }

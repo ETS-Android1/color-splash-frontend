@@ -1,11 +1,10 @@
 package com.mygdx.game.Views;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.Views.GameObjects.Background;
-import com.mygdx.game.Views.GameObjects.Button;
+import com.mygdx.game.Models.Background;
+import com.mygdx.game.Models.Button;
 
 public class HowToPlayView extends View{
 
@@ -20,13 +19,10 @@ public class HowToPlayView extends View{
 
     @Override
     public void handleInput() {
-        //|| Gdx.input.isKeyPressed(Input.Keys.BACK)
         if (Gdx.input.justTouched()) {
             if (this.exitButton.isObjectClicked()) {
                 dispose();
                 vm.set(new MainMenuView(vm));
-                //draw(this.sb);
-
             }
         }
 
@@ -48,6 +44,7 @@ public class HowToPlayView extends View{
     @Override
     public void dispose() {
         background.getImage().dispose();
+        exitButton.getImage().dispose();
 
     }
 
