@@ -50,9 +50,10 @@ public class GameLobbyView extends View {
             for (Player player : controller.getGameInfo().players) {
                 avatars.get(player.getAvatarIndex()).setImage(avatarPics.get(player.getAvatarIndex()));
             }
+            diffRounds = "Difficulty: "+controller.getGameInfo().difficulty+"    Rounds: "+controller.getGameInfo().rounds;
         }
 
-        diffRounds = "Difficulty: "+controller.getGameInfo().difficulty+"    Rounds: "+controller.getGameInfo().rounds;
+
 
         startButton = new Button(new Texture("button_start.png"), 0.92, 0.08, 3,false, false, vm);
         cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false, vm);
@@ -65,6 +66,8 @@ public class GameLobbyView extends View {
         for (Player player : this.controller.getGameInfo().players) {
             avatars.get(player.getAvatarIndex()).setImage(avatarPics.get(player.getAvatarIndex()));
         }
+        diffRounds = "Difficulty: "+controller.getGameInfo().difficulty+"    Rounds: "+controller.getGameInfo().rounds;
+
     }
 
     @Override
