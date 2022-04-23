@@ -23,8 +23,8 @@ public class JoinGameView extends View{
     public JoinGameView(ViewManager vm) {
         super();
         controller = new JoinGameController(vm);
-        cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.1, 3,false,false);
-        joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.1, 3,false, false);
+        cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.1, 3,false,false, vm);
+        joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.1, 3,false, false, vm);
         gamePin = new InputField("Game Pin", new Texture(Gdx.files.internal("textfield_light.png")), 0.5,0.61,2,false,false);
         nickname = new InputField("Nickname", new Texture(Gdx.files.internal("textfield_light.png")), 0.5,0.51,2,false,false);
         timerBackground = new GameObject(new Texture(Gdx.files.internal("splash_orange.png")),1,0.15,5.3,false,true);

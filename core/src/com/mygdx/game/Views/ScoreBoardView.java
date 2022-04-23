@@ -40,8 +40,8 @@ public class ScoreBoardView extends View{
 
         this.roundString = "Round: "+this.controller.getScoreBoardInfo().getRound()+"/"+this.controller.getScoreBoardInfo().getMaxRound();
         
-        nextButton = new Button(new Texture("button_next.png"), 0.92, 0.08, 3,false, false);
-        exitButton = new Button(new Texture("button_exit.png"), 0.92, 0.08, 3,false, false);
+        nextButton = new Button(new Texture("button_next.png"), 0.92, 0.08, 3,false, false, vm);
+        exitButton = new Button(new Texture("button_exit.png"), 0.92, 0.08, 3,false, false, vm);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
 
     }
