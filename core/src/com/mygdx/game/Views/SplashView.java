@@ -68,16 +68,19 @@ public class SplashView extends View {
 
     @Override
     public void update(float dt) {
+        if (this.colorTimer==0){
+            this.splashSound.play();
+        }
+
         this.splashTimer+=dt;
         this.colorTimer+=dt;
 
         if (this.splashTimer>0.05 && this.frameCounter<4){
-            this.splashSound.play();
             this.frameCounter++;
             this.splash.setFilePath(splash.getSplashes().get(colorList.get(this.colorCounter)).get(this.frameCounter));
             this.splashTimer=0;
         }
-        if (colorTimer>0.5 && this.colorCounter<(colorList.size()-1)){
+        if (colorTimer>0.9 && this.colorCounter<(colorList.size()-1)){
             this.colorCounter++;
             this.dots.setDarkGreyDot(colorCounter);
             this.colorTimer=0;

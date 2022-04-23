@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Views.ViewManager;
 import com.mygdx.game.Views.MainMenuView;
@@ -14,6 +15,8 @@ public class ColorSplash extends Game {
 	public static final String TITLE = "Color Splash";
 
 	private ViewManager viewManager;
+	private Music music;
+
 	public SpriteBatch batch;
 	public static final SocketManager socketManager = new SocketManager();
 	public ErrorHandler errorHandler;
@@ -25,6 +28,9 @@ public class ColorSplash extends Game {
 		viewManager = new ViewManager();
 		errorHandler = new ErrorHandler(viewManager);
 		viewManager.push(new MainMenuView(viewManager));
+		music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+		music.setLooping(true);
+		music.play();
 	}
 
 	@Override
