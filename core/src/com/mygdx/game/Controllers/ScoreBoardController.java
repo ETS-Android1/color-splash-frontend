@@ -10,14 +10,15 @@ import com.mygdx.game.dataClasses.ScoreBoardInfo;
 
 import io.socket.emitter.Emitter;
 
-public class ScoreBoardController extends ErrorController{
+public class ScoreBoardController {
 
     private ScoreBoardInfo scoreBoardInfo;
     private boolean isHost;
     private boolean isLoading = true;
+    private ViewManager viewManager;
 
     public ScoreBoardController(ViewManager viewManager){
-        super(viewManager);
+        this.viewManager = viewManager;
         this.roundFinished();
     }
 

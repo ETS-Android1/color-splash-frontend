@@ -8,10 +8,12 @@ import com.mygdx.game.Views.ViewManager;
 
 import io.socket.emitter.Emitter;
 
-public class CreateGameController extends ErrorController{
+public class CreateGameController {
+
+    private ViewManager viewManager;
 
     public CreateGameController(ViewManager viewManager) {
-        super(viewManager);
+        this.viewManager = viewManager;
     }
 
     public void createGame(String nickname, int rounds, String difficulty, int maxPlayers) {

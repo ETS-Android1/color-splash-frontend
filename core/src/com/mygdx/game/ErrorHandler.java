@@ -1,4 +1,4 @@
-package com.mygdx.game.Controllers;
+package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -8,11 +8,11 @@ import com.mygdx.game.Views.ViewManager;
 
 import io.socket.emitter.Emitter;
 
-public class ErrorController {
+public class ErrorHandler {
 
     protected ViewManager viewManager;
 
-    public ErrorController(ViewManager viewManager) {
+    public ErrorHandler(ViewManager viewManager) {
         this.viewManager = viewManager;
         this.startErrorListener();
     }

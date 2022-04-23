@@ -13,14 +13,15 @@ import java.util.List;
 
 import io.socket.emitter.Emitter;
 
-public class AnswerController extends ErrorController{
+public class AnswerController{
     private DisplayColors colorInfo;
     private boolean isLoading = true;
     private ScoreBoardInfo scoreBoardInfo;
     private boolean isHost;
+    private ViewManager viewManager;
 
     public AnswerController(ViewManager viewManager) {
-        super(viewManager);
+        this.viewManager = viewManager;
         this.getColors();
         this.roundFinished();
     }
