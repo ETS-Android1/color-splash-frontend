@@ -24,6 +24,7 @@ public class SplashView extends View {
     private int totalRounds;
     private BitmapFont font;
     private List<Integer> colorList = new ArrayList<>();
+    private String roundsString;
 
     private Dots dots;
 
@@ -36,18 +37,7 @@ public class SplashView extends View {
         this.colorList = colorinfo.getNumber();
         this.round = colorinfo.getRound();
         this.totalRounds = colorinfo.getMaxRounds();
-
-        /*boolean loading = true;
-
-        while(loading){
-            loading= controller.isLoading();
-            if(!loading){
-                this.colorList = colorinfo.getNumber();
-                this.round = colorinfo.getRound();
-                this.totalRounds = colorinfo.getMaxRounds();
-            }
-        }*/
-        System.out.println("colorInfo:"+colorinfo);
+        this.roundsString = "Round "+this.round+"/"+this.totalRounds;
 
         this.dots = new Dots(this.colorList);
         textPlaceholder = new GameObject(new Texture(Gdx.files.internal("splash.png")),0.33,0.1,1,false,false);
@@ -90,7 +80,7 @@ public class SplashView extends View {
         super.render(sb);
         splash.drawGameObject(sb);
         dots.drawDots(sb);
-        font.draw(sb,"Round "+this.round+"/"+this.totalRounds, (float)textPlaceholder.getXPos(),(float)textPlaceholder.getYPos());
+        font.draw(sb, roundsString, (float)textPlaceholder.getXPos(), (float)textPlaceholder.getYPos());
         sb.end();
         super.renderStage();
     }
