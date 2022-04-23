@@ -40,18 +40,6 @@ public class SplashView extends View {
         this.totalRounds = colorinfo.getMaxRounds();
         this.splashSound = Gdx.audio.newSound(Gdx.files.internal("splash.mp3"));
 
-        /*boolean loading = true;
-
-        while(loading){
-            loading= controller.isLoading();
-            if(!loading){
-                this.colorList = colorinfo.getNumber();
-                this.round = colorinfo.getRound();
-                this.totalRounds = colorinfo.getMaxRounds();
-            }
-        }*/
-        System.out.println("colorInfo:"+colorinfo);
-
         this.dots = new Dots(this.colorList);
         textPlaceholder = new GameObject(new Texture(Gdx.files.internal("splash.png")),0.33,0.1,1,false,false);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));

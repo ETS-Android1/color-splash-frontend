@@ -22,4 +22,8 @@ public class MainMenuController{
     public void setCreateGameView() {
         viewManager.set(new CreateGameView(viewManager));
     }
+
+    public void setMusic(boolean play){
+        viewManager.setMusic(play);
+    }
 }

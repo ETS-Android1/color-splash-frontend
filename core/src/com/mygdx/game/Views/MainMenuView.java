@@ -3,6 +3,7 @@ package com.mygdx.game.Views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.ColorSplash;
 import com.mygdx.game.Controllers.MainMenuController;
 import com.mygdx.game.Models.Button;
 import com.mygdx.game.Models.GameObject;
@@ -26,8 +27,8 @@ public class MainMenuView extends View {
         newGame = new Button(new Texture(Gdx.files.internal("button_newgame.png")), 0.08, 0.08, 3,false,false);
         joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.08, 3,false, false);
         logo = new GameObject(new Texture(Gdx.files.internal("logo.png")), 1, 0.3, 3.5,false,true);
-        soundButton = new Button(new Texture(Gdx.files.internal("sound_on.png")), 0.9, 0.88, 1,false ,false);
-        musicButton = new Button(new Texture(Gdx.files.internal("music_on.png")), 0.85, 0.88, 1,false ,false);
+        soundButton = new Button(new Texture(Gdx.files.internal("sound_on.png")), 0.9, 0.88, 3,false ,false);
+        musicButton = new Button(new Texture(Gdx.files.internal("music_on.png")), 0.75, 0.88, 3,false ,false);
     }
 
     @Override
@@ -49,9 +50,11 @@ public class MainMenuView extends View {
                 this.isMusic=!this.isMusic;
                 if (this.isMusic){
                     this.musicButton.setFilePath("music_on.png");
+                    this.controller.setMusic(true);
                 }
                 else {
                     this.musicButton.setFilePath("music_off.png");
+                    this.controller.setMusic(false);
                 }
             }
             if(this.soundButton.isObjectClicked()){
@@ -94,6 +97,4 @@ public class MainMenuView extends View {
         logo.getImage().dispose();
         stage.clear();
     }
-
-
 }

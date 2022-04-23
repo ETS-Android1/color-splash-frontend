@@ -15,7 +15,6 @@ public class ColorSplash extends Game {
 	public static final String TITLE = "Color Splash";
 
 	private ViewManager viewManager;
-	private Music music;
 
 	public SpriteBatch batch;
 	public static final SocketManager socketManager = new SocketManager();
@@ -28,9 +27,6 @@ public class ColorSplash extends Game {
 		viewManager = new ViewManager();
 		errorHandler = new ErrorHandler(viewManager);
 		viewManager.push(new MainMenuView(viewManager));
-		music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
-		music.setLooping(true);
-		music.play();
 	}
 
 	@Override
@@ -40,12 +36,4 @@ public class ColorSplash extends Game {
 		viewManager.render(batch);
 	}
 
-	public void setMusic(boolean play) {
-		if (play){
-
-		}
-		else{
-
-		}
-	}
 }
