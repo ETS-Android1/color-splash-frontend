@@ -28,6 +28,10 @@ public class GameLobbyController {
         this.displayColors();
     }
 
+    public void setGameInfo(GameInfo gameInfo) {
+        this.gameInfo = gameInfo;
+    }
+
     public GameInfo getGameInfo() {
         return gameInfo;
     }
@@ -66,14 +70,14 @@ public class GameLobbyController {
     }
 
     public void gameCreated() {
-        ColorSplash.socketManager.createListener(EventsConstants.gameInfo, joe());
+        ColorSplash.socketManager.createListener(EventsConstants.gameInfo, gameCreatedListener());
     }
 
     public void startGame(int gameId) {
         ColorSplash.socketManager.startGame(gameId);
     }
 
-    public Emitter.Listener joe() {
+    public Emitter.Listener gameCreatedListener() {
         return new Emitter.Listener() {
             @Override
             public void call(Object... args) {
