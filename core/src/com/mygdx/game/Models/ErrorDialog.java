@@ -2,27 +2,23 @@ package com.mygdx.game.Models;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.mygdx.game.Controllers.ErrorController;
 
 public class ErrorDialog {
-    private Window.WindowStyle style = new Window.WindowStyle();
+    private Window.WindowStyle style;
     private BitmapFont font;
     private Dialog dialog;
-    private com.badlogic.gdx.scenes.scene2d.ui.Button button;
-    private Button.ButtonStyle btnStyle = new Button.ButtonStyle();
+    private Button button;
+    private Button.ButtonStyle btnStyle;
 
     public ErrorDialog(String message) {
+        style = new Window.WindowStyle();
+        btnStyle = new Button.ButtonStyle();
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         style.titleFont = font;
         style.titleFontColor = Color.BLACK;
