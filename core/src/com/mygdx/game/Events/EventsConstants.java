@@ -4,7 +4,6 @@ public class EventsConstants {
 
     public static String error = "Error";//ServerEvent
     public static String hostCreateGame = "HostCreateGame";//clientEvent
-    public static String gameCreated = "GameCreated";//ServerEvent
     public static String joinGame = "JoinGame";//clientEvent
     public static String gameInfo = "GameInfo";//ServerEvent
     public static String startGame = "StartGame";//clientEvent

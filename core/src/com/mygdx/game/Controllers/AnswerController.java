@@ -53,6 +53,7 @@ public class AnswerController{
             //System.out.println("loading");
         }
         System.out.println("not loading");
+        System.out.println(scoreBoardInfo);
         viewManager.set(new ScoreBoardView(viewManager, scoreBoardInfo));
     }
 
@@ -65,7 +66,7 @@ public class AnswerController{
     }
 
     public void roundFinished() {
-        ColorSplash.socketManager.createListener(EventsConstants.getEndRoundResult, scoreBoardListener());
+        ColorSplash.socketManager.createListener(EventsConstants.endRound, scoreBoardListener());
     }
 
     public Emitter.Listener scoreBoardListener() {

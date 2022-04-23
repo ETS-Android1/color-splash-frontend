@@ -19,15 +19,6 @@ public class SocketManager {
         try {
 			socket = IO.socket("https://color-splash.herokuapp.com");
             socket.connect();
-            //socket.on(EventsConstants.error, ...);
-            //socket.on(EventsConstants.gameCreated, ...);
-            //socket.on(EventsConstants.gameInfo, ...);
-            //socket.on(EventsConstants.displayColors, ...);
-            //socket.on(EventsConstants.roundStarted, ...);
-            //socket.on(EventsConstants.timesUp, ...);
-            //socket.on(EventsConstants.endRound, ...);
-            //socket.on(EventsConstants.gameFinished, ...);
-            //socket.on(EventsConstants.gameDeleted, ...);
 		} catch ( URISyntaxException e) {
 			e.printStackTrace();
 		}
@@ -73,13 +64,13 @@ public class SocketManager {
     }
 
     public void playerFinished(int gameId, List<Integer> answer) {
-        System.out.println("PLAYERFINISHED");
-        System.out.println(answer);
-        Gson gson = new Gson();
+        String answerString = "";
+        for (Integer answerInteger : answer) {
+            answerString += answerInteger.toString();
+        }
         JSONObject json = new JSONObject();
         json.put("gameId", gameId);
-        json.put("answer", gson.toJson(answer));
-        System.out.println(gson.toJson(answer));
+        json.put("answer", answerString);
         this.socket.emit(EventsConstants.playerFinished, json);
     }
 
