@@ -42,6 +42,7 @@ public class HowToPlayView extends View{
         background.drawGameObject(sb);
         exitButton.drawGameObject(sb);
         sb.end();
+        super.renderStage();
     }
 
     @Override

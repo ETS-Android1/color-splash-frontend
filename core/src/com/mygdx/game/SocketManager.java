@@ -1,10 +1,13 @@
 package com.mygdx.game;
 
+import com.google.gson.Gson;
 import com.mygdx.game.Events.EventsConstants;
 
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
+import java.util.Arrays;
+import java.util.List;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -56,6 +59,36 @@ public class SocketManager {
         json.put("gameId", gameId);
         this.socket.emit(EventsConstants.startGame, json);
     }
+
+    public void nextRound(int gameId) {
+        JSONObject json = new JSONObject();
+        json.put("gameId", gameId);
+        this.socket.emit(EventsConstants.nextRound, json);
+    }
+
+    public void colorsDisplayFinished(int gameId) {
+        JSONObject json = new JSONObject();
+        json.put("gameId", gameId);
+        this.socket.emit(EventsConstants.colorsDisplayedFinished, json);
+    }
+
+    public void playerFinished(int gameId, List<Integer> answer) {
+        System.out.println("PLAYERFINISHED");
+        System.out.println(answer);
+        Gson gson = new Gson();
+        JSONObject json = new JSONObject();
+        json.put("gameId", gameId);
+        json.put("answer", gson.toJson(answer));
+        System.out.println(gson.toJson(answer));
+        this.socket.emit(EventsConstants.playerFinished, json);
+    }
+
+    public void endGame(int gameId){
+        JSONObject json = new JSONObject();
+        json.put("gameId", gameId);
+        this.socket.emit(EventsConstants.endGame, json);
+    }
+
 
     public String getSocketId() {
         return socket.id();

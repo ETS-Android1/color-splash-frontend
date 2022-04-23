@@ -3,8 +3,6 @@ package com.mygdx.game.Views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.Controllers.MainMenuController;
 import com.mygdx.game.Models.Button;
 import com.mygdx.game.Models.GameObject;
@@ -15,7 +13,6 @@ public class MainMenuView extends View {
     private Button newGame;
     private Button joinGame;
     private GameObject logo;
-    private Stage stage;
     private MainMenuController controller;
 
     public MainMenuView(ViewManager vm) {
@@ -25,9 +22,6 @@ public class MainMenuView extends View {
         newGame = new Button(new Texture(Gdx.files.internal("button_newgame.png")), 0.08, 0.08, 3,false,false);
         joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.08, 3,false, false);
         logo = new GameObject(new Texture(Gdx.files.internal("logo.png")), 1, 0.3, 3.5,false,true);
-        stage = new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
-        Gdx.input.setInputProcessor(stage);
-
     }
 
     @Override
@@ -38,8 +32,9 @@ public class MainMenuView extends View {
                 controller.setJoinGameView();
             }
             if (this.howToPlay.isObjectClicked()) {
-                dispose();
-                controller.setHowToPlayView();
+                setError("hello");
+                //dispose();
+                //controller.setHowToPlayView();
             }
             if (this.newGame.isObjectClicked()) {
                 dispose();
@@ -62,8 +57,7 @@ public class MainMenuView extends View {
         logo.drawGameObject(sb);
         joinGame.drawGameObject(sb);
         sb.end();
-        stage.draw();
-        stage.act();
+        super.renderStage();
     }
 
     @Override

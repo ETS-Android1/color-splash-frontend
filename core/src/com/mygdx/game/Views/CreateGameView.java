@@ -1,7 +1,6 @@
 package com.mygdx.game.Views;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -26,7 +25,6 @@ public class CreateGameView extends View{
     private Button hardButton;
     private GameObject avatar;
     private BitmapFont font;
-    private Stage stage;
     private InputField nickname;
     private String checkedRoundButton = "3";
     private String checkedDifficultyButton = "easy";
@@ -34,8 +32,6 @@ public class CreateGameView extends View{
 
     public CreateGameView(ViewManager vm) {
         super();
-        stage= new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
-        Gdx.input.setInputProcessor(stage);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         controller = new CreateGameController(vm);
         createButton = new Button(new Texture("button_create.png"), 0.92, 0.08, 3,false, false);
@@ -56,8 +52,12 @@ public class CreateGameView extends View{
 
     @Override
     protected void handleInput() {
+        super.handleInput();
         if (Gdx.input.justTouched()) {
-            if (this.createButton.isObjectClicked()) {
+            if(this.createButton.isObjectClicked() && this.nickname.getTextField().getText()==""){
+                setError("Please choose a nickname");
+            }
+            if (this.createButton.isObjectClicked() && this.nickname.getTextField().getText()!="") {
                 int rounds;
                 if (this.threeButton.getIsChecked()) {
                     rounds = 3;
@@ -149,9 +149,7 @@ public class CreateGameView extends View{
         font.draw(sb, "Hard", (float) hardButton.getXPos()+100, (float) (hardButton.getYPos()+60));
         sb.end();
         nickname.drawStage(nickname.getTextField());
-
-        stage.draw();
-        stage.act();
+        super.renderStage();
     }
 
     @Override

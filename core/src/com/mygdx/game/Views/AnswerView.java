@@ -8,6 +8,7 @@ import com.mygdx.game.Controllers.AnswerController;
 import com.mygdx.game.Models.Button;
 import com.mygdx.game.Models.Dots;
 import com.mygdx.game.Models.GameObject;
+import com.mygdx.game.dataClasses.DisplayColors;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +23,7 @@ public class AnswerView extends View{
     private GameObject timerBackground;
     private Dots dots;
     private Integer timer;
-    private List<Integer> correctColors = Arrays.asList(0,1,2,3,0,1,1,2);
+    private List<Integer> correctColors = new ArrayList<>();
     private AnswerController controller;
 
 
@@ -43,12 +44,15 @@ public class AnswerView extends View{
         greenButton = new Button(new Texture(Gdx.files.internal("button_green.png")),0.9,0.24,3,false,false);
         yellowButton = new Button(new Texture(Gdx.files.internal("button_yellow.png")),0.9,0.1,3,false,false);
         timerBackground = new GameObject(new Texture(Gdx.files.internal("splash_grey.png")),1,0.5,2.5,false,true);
-        dots = new Dots();
         timer = 8;
         timeCount = 0;
+        while (controller.isLoading()) {
+            System.out.println("loading");
+        }
+        correctColors = controller.getColorInfo().getNumber();
+        dots = new Dots(this.correctColors);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         dots.getDots().get(0).setFilePath("circle_lightgrey.png");
-
 
     }
 
@@ -80,7 +84,10 @@ public class AnswerView extends View{
             }
 
             if(this.buttonCount==this.dots.getDots().size()){
-                //FIRE EVENT TO BACKEND
+                if(!this.playerFinished){
+                    System.out.println("HELLLO THIS PLAYER FINISHED");
+                    this.controller.playerFinished(controller.getColorInfo().getGameId(),this.playerAnswer);
+                }
                 this.playerFinished=true;
                 this.finishedTime = this.timer;
                 if(this.finishedTime > 6){
@@ -107,13 +114,15 @@ public class AnswerView extends View{
             this.timeCount = 0;
         }
         if(this.timer==0){
+            if(!this.playerFinished){
+                this.controller.playerFinished(controller.getColorInfo().getGameId(),this.playerAnswer);
+            }
             this.playerFinished=true;
             this.feedback="Time's up!";
             this.gameFinished();
         }
         if(this.timer==-3){
-            System.out.println(this.playerAnswer);
-            controller.setScoreBoardView();
+            this.controller.setScoreBoardView();
         }
 
     }
@@ -144,6 +153,7 @@ public class AnswerView extends View{
             this.font.draw(sb,timer.toString(),(float)(timerBackground.getXPos())+310,(float)(timerBackground.getYPos()+380));
         }
         sb.end();
+        super.renderStage();
     }
 
     @Override

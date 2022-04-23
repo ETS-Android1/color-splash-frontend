@@ -3,12 +3,10 @@ package com.mygdx.game.Controllers;
 import com.mygdx.game.Views.MainMenuView;
 import com.mygdx.game.Views.ViewManager;
 
-public class DisconnectedController {
-
-    private ViewManager viewManager;
+public class DisconnectedController extends ErrorController{
 
     public DisconnectedController(ViewManager viewManager) {
-        this.viewManager = viewManager;
+        super(viewManager);
     }
 
     public void setMainMenuView() {

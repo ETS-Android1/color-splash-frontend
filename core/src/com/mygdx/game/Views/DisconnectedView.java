@@ -43,6 +43,7 @@ public class DisconnectedView extends View{
         background.drawGameObject(sb);
         font.draw(sb, "Host\n disconnected",(float)placeholder.getXPos(),(float)placeholder.getYPos());
         sb.end();
+        super.renderStage();
     }
 
     @Override

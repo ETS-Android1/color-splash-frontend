@@ -21,6 +21,8 @@ public class ViewManager {
         views.pop();
     }
 
+    public View peek() { return views.peek(); }
+
     public void set(View state) {
         views.pop();
         views.push(state);

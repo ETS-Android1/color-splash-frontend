@@ -1,16 +1,17 @@
 package com.mygdx.game.Controllers;
 
 import com.mygdx.game.ColorSplash;
+import com.mygdx.game.Events.EventsConstants;
 import com.mygdx.game.Views.GameLobbyView;
 import com.mygdx.game.Views.MainMenuView;
 import com.mygdx.game.Views.ViewManager;
 
-public class CreateGameController {
+import io.socket.emitter.Emitter;
 
-    private ViewManager viewManager;
+public class CreateGameController extends ErrorController{
 
     public CreateGameController(ViewManager viewManager) {
-        this.viewManager = viewManager;
+        super(viewManager);
     }
 
     public void createGame(String nickname, int rounds, String difficulty, int maxPlayers) {
