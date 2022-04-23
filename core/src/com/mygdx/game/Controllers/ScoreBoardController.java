@@ -19,12 +19,12 @@ public class ScoreBoardController {
 
     public ScoreBoardController(ViewManager viewManager){
         this.viewManager = viewManager;
-        this.roundFinished();
+        //this.roundFinished();
     }
 
-    public void roundFinished() {
-        ColorSplash.socketManager.createListener(EventsConstants.getEndRoundResult, scoreBoardListener());
-    }
+   /* public void roundFinished() {
+        ColorSplash.socketManager.createListener(EventsConstants.endRound, scoreBoardListener());
+    }*/
 
     public void nextRound(int gameId) {
         ColorSplash.socketManager.nextRound(gameId);
@@ -32,7 +32,7 @@ public class ScoreBoardController {
 
     public void endGame(int gameId) {ColorSplash.socketManager.endGame(gameId);}
 
-    public Emitter.Listener scoreBoardListener() {
+   /* public Emitter.Listener scoreBoardListener() {
         return new Emitter.Listener() {
             @Override
             public void call(Object... args) {
@@ -43,7 +43,7 @@ public class ScoreBoardController {
                 isLoading = false;
             }
         };
-    }
+    }*/
 
     public ScoreBoardInfo getScoreBoardInfo() {
         return scoreBoardInfo;
