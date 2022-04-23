@@ -28,6 +28,10 @@ public class ViewManager {
         views.push(state);
     }
 
+    public Stack<View> getViews() {
+        return this.views;
+    }
+
     public void update(float dt) {
         views.peek().update(dt);
     }

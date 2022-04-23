@@ -5,10 +5,12 @@ import com.mygdx.game.Views.HowToPlayView;
 import com.mygdx.game.Views.JoinGameView;
 import com.mygdx.game.Views.ViewManager;
 
-public class MainMenuController extends ErrorController{
+public class MainMenuController{
+
+    private ViewManager viewManager;
 
     public MainMenuController(ViewManager viewManager) {
-        super(viewManager);
+        this.viewManager = viewManager;
     }
 
     public void setJoinGameView() {

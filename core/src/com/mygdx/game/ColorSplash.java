@@ -16,11 +16,14 @@ public class ColorSplash extends Game {
 	private ViewManager viewManager;
 	public SpriteBatch batch;
 	public static final SocketManager socketManager = new SocketManager();
+	public ErrorHandler errorHandler;
+
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		viewManager = new ViewManager();
+		errorHandler = new ErrorHandler(viewManager);
 		viewManager.push(new MainMenuView(viewManager));
 	}
 

@@ -10,14 +10,14 @@ import com.mygdx.game.dataClasses.GameInfo;
 
 import io.socket.emitter.Emitter;
 
-public class SplashController extends ErrorController{
+public class SplashController {
 
     private DisplayColors colorInfo;
     private boolean isLoading = true;
-
+    private ViewManager viewManager;
 
     public SplashController(ViewManager viewManager, DisplayColors colorInfo) {
-        super(viewManager);
+        this.viewManager = viewManager;
         this.colorInfo = colorInfo;
         this.displayColors();
     }
