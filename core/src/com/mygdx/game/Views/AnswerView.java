@@ -122,6 +122,7 @@ public class AnswerView extends View{
             this.gameFinished();
         }
         if(this.timer==-3){
+            System.out.println("-3");
             this.controller.setScoreBoardView();
         }
 

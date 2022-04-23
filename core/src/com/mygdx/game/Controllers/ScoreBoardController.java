@@ -17,13 +17,10 @@ public class ScoreBoardController {
     private boolean isLoading = true;
     private ViewManager viewManager;
 
-    public ScoreBoardController(ViewManager viewManager){
+    public ScoreBoardController(ViewManager viewManager, ScoreBoardInfo scoreBoardInfo){
         this.viewManager = viewManager;
-        this.roundFinished();
-    }
-
-    public void roundFinished() {
-        ColorSplash.socketManager.createListener(EventsConstants.getEndRoundResult, scoreBoardListener());
+        this.scoreBoardInfo = scoreBoardInfo;
+        this.isHost = scoreBoardInfo.getHostId().equals(ColorSplash.socketManager.getSocketId());
     }
 
     public void nextRound(int gameId) {
@@ -31,19 +28,6 @@ public class ScoreBoardController {
     }
 
     public void endGame(int gameId) {ColorSplash.socketManager.endGame(gameId);}
-
-    public Emitter.Listener scoreBoardListener() {
-        return new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                isLoading = true;
-                Gson gson = new Gson();
-                scoreBoardInfo = gson.fromJson(args[0].toString(), ScoreBoardInfo.class);
-                isHost = scoreBoardInfo.hostId.equals(ColorSplash.socketManager.getSocketId());
-                isLoading = false;
-            }
-        };
-    }
 
     public ScoreBoardInfo getScoreBoardInfo() {
         return scoreBoardInfo;
