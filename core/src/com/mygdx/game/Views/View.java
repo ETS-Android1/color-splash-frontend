@@ -16,10 +16,10 @@ public abstract class View {
     protected Background background;
     protected Stage stage;
     protected ErrorDialog error;
-    private Sound clickSound;
+    //private Sound clickSound;
 
     protected View() {
-        clickSound = Gdx.audio.newSound(Gdx.files.internal("click.mp3"));
+        //clickSound = Gdx.audio.newSound(Gdx.files.internal("click.mp3"));
         stage= new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         Gdx.input.setInputProcessor(stage);
         sb = new SpriteBatch();
@@ -34,7 +34,7 @@ public abstract class View {
 
     protected void handleInput() {
         if(error!=null && error.getButton().isPressed()) {
-            clickSound.play();
+            //clickSound.play();
             error.getDialog().hide();
         }
     };

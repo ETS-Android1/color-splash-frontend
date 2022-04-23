@@ -4,17 +4,20 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.mygdx.game.Views.View;
+import com.mygdx.game.Views.ViewManager;
 
 public class Button extends GameObject{
 
     private boolean checked = false;
-    private Music clickSound2;
     private Sound clickSound;
+    private ViewManager vm;
 
 
-    public Button(Texture image, double xPos, double yPos, double scale, boolean centerHeight, boolean centerWidth) {
+    public Button(Texture image, double xPos, double yPos, double scale, boolean centerHeight, boolean centerWidth, ViewManager vm) {
         super(image, xPos, yPos, scale, centerHeight, centerWidth);
         clickSound = Gdx.audio.newSound(Gdx.files.internal("click.mp3"));
+        this.vm=vm;
     }
 
     public boolean isObjectClicked() {
@@ -22,7 +25,9 @@ public class Button extends GameObject{
         int clickedY = this.screenHeight-Gdx.input.getY();
 
         if (this.bounds.contains(clickedX,clickedY)) {
-            this.clickSound.play();
+            if(this.vm.isSound()){
+                this.clickSound.play();
+            }
             return true;
         }
         return false;
@@ -43,6 +48,4 @@ public class Button extends GameObject{
     public boolean getIsChecked() {
         return this.checked;
     }
-
-
 }

@@ -43,8 +43,8 @@ public class GameLobbyView extends View {
             }
         }
 
-        startButton = new Button(new Texture("button_start.png"), 0.92, 0.08, 3,false, false);
-        cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false);
+        startButton = new Button(new Texture("button_start.png"), 0.92, 0.08, 3,false, false, vm);
+        cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false, vm);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
 
     }

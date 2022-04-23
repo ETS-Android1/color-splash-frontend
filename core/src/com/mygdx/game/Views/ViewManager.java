@@ -11,6 +11,8 @@ public class ViewManager {
 
     private Stack<View> views;
     private Music music;
+    private boolean isPLaying = true;
+    private boolean isSound = true;
 
     public ViewManager() {
         views = new Stack<>();
@@ -46,12 +48,18 @@ public class ViewManager {
         views.peek().render(sb);
     }
 
-    public void setMusic(boolean play) {
-        if (play){
+    public void setMusic() {
+        this.isPLaying=!this.isPLaying;
+        if (isPLaying){
             music.play();
         }
         else{
             music.pause();
         }
     }
+    public boolean isPLaying(){return this.isPLaying;}
+
+    public boolean isSound(){return this.isSound;}
+
+    public void setSound(){this.isSound=!this.isSound;}
 }

@@ -17,18 +17,23 @@ public class MainMenuView extends View {
     private Button musicButton;
     private GameObject logo;
     private MainMenuController controller;
-    private boolean isMusic = true;
     private boolean isSound = true;
 
     public MainMenuView(ViewManager vm) {
         super();
         this.controller = new MainMenuController(vm);
-        howToPlay = new Button(new Texture(Gdx.files.internal("button_howtoplay.png")), 0.08, 0.88, 3,false ,false);
-        newGame = new Button(new Texture(Gdx.files.internal("button_newgame.png")), 0.08, 0.08, 3,false,false);
-        joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.08, 3,false, false);
+        howToPlay = new Button(new Texture(Gdx.files.internal("button_howtoplay.png")), 0.08, 0.88, 3,false ,false, vm);
+        newGame = new Button(new Texture(Gdx.files.internal("button_newgame.png")), 0.08, 0.08, 3,false,false, vm);
+        joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.08, 3,false, false, vm);
         logo = new GameObject(new Texture(Gdx.files.internal("logo.png")), 1, 0.3, 3.5,false,true);
-        soundButton = new Button(new Texture(Gdx.files.internal("sound_on.png")), 0.9, 0.88, 3,false ,false);
-        musicButton = new Button(new Texture(Gdx.files.internal("music_on.png")), 0.75, 0.88, 3,false ,false);
+        soundButton = new Button(new Texture(Gdx.files.internal("sound_on.png")), 0.9, 0.88, 3,false ,false, vm);
+        musicButton = new Button(new Texture(Gdx.files.internal("music_on.png")), 0.75, 0.88, 3,false ,false, vm);
+        if(!this.controller.isPlaying()){
+            musicButton.setFilePath("music_off.png");
+        }
+        if(!this.controller.isSound()){
+            soundButton.setFilePath("sound_off.png");
+        }
     }
 
     @Override
@@ -47,23 +52,23 @@ public class MainMenuView extends View {
                 controller.setCreateGameView();
             }
             if (this.musicButton.isObjectClicked()){
-                this.isMusic=!this.isMusic;
-                if (this.isMusic){
-                    this.musicButton.setFilePath("music_on.png");
-                    this.controller.setMusic(true);
+                if (this.controller.isPlaying()){
+                    this.musicButton.setFilePath("music_off.png");
+                    this.controller.setMusic();
                 }
                 else {
-                    this.musicButton.setFilePath("music_off.png");
-                    this.controller.setMusic(false);
+                    this.musicButton.setFilePath("music_on.png");
+                    this.controller.setMusic();
                 }
             }
             if(this.soundButton.isObjectClicked()){
-                this.isSound=!this.isSound;
-                if (this.isSound){
-                    this.soundButton.setFilePath("sound_on.png");
+                if (this.controller.isSound()){
+                    this.soundButton.setFilePath("sound_off.png");
+                    this.controller.setSound();
                 }
                 else {
-                    this.soundButton.setFilePath("sound_off.png");
+                    this.soundButton.setFilePath("sound_on.png");
+                    this.controller.setSound();
                 }
             }
         }

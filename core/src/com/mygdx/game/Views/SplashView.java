@@ -56,7 +56,7 @@ public class SplashView extends View {
 
     @Override
     public void update(float dt) {
-        if (this.colorTimer==0){
+        if (this.colorTimer==0 && controller.isSound()){
             this.splashSound.play();
         }
 
