@@ -53,4 +53,6 @@ public class SplashController {
     public boolean isLoading() {
         return isLoading;
     }
+
+    public boolean isSound(){return viewManager.isSound();}
 }
