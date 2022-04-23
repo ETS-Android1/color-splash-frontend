@@ -14,15 +14,16 @@ import java.sql.PseudoColumnUsage;
 
 import io.socket.emitter.Emitter;
 
-public class GameLobbyController extends ErrorController {
+public class GameLobbyController {
 
     private GameInfo gameInfo;
     private boolean isHost;
     private boolean isLoading = true;
     private DisplayColors colorInfo;
+    private ViewManager viewManager;
 
     public GameLobbyController(ViewManager viewManager) {
-        super(viewManager);
+        this.viewManager = viewManager;
         this.gameCreated();
         this.displayColors();
     }
@@ -52,6 +53,8 @@ public class GameLobbyController extends ErrorController {
         return new Emitter.Listener() {
             @Override
             public void call(Object... args) {
+                Gson gson = new Gson();
+                colorInfo = gson.fromJson(args[0].toString(), DisplayColors.class);
                 Gdx.app.postRunnable (new Runnable() {
                     @Override
                     public void run() {
@@ -88,10 +91,6 @@ public class GameLobbyController extends ErrorController {
     }
 
     public void setGetReadyView() {
-        while (colorInfo == null) {
-            System.out.println("loading");
-        }
-        System.out.println("not loading");
         viewManager.set(new GetReadyView(viewManager, colorInfo));
 
     }

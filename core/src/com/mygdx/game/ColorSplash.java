@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Controllers.ErrorController;
 import com.mygdx.game.Views.ViewManager;
 import com.mygdx.game.Views.MainMenuView;
 
@@ -16,11 +17,14 @@ public class ColorSplash extends Game {
 	private ViewManager viewManager;
 	public SpriteBatch batch;
 	public static final SocketManager socketManager = new SocketManager();
+	public ErrorController errorController;
+
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		viewManager = new ViewManager();
+		errorController = new ErrorController(viewManager);
 		viewManager.push(new MainMenuView(viewManager));
 	}
 

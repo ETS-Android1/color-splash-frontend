@@ -43,8 +43,6 @@ public class JoinGameView extends View{
                     System.out.println("GameId: " + Integer.parseInt(this.gamePin.getTextField().getText()));
                     System.out.println("Nickname: " + this.nickname.getTextField().getText());
                     this.controller.joinGame(Integer.parseInt(this.gamePin.getTextField().getText()), this.nickname.getTextField().getText());
-                    dispose();
-                    controller.setGameLobbyView();
                 }
                 catch (Exception e){
                     setError("Not valid Game Pin");

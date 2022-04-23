@@ -25,7 +25,7 @@ public abstract class View {
     public void setError(String message){
         error = new ErrorDialog(message);
         error.getDialog().show(stage);
-        renderStage();
+        //renderStage();
     }
 
     protected void handleInput() {
