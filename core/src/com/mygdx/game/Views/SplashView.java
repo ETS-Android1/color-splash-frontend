@@ -1,6 +1,7 @@
 package com.mygdx.game.Views;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -24,6 +25,7 @@ public class SplashView extends View {
     private int totalRounds;
     private BitmapFont font;
     private List<Integer> colorList = new ArrayList<>();
+    private Sound splashSound;
 
     private Dots dots;
 
@@ -36,6 +38,7 @@ public class SplashView extends View {
         this.colorList = colorinfo.getNumber();
         this.round = colorinfo.getRound();
         this.totalRounds = colorinfo.getMaxRounds();
+        this.splashSound = Gdx.audio.newSound(Gdx.files.internal("splash.mp3"));
 
         /*boolean loading = true;
 
@@ -65,6 +68,10 @@ public class SplashView extends View {
 
     @Override
     public void update(float dt) {
+        if (this.colorTimer==0){
+            this.splashSound.play();
+        }
+
         this.splashTimer+=dt;
         this.colorTimer+=dt;
 
@@ -73,7 +80,7 @@ public class SplashView extends View {
             this.splash.setFilePath(splash.getSplashes().get(colorList.get(this.colorCounter)).get(this.frameCounter));
             this.splashTimer=0;
         }
-        if (colorTimer>0.5 && this.colorCounter<(colorList.size()-1)){
+        if (colorTimer>0.9 && this.colorCounter<(colorList.size()-1)){
             this.colorCounter++;
             this.dots.setDarkGreyDot(colorCounter);
             this.colorTimer=0;

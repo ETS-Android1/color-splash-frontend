@@ -23,7 +23,7 @@ public class GetReadyView extends View{
         System.out.println(colorinfo);
         this.colorinfo = colorinfo;
         controller = new GetReadyController(vm);
-        background = new GameObject(new Texture(Gdx.files.internal("splash_orange.png")),1,0.15,5.3,false,true);
+        background = new GameObject(new Texture(Gdx.files.internal("splash_orange.png")),1,0.05,5.3,false,true);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         placeholder = new GameObject(new Texture(Gdx.files.internal("splash.png")),0.1,0.6,1,false,false);
         font.getData().setScale(4);

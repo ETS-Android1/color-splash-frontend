@@ -38,9 +38,8 @@ public class MainMenuView extends View {
                 controller.setJoinGameView();
             }
             if (this.howToPlay.isObjectClicked()) {
-                setError("hello");
-                //dispose();
-                //controller.setHowToPlayView();
+                dispose();
+                controller.setHowToPlayView();
             }
             if (this.newGame.isObjectClicked()) {
                 dispose();
