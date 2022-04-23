@@ -43,6 +43,7 @@ public class SplashController {
     }
 
     public void setAnswerView() {
+        viewManager.peek().dispose();
         viewManager.set(new AnswerView(viewManager));
     }
 

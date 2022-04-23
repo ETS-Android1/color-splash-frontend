@@ -55,5 +55,7 @@ public class GetReadyView extends View{
     @Override
     public void dispose() {
         background.getImage().dispose();
+        placeholder.getImage().dispose();
+        font.dispose();
     }
 }
