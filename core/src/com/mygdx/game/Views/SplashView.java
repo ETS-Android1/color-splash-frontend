@@ -25,6 +25,7 @@ public class SplashView extends View {
     private int totalRounds;
     private BitmapFont font;
     private List<Integer> colorList = new ArrayList<>();
+    private String roundsString;
     private Sound splashSound;
 
     private Dots dots;
@@ -38,6 +39,7 @@ public class SplashView extends View {
         this.colorList = colorinfo.getNumber();
         this.round = colorinfo.getRound();
         this.totalRounds = colorinfo.getMaxRounds();
+        this.roundsString = "Round "+this.round+"/"+this.totalRounds;
         this.splashSound = Gdx.audio.newSound(Gdx.files.internal("splash.mp3"));
 
         this.dots = new Dots(this.colorList);
@@ -59,7 +61,6 @@ public class SplashView extends View {
         if (this.colorTimer==0 && controller.isSound()){
             this.splashSound.play();
         }
-
         this.splashTimer+=dt;
         this.colorTimer+=dt;
 
@@ -85,7 +86,7 @@ public class SplashView extends View {
         super.render(sb);
         splash.drawGameObject(sb);
         dots.drawDots(sb);
-        font.draw(sb,"Round "+this.round+"/"+this.totalRounds, (float)textPlaceholder.getXPos(),(float)textPlaceholder.getYPos());
+        font.draw(sb, roundsString, (float)textPlaceholder.getXPos(), (float)textPlaceholder.getYPos());
         sb.end();
         super.renderStage();
     }

@@ -21,6 +21,7 @@ public class GameLobbyView extends View {
     private Button startButton;
     private BitmapFont font;
     private GameLobbyController controller;
+    private String diffRounds;
 
     private List<GameObject> avatars = new ArrayList<>();
     private List<String> avatarPics = new ArrayList<>(Arrays.asList("avatar_orange.png", "avatar_green.png", "avatar_pink.png", "avatar_purple.png"));
@@ -43,6 +44,8 @@ public class GameLobbyView extends View {
             }
         }
 
+        diffRounds = "Difficulty: "+controller.getGameInfo().difficulty+"    Rounds: "+controller.getGameInfo().rounds;
+
         startButton = new Button(new Texture("button_start.png"), 0.92, 0.08, 3,false, false, vm);
         cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false, vm);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
@@ -61,7 +64,7 @@ public class GameLobbyView extends View {
         if (Gdx.input.justTouched()) {
             if (this.cancelButton.isObjectClicked()) {
                 dispose();
-                controller.setMainMenuView();
+                controller.leaveGame();
             }
             if (this.startButton.isObjectClicked()) {
                 this.controller.startGame(controller.getGameInfo().gameId);
@@ -90,7 +93,7 @@ public class GameLobbyView extends View {
             startButton.drawGameObject(sb);
         }
         font.getData().setScale(1);
-        font.draw(sb, "Difficulty: "+controller.getGameInfo().difficulty+"    Rounds: "+controller.getGameInfo().rounds,(float)avatars.get(0).getXPos()-30,(float)avatars.get(0).getYPos()+400);
+        font.draw(sb, diffRounds,(float)avatars.get(0).getXPos()-30,(float)avatars.get(0).getYPos()+400);
         font.getData().setScale((float)1.5);
         this.drawPlayers(sb);
 
@@ -117,7 +120,7 @@ public class GameLobbyView extends View {
                 }
                 font.draw(sb, this.controller.getGameInfo().players.get(i).name, (float) avatars.get(i).getXPos() + 250, (float) avatars.get(i).getYPos() + 130);
             } catch (Exception e) {
-                //e.printStackTrace();
+                avatars.get(i).setFilePath("empty.png");
             }
             avatars.get(i).drawGameObject(sb);
         }

@@ -77,6 +77,11 @@ public class GameLobbyController {
         ColorSplash.socketManager.startGame(gameId);
     }
 
+    public void leaveGame() {
+        ColorSplash.socketManager.leaveGame(this.gameInfo.gameId);
+        setMainMenuView();
+    }
+
     public Emitter.Listener gameCreatedListener() {
         return new Emitter.Listener() {
             @Override

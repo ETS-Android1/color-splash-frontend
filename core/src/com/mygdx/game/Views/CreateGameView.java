@@ -54,10 +54,10 @@ public class CreateGameView extends View{
     protected void handleInput() {
         super.handleInput();
         if (Gdx.input.justTouched()) {
-            if(this.createButton.isObjectClicked() && this.nickname.getTextField().getText()==""){
+            if(this.createButton.isObjectClicked() && this.nickname.getTextField().getText().equals("")){
                 setError("Please choose a nickname");
             }
-            if (this.createButton.isObjectClicked() && this.nickname.getTextField().getText()!="") {
+            if (this.createButton.isObjectClicked() && !this.nickname.getTextField().getText().equals("")) {
                 int rounds;
                 if (this.threeButton.getIsChecked()) {
                     rounds = 3;
@@ -156,6 +156,5 @@ public class CreateGameView extends View{
     public void dispose() {
             createButton.getImage().dispose();
             cancelButton.getImage().dispose();
-
     }
 }

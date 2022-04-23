@@ -22,7 +22,6 @@ public class SocketManager {
 		} catch ( URISyntaxException e) {
 			e.printStackTrace();
 		}
-
     }
 
     public void createListener(String event, Emitter.Listener listener) {
@@ -83,6 +82,12 @@ public class SocketManager {
 
     public String getSocketId() {
         return socket.id();
+    }
+
+    public void leaveGame(int gameId) {
+        JSONObject json = new JSONObject();
+        json.put("gameId", gameId);
+        this.socket.emit(EventsConstants.leaveGame, json);
     }
 
 }

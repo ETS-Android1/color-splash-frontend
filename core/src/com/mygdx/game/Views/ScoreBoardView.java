@@ -18,6 +18,7 @@ public class ScoreBoardView extends View{
     private BitmapFont font;
     private Button nextButton;
     private Button exitButton;
+    private String roundString;
 
     private ScoreBoardController controller;
 
@@ -36,6 +37,8 @@ public class ScoreBoardView extends View{
         for (Result result : this.controller.getScoreBoardInfo().getResult()) {
             avatars.get(result.getAvatarIndex()).setFilePath(avatarFiles.get(result.getAvatarIndex()));
         }
+
+        this.roundString = "Round: "+this.controller.getScoreBoardInfo().getRound()+"/"+this.controller.getScoreBoardInfo().getMaxRound();
         
         nextButton = new Button(new Texture("button_next.png"), 0.92, 0.08, 3,false, false, vm);
         exitButton = new Button(new Texture("button_exit.png"), 0.92, 0.08, 3,false, false, vm);
@@ -51,7 +54,7 @@ public class ScoreBoardView extends View{
                 controller.nextRound(this.controller.getScoreBoardInfo().getGameId());
                 //controller.setGetReadyView();
             }
-            if (exitButton.isObjectClicked() && controller.isHost() && this.controller.getScoreBoardInfo().getRound()==this.controller.getScoreBoardInfo().getMaxRound()){
+            if (exitButton.isObjectClicked() && this.controller.getScoreBoardInfo().getRound()==this.controller.getScoreBoardInfo().getMaxRound()){
                 dispose();
                 controller.endGame(this.controller.getScoreBoardInfo().getGameId());
                 controller.setMainMenuView();
@@ -73,7 +76,7 @@ public class ScoreBoardView extends View{
         }
         font.getData().setScale((float)1.5);
         this.drawScore(sb);
-        font.draw(sb, "Round: "+this.controller.getScoreBoardInfo().getRound()+"/"+this.controller.getScoreBoardInfo().getMaxRound(),(float) avatars.get(0).getXPos()+320,(float) avatars.get(0).getYPos()+400);
+        font.draw(sb, roundString,(float) avatars.get(0).getXPos()+320,(float) avatars.get(0).getYPos()+400);
         font.getData().setScale(3);
         if(this.controller.getScoreBoardInfo().getRound()==this.controller.getScoreBoardInfo().getMaxRound()){
             font.draw(sb, "Final Score", (float) avatars.get(0).getXPos()+85, (float) avatars.get(0).getYPos()+600);
