@@ -12,8 +12,12 @@ public class MainMenuView extends View {
     private Button howToPlay;
     private Button newGame;
     private Button joinGame;
+    private Button soundButton;
+    private Button musicButton;
     private GameObject logo;
     private MainMenuController controller;
+    private boolean isMusic = true;
+    private boolean isSound = true;
 
     public MainMenuView(ViewManager vm) {
         super();
@@ -22,6 +26,8 @@ public class MainMenuView extends View {
         newGame = new Button(new Texture(Gdx.files.internal("button_newgame.png")), 0.08, 0.08, 3,false,false);
         joinGame = new Button(new Texture(Gdx.files.internal("button_join.png")), 0.92, 0.08, 3,false, false);
         logo = new GameObject(new Texture(Gdx.files.internal("logo.png")), 1, 0.3, 3.5,false,true);
+        soundButton = new Button(new Texture(Gdx.files.internal("sound_on.png")), 0.9, 0.88, 1,false ,false);
+        musicButton = new Button(new Texture(Gdx.files.internal("music_on.png")), 0.85, 0.88, 1,false ,false);
     }
 
     @Override
@@ -40,6 +46,24 @@ public class MainMenuView extends View {
                 dispose();
                 controller.setCreateGameView();
             }
+            if (this.musicButton.isObjectClicked()){
+                this.isMusic=!this.isMusic;
+                if (this.isMusic){
+                    this.musicButton.setFilePath("music_on.png");
+                }
+                else {
+                    this.musicButton.setFilePath("music_off.png");
+                }
+            }
+            if(this.soundButton.isObjectClicked()){
+                this.isSound=!this.isSound;
+                if (this.isSound){
+                    this.soundButton.setFilePath("sound_on.png");
+                }
+                else {
+                    this.soundButton.setFilePath("sound_off.png");
+                }
+            }
         }
 
     }
@@ -56,6 +80,8 @@ public class MainMenuView extends View {
         newGame.drawGameObject(sb);
         logo.drawGameObject(sb);
         joinGame.drawGameObject(sb);
+        soundButton.drawGameObject(sb);
+        musicButton.drawGameObject(sb);
         sb.end();
         super.renderStage();
     }

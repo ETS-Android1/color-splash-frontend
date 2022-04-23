@@ -33,4 +33,13 @@ public class ColorSplash extends Game {
 		viewManager.update(Gdx.graphics.getDeltaTime());
 		viewManager.render(batch);
 	}
+
+	public void setMusic(boolean play) {
+		if (play){
+
+		}
+		else{
+
+		}
+	}
 }
