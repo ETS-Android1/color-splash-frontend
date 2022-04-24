@@ -14,7 +14,6 @@ public class ScoreBoardController {
 
     private ScoreBoardInfo scoreBoardInfo;
     private boolean isHost;
-    private boolean isLoading = true;
     private ViewManager viewManager;
 
     public ScoreBoardController(ViewManager viewManager, ScoreBoardInfo scoreBoardInfo){
@@ -35,10 +34,6 @@ public class ScoreBoardController {
 
     public boolean isHost() {
         return isHost;
-    }
-
-    public boolean isLoading() {
-        return isLoading;
     }
 
     public void setMainMenuView() {

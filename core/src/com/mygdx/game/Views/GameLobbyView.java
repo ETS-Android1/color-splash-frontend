@@ -37,6 +37,7 @@ public class GameLobbyView extends View {
     public GameLobbyView(ViewManager vm, boolean isHost) {
         super();
         controller = new GameLobbyController(vm);
+        System.out.println("game lobby created");
 
         for (int i = 0; i < 4; i++) {
             avatars.add(new GameObject(avatarPics.get(4), 0.2, 0.6 - 0.12 * i, 1, false, false));
@@ -51,11 +52,10 @@ public class GameLobbyView extends View {
                 avatars.get(player.getAvatarIndex()).setImage(avatarPics.get(player.getAvatarIndex()));
             }
             diffRounds = "Difficulty: "+controller.getGameInfo().difficulty+"    Rounds: "+controller.getGameInfo().rounds;
+            startButton = new Button(new Texture("button_start.png"), 0.92, 0.08, 3,false, false, vm);
+
         }
 
-
-
-        startButton = new Button(new Texture("button_start.png"), 0.92, 0.08, 3,false, false, vm);
         cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false, vm);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
 
@@ -77,14 +77,16 @@ public class GameLobbyView extends View {
                 dispose();
                 controller.leaveGame();
             }
-            if (this.startButton.isObjectClicked() && this.controller.isHost()) {
-                this.controller.startGame(controller.getGameInfo().gameId);
-                boolean loading = true;
-                while (loading){
-                    loading = controller.isLoading();
-                    if (!loading){
-                        dispose();
-                        controller.setGetReadyView();
+            if (this.controller.isHost()) {
+                if (this.startButton.isObjectClicked()) {
+                    this.controller.startGame(controller.getGameInfo().gameId);
+                    boolean loading = true;
+                    while (loading) {
+                        loading = controller.isLoading();
+                        if (!loading) {
+                            dispose();
+                            controller.setGetReadyView();
+                        }
                     }
                 }
             }
@@ -119,7 +121,9 @@ public class GameLobbyView extends View {
     @Override
     public void dispose() {
         cancelButton.getImage().dispose();
-        startButton.getImage().dispose();
+        if (this.controller.isHost()) {
+            startButton.getImage().dispose();
+        }
         for (int i = 0; i < this.avatars.size(); i++) {
             this.avatars.get(0).getImage().dispose();
         }

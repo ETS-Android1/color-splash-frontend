@@ -17,7 +17,6 @@ public class AnswerController{
     private DisplayColors colorInfo;
     private boolean isLoading;
     private ScoreBoardInfo scoreBoardInfo;
-    private boolean isHost;
     private ViewManager viewManager;
 
     public AnswerController(ViewManager viewManager, DisplayColors colorInfo) {
@@ -28,25 +27,17 @@ public class AnswerController{
     }
 
     public void playerFinished(int gameId, List<Integer> answer) {
-        System.out.println("SENT");
         ColorSplash.socketManager.playerFinished(gameId, answer);
     }
 
     public void setScoreBoardView() {
         while (scoreBoardInfo == null) {
-            //System.out.println("loading");
         }
-        System.out.println("not loading");
-        System.out.println(scoreBoardInfo);
         viewManager.set(new ScoreBoardView(viewManager, scoreBoardInfo));
     }
 
     public DisplayColors getColorInfo() {
         return colorInfo;
-    }
-
-    public boolean isLoading() {
-        return isLoading;
     }
 
     public void roundFinished() {
@@ -60,7 +51,6 @@ public class AnswerController{
                 isLoading = true;
                 Gson gson = new Gson();
                 scoreBoardInfo = gson.fromJson(args[0].toString(), ScoreBoardInfo.class);
-                isHost = scoreBoardInfo.hostId.equals(ColorSplash.socketManager.getSocketId());
                 isLoading = false;
             }
         };

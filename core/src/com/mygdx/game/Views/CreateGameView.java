@@ -54,29 +54,30 @@ public class CreateGameView extends View{
     protected void handleInput() {
         super.handleInput();
         if (Gdx.input.justTouched()) {
-            if(this.createButton.isObjectClicked() && this.nickname.getTextField().getText().equals("")){
-                setError("Please choose a nickname");
-            }
-            if (this.createButton.isObjectClicked() && !this.nickname.getTextField().getText().equals("")) {
-                int rounds;
-                if (this.threeButton.getIsChecked()) {
-                    rounds = 3;
-                } else if (this.fourButton.getIsChecked()) {
-                    rounds = 4;
-                } else {
-                    rounds = 5;
+            if (this.createButton.isObjectClicked()) {
+                if (this.nickname.getTextField().getText().equals("")) {
+                    setError("Please choose a nickname");
+                } else if (!this.nickname.getTextField().getText().equals("")) {
+                    int rounds;
+                    if (this.threeButton.getIsChecked()) {
+                        rounds = 3;
+                    } else if (this.fourButton.getIsChecked()) {
+                        rounds = 4;
+                    } else {
+                        rounds = 5;
+                    }
+                    String difficulty;
+                    if (this.easyButton.getIsChecked()) {
+                        difficulty = "easy";
+                    } else if (this.mediumButton.getIsChecked()) {
+                        difficulty = "medium";
+                    } else {
+                        difficulty = "hard";
+                    }
+                    this.controller.createGame(this.nickname.getTextField().getText(), rounds, difficulty, 4);
+                    dispose();
+                    controller.setGameLobbyView();
                 }
-                String difficulty;
-                if (this.easyButton.getIsChecked()) {
-                    difficulty = "easy";
-                } else if (this.mediumButton.getIsChecked()) {
-                    difficulty = "medium";
-                } else {
-                    difficulty = "hard";
-                }
-                this.controller.createGame(this.nickname.getTextField().getText(), rounds, difficulty, 4);
-                dispose();
-                controller.setGameLobbyView();
             }
             if (this.cancelButton.isObjectClicked()) {
                 dispose();

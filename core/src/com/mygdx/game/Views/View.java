@@ -27,9 +27,11 @@ public abstract class View {
     }
 
     public void setError(String message){
+        if (error != null) {
+            error.getButton().setChecked(true);
+        }
         error = new ErrorDialog(message);
         error.getDialog().show(stage);
-        //renderStage();
     }
 
     protected void handleInput() {
