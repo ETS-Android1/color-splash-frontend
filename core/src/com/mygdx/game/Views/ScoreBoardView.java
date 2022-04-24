@@ -44,8 +44,6 @@ public class ScoreBoardView extends View{
     public ScoreBoardView(ViewManager vm, ScoreBoardInfo scoreBoardInfo) {
         super();
         controller = new ScoreBoardController(vm, scoreBoardInfo);
-        System.out.println(scoreBoardInfo.getHostId());
-        System.out.println(ColorSplash.socketManager.getSocketId());
 
         for (int i = 0; i < 4; i++) {
             avatars.add(new GameObject(new Texture(Gdx.files.internal("empty.png")), 0.05, 0.6 - 0.12 * i, 1, false, false));
@@ -57,10 +55,10 @@ public class ScoreBoardView extends View{
 
         this.roundString = "Round: "+this.controller.getScoreBoardInfo().getRound()+"/"+this.controller.getScoreBoardInfo().getMaxRound();
 
-        if (scoreBoardInfo.getHostId().equals(ColorSplash.socketManager.getSocketId())) {
+        if (this.controller.getScoreBoardInfo().getHostId().equals(ColorSplash.socketManager.getSocketId())) {
             nextButton = new Button(new Texture("button_next.png"), 0.92, 0.08, 3, false, false, vm);
         }
-        if (scoreBoardInfo.getRound() == scoreBoardInfo.getMaxRound()) {
+        if (this.controller.getScoreBoardInfo().getRound() == this.controller.getScoreBoardInfo().getMaxRound()) {
             exitButton = new Button(new Texture("button_exit.png"), 0.92, 0.08, 3,false, false, vm);
         }
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
