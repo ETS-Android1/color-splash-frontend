@@ -9,15 +9,10 @@ import com.mygdx.game.Views.MainMenuView;
 
 public class ColorSplash extends Game {
 
-	public static final int V_WIDTH=360;
-	public static final int V_HEIGHT=640;
-
-	public static final String TITLE = "Color Splash";
-
 	private ViewManager viewManager;
 
 	public SpriteBatch batch;
-	public static final SocketManager socketManager = new SocketManager();
+	public static final SocketManager socketManager = SocketManager.getInstance();
 	public ErrorHandler errorHandler;
 
 

@@ -15,7 +15,9 @@ import io.socket.emitter.Emitter;
 
 public class SocketManager {
     private Socket socket;
-    public SocketManager(){
+    private static final SocketManager instance = new SocketManager();
+
+    private SocketManager(){
         try {
 			socket = IO.socket("https://color-splash.herokuapp.com");
             socket.connect();
@@ -93,4 +95,7 @@ public class SocketManager {
         socket.off(event);
     }
 
+    public static SocketManager getInstance() {
+        return instance;
+    }
 }
