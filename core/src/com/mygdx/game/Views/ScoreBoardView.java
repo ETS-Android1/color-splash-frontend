@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.ColorSplash;
 import com.mygdx.game.Controllers.ScoreBoardController;
 import com.mygdx.game.Models.Button;
 import com.mygdx.game.Models.GameObject;
@@ -43,6 +44,8 @@ public class ScoreBoardView extends View{
     public ScoreBoardView(ViewManager vm, ScoreBoardInfo scoreBoardInfo) {
         super();
         controller = new ScoreBoardController(vm, scoreBoardInfo);
+        System.out.println(scoreBoardInfo.getHostId());
+        System.out.println(ColorSplash.socketManager.getSocketId());
 
         for (int i = 0; i < 4; i++) {
             avatars.add(new GameObject(new Texture(Gdx.files.internal("empty.png")), 0.05, 0.6 - 0.12 * i, 1, false, false));
@@ -53,9 +56,13 @@ public class ScoreBoardView extends View{
         }
 
         this.roundString = "Round: "+this.controller.getScoreBoardInfo().getRound()+"/"+this.controller.getScoreBoardInfo().getMaxRound();
-        
-        nextButton = new Button(new Texture("button_next.png"), 0.92, 0.08, 3,false, false, vm);
-        exitButton = new Button(new Texture("button_exit.png"), 0.92, 0.08, 3,false, false, vm);
+
+        if (scoreBoardInfo.getHostId().equals(ColorSplash.socketManager.getSocketId())) {
+            nextButton = new Button(new Texture("button_next.png"), 0.92, 0.08, 3, false, false, vm);
+        }
+        if (scoreBoardInfo.getRound() == scoreBoardInfo.getMaxRound()) {
+            exitButton = new Button(new Texture("button_exit.png"), 0.92, 0.08, 3,false, false, vm);
+        }
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
 
     }
@@ -63,14 +70,18 @@ public class ScoreBoardView extends View{
     @Override
     protected void handleInput() {
         if (Gdx.input.justTouched()) {
-            if (this.nextButton.isObjectClicked()&& controller.isHost() && this.controller.getScoreBoardInfo().getRound()!=this.controller.getScoreBoardInfo().getMaxRound()) {
-                dispose();
-                controller.nextRound(this.controller.getScoreBoardInfo().getGameId());
+            if (controller.isHost()) {
+                if (this.nextButton.isObjectClicked() && this.controller.getScoreBoardInfo().getRound() != this.controller.getScoreBoardInfo().getMaxRound()) {
+                    dispose();
+                    controller.nextRound(this.controller.getScoreBoardInfo().getGameId());
+                }
             }
-            if (exitButton.isObjectClicked() && this.controller.getScoreBoardInfo().getRound()==this.controller.getScoreBoardInfo().getMaxRound()){
-                dispose();
-                controller.endGame(this.controller.getScoreBoardInfo().getGameId());
-                controller.setMainMenuView();
+            if (this.controller.getScoreBoardInfo().getRound() == this.controller.getScoreBoardInfo().getMaxRound()) {
+                if (exitButton.isObjectClicked() && this.controller.getScoreBoardInfo().getRound() == this.controller.getScoreBoardInfo().getMaxRound()) {
+                    dispose();
+                    controller.endGame(this.controller.getScoreBoardInfo().getGameId());
+                    controller.setMainMenuView();
+                }
             }
         }
     }
