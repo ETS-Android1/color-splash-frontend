@@ -45,10 +45,12 @@ public class JoinGameController{
     }
 
     public void setGameLobbyView(GameInfo gameInfo) {
+        ColorSplash.socketManager.removeEventListener(EventsConstants.gameInfo);
         viewManager.set(new GameLobbyView(viewManager, false, gameInfo));
     }
 
     public void setMainMenuView() {
+        ColorSplash.socketManager.removeEventListener(EventsConstants.gameInfo);
         viewManager.set(new MainMenuView(viewManager));
     }
 

@@ -37,6 +37,7 @@ public class GameLobbyView extends View {
     public GameLobbyView(ViewManager vm, boolean isHost) {
         super();
         controller = new GameLobbyController(vm);
+        System.out.println("game lobby created");
 
         for (int i = 0; i < 4; i++) {
             avatars.add(new GameObject(avatarPics.get(4), 0.2, 0.6 - 0.12 * i, 1, false, false));
@@ -52,8 +53,6 @@ public class GameLobbyView extends View {
             }
             diffRounds = "Difficulty: "+controller.getGameInfo().difficulty+"    Rounds: "+controller.getGameInfo().rounds;
         }
-
-
 
         startButton = new Button(new Texture("button_start.png"), 0.92, 0.08, 3,false, false, vm);
         cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false, vm);

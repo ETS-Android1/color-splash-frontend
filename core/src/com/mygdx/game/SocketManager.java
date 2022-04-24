@@ -89,4 +89,8 @@ public class SocketManager {
         this.socket.emit(EventsConstants.leaveGame, json);
     }
 
+    public void removeEventListener(String event) {
+        socket.off(event);
+    }
+
 }

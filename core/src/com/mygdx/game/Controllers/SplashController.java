@@ -34,7 +34,6 @@ public class SplashController {
                 System.out.println("hei");
                 isLoading = true;
                 Gson gson = new Gson();
-                System.out.println(args[0]);
                 colorInfo = gson.fromJson(args[0].toString(), DisplayColors.class);
                 isLoading = false;
             }

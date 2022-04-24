@@ -100,7 +100,7 @@ public class GameLobbyController {
     }
 
     public void setGetReadyView() {
+        ColorSplash.socketManager.removeEventListener(EventsConstants.gameInfo);
         viewManager.set(new GetReadyView(viewManager, colorInfo));
-
     }
 }
