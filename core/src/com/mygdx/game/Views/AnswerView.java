@@ -26,6 +26,13 @@ public class AnswerView extends View{
     private List<Integer> correctColors = new ArrayList<>();
     private AnswerController controller;
 
+    private Texture circleLightGrey = new Texture(Gdx.files.internal("circle_lightgrey.png"));
+    private Texture circleRed = new Texture(Gdx.files.internal("circle_red.png"));
+    private Texture circleGreen = new Texture(Gdx.files.internal("circle_green.png"));
+    private Texture circleBlue = new Texture(Gdx.files.internal("circle_blue.png"));
+    private Texture circleYellow = new Texture(Gdx.files.internal("circle_yellow.png"));
+    private Texture right = new Texture(Gdx.files.internal("result_right.png"));
+    private Texture wrong = new Texture(Gdx.files.internal("result_wrong.png"));
 
     private float timeCount;
     private BitmapFont font;
@@ -36,23 +43,20 @@ public class AnswerView extends View{
     private List<Integer> playerAnswer = new ArrayList<>();
     private int localScore = 0;
 
-    public AnswerView(ViewManager vm) {
+    public AnswerView(ViewManager vm, DisplayColors gameInfo) {
         super();
-        this.controller = new AnswerController(vm);
-        redButton = new Button(new Texture(Gdx.files.internal("button_red.png")),0.1,0.24,3,false,false);
-        blueButton = new Button(new Texture(Gdx.files.internal("button_blue.png")),0.1,0.1,3,false,false);
-        greenButton = new Button(new Texture(Gdx.files.internal("button_green.png")),0.9,0.24,3,false,false);
-        yellowButton = new Button(new Texture(Gdx.files.internal("button_yellow.png")),0.9,0.1,3,false,false);
+        this.controller = new AnswerController(vm, gameInfo);
+        redButton = new Button(new Texture(Gdx.files.internal("button_red.png")),0.1,0.24,3,false,false, vm);
+        blueButton = new Button(new Texture(Gdx.files.internal("button_blue.png")),0.1,0.1,3,false,false, vm);
+        greenButton = new Button(new Texture(Gdx.files.internal("button_green.png")),0.9,0.24,3,false,false, vm);
+        yellowButton = new Button(new Texture(Gdx.files.internal("button_yellow.png")),0.9,0.1,3,false,false, vm);
         timerBackground = new GameObject(new Texture(Gdx.files.internal("splash_grey.png")),1,0.5,2.5,false,true);
         timer = 8;
         timeCount = 0;
-        while (controller.isLoading()) {
-            System.out.println("loading");
-        }
         correctColors = controller.getColorInfo().getNumber();
         dots = new Dots(this.correctColors);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
-        dots.getDots().get(0).setFilePath("circle_lightgrey.png");
+        dots.getDots().get(0).setImage(circleLightGrey);
 
     }
 
@@ -63,22 +67,22 @@ public class AnswerView extends View{
         if (Gdx.input.justTouched() && !this.playerFinished) {
 
             if (redButton.isObjectClicked()){
-                this.dots.getDots().get(buttonCount).setFilePath("circle_red.png");
+                this.dots.getDots().get(buttonCount).setImage(circleRed);
                 this.playerAnswer.add(1);
                 this.buttonCount++;
             }
             if (greenButton.isObjectClicked()){
-                this.dots.getDots().get(buttonCount).setFilePath("circle_green.png");
+                this.dots.getDots().get(buttonCount).setImage(circleGreen);
                 this.playerAnswer.add(2);
                 this.buttonCount++;
             }
             if (blueButton.isObjectClicked()){
-                this.dots.getDots().get(buttonCount).setFilePath("circle_blue.png");
+                this.dots.getDots().get(buttonCount).setImage(circleBlue);
                 this.playerAnswer.add(0);
                 this.buttonCount++;
             }
             if (yellowButton.isObjectClicked()){
-                this.dots.getDots().get(buttonCount).setFilePath("circle_yellow.png");
+                this.dots.getDots().get(buttonCount).setImage(circleYellow);
                 this.playerAnswer.add(3);
                 this.buttonCount++;
             }
@@ -124,7 +128,6 @@ public class AnswerView extends View{
         if(this.timer==-3){
             this.controller.setScoreBoardView();
         }
-
     }
 
     @Override
@@ -146,8 +149,7 @@ public class AnswerView extends View{
             else{
                 this.font.draw(sb, ""+this.localScore+"/"+this.correctColors.size(), (float) (timerBackground.getXPos()) + 270, (float) (timerBackground.getYPos() + 350));
             }
-        }
-        if (!this.playerFinished){
+        } else {
             this.font.getData().setScale(3);
             this.timerBackground.drawGameObject(sb);
             this.font.draw(sb,timer.toString(),(float)(timerBackground.getXPos())+310,(float)(timerBackground.getYPos()+380));
@@ -158,7 +160,16 @@ public class AnswerView extends View{
 
     @Override
     public void dispose() {
-
+        this.background.getImage().dispose();
+        for (int i = 0; i < this.dots.getDots().size(); i++) {
+            this.dots.getDots().get(i).getImage().dispose();
+        }
+        this.blueButton.getImage().dispose();
+        this.greenButton.getImage().dispose();
+        this.redButton.getImage().dispose();
+        this.yellowButton.getImage().dispose();
+        this.timerBackground.getImage().dispose();
+        this.font.dispose();
     }
 
     public void gameFinished() {
@@ -167,14 +178,14 @@ public class AnswerView extends View{
             try {
                 if (this.correctColors.get(i) == this.playerAnswer.get(i)) {
                     this.localScore++;
-                    this.dots.getDots().get(i).setFilePath("result_right.png");
+                    this.dots.getDots().get(i).setImage(right);
                 }
                 else {
-                    this.dots.getDots().get(i).setFilePath("result_wrong.png");
+                    this.dots.getDots().get(i).setImage(wrong);
                 }
             }
             catch (IndexOutOfBoundsException e) {
-                this.dots.getDots().get(i).setFilePath("result_wrong.png");
+                this.dots.getDots().get(i).setImage(wrong);
             }
         }
     }

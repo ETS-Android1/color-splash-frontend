@@ -1,6 +1,8 @@
 package com.mygdx.game.Views;
 
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Stack;
@@ -8,9 +10,15 @@ import java.util.Stack;
 public class ViewManager {
 
     private Stack<View> views;
+    private Music music;
+    private boolean isPLaying = true;
+    private boolean isSound = true;
 
     public ViewManager() {
         views = new Stack<>();
+        music = Gdx.audio.newMusic(Gdx.files.internal("music.mp3"));
+        music.setLooping(true);
+        music.play();
     }
 
     public void push(View state) {
@@ -24,6 +32,7 @@ public class ViewManager {
     public View peek() { return views.peek(); }
 
     public void set(View state) {
+        this.peek().dispose();
         views.pop();
         views.push(state);
     }
@@ -39,4 +48,19 @@ public class ViewManager {
     public void render(SpriteBatch sb) {
         views.peek().render(sb);
     }
+
+    public void setMusic() {
+        this.isPLaying=!this.isPLaying;
+        if (isPLaying){
+            music.play();
+        }
+        else{
+            music.pause();
+        }
+    }
+    public boolean isPLaying(){return this.isPLaying;}
+
+    public boolean isSound(){return this.isSound;}
+
+    public void setSound(){this.isSound=!this.isSound;}
 }

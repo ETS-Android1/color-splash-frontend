@@ -34,14 +34,14 @@ public class CreateGameView extends View{
         super();
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         controller = new CreateGameController(vm);
-        createButton = new Button(new Texture("button_create.png"), 0.92, 0.08, 3,false, false);
-        cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false);
-        threeButton = new Button(new Texture("button_unselected.png"), 0.2, 0.5, 3,false,false);
-        fourButton = new Button(new Texture("button_unselected.png"), 0.2, 0.45, 3,false,false);
-        fiveButton = new Button(new Texture("button_unselected.png"), 0.2, 0.4, 3,false,false);
-        easyButton = new Button(new Texture("button_unselected.png"), 0.6, 0.5, 3,false,false);
-        mediumButton = new Button(new Texture("button_unselected.png"), 0.6, 0.45, 3,false,false);
-        hardButton = new Button(new Texture("button_unselected.png"), 0.6, 0.4, 3,false,false);
+        createButton = new Button(new Texture("button_create.png"), 0.92, 0.08, 3,false, false, vm);
+        cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false, vm);
+        threeButton = new Button(new Texture("button_unselected.png"), 0.2, 0.5, 3,false,false, vm);
+        fourButton = new Button(new Texture("button_unselected.png"), 0.2, 0.45, 3,false,false, vm);
+        fiveButton = new Button(new Texture("button_unselected.png"), 0.2, 0.4, 3,false,false, vm);
+        easyButton = new Button(new Texture("button_unselected.png"), 0.6, 0.5, 3,false,false, vm);
+        mediumButton = new Button(new Texture("button_unselected.png"), 0.6, 0.45, 3,false,false, vm);
+        hardButton = new Button(new Texture("button_unselected.png"), 0.6, 0.4, 3,false,false, vm);
         avatar = new GameObject(new Texture("avatar_orange.png"), 0.08, 0.7, 1,false,false);
         nickname = new InputField("Nickname", new Texture(Gdx.files.internal("textfield_light.png")), 0.95,0.75,2,false,false);
         nickname.getTextField().setMaxLength(12);
@@ -54,10 +54,10 @@ public class CreateGameView extends View{
     protected void handleInput() {
         super.handleInput();
         if (Gdx.input.justTouched()) {
-            if(this.createButton.isObjectClicked() && this.nickname.getTextField().getText()==""){
+            if(this.createButton.isObjectClicked() && this.nickname.getTextField().getText().equals("")){
                 setError("Please choose a nickname");
             }
-            if (this.createButton.isObjectClicked() && this.nickname.getTextField().getText()!="") {
+            if (this.createButton.isObjectClicked() && !this.nickname.getTextField().getText().equals("")) {
                 int rounds;
                 if (this.threeButton.getIsChecked()) {
                     rounds = 3;
@@ -154,8 +154,16 @@ public class CreateGameView extends View{
 
     @Override
     public void dispose() {
-            createButton.getImage().dispose();
-            cancelButton.getImage().dispose();
-
+        createButton.getImage().dispose();
+        cancelButton.getImage().dispose();
+        this.mediumButton.getImage().dispose();
+        this.easyButton.getImage().dispose();
+        this.fourButton.getImage().dispose();
+        this.threeButton.getImage().dispose();
+        this.hardButton.getImage().dispose();
+        this.fiveButton.getImage().dispose();
+        this.avatar.getImage().dispose();
+        this.nickname.getImage().dispose();
+        this.background.getImage().dispose();
     }
 }

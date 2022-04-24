@@ -10,16 +10,35 @@ import com.mygdx.game.dataClasses.GameInfo;
 
 import io.socket.emitter.Emitter;
 
-public class SplashController extends ErrorController{
+public class SplashController {
 
     private DisplayColors colorInfo;
     private boolean isLoading = true;
-
+    private ViewManager viewManager;
 
     public SplashController(ViewManager viewManager, DisplayColors colorInfo) {
-        super(viewManager);
+        this.viewManager = viewManager;
         this.colorInfo = colorInfo;
         this.displayColors();
+        this.getColors();
+    }
+
+    public void getColors() {
+        ColorSplash.socketManager.createListener(EventsConstants.roundStarted, roundStartedListener());
+    }
+
+    public Emitter.Listener roundStartedListener() {
+        return new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                System.out.println("hei");
+                isLoading = true;
+                Gson gson = new Gson();
+                System.out.println(args[0]);
+                colorInfo = gson.fromJson(args[0].toString(), DisplayColors.class);
+                isLoading = false;
+            }
+        };
     }
 
     public void displayColors() {
@@ -43,7 +62,7 @@ public class SplashController extends ErrorController{
     }
 
     public void setAnswerView() {
-        viewManager.set(new AnswerView(viewManager));
+        viewManager.set(new AnswerView(viewManager, colorInfo));
     }
 
     public DisplayColors getColorInfo() {
@@ -53,4 +72,6 @@ public class SplashController extends ErrorController{
     public boolean isLoading() {
         return isLoading;
     }
+
+    public boolean isSound(){return viewManager.isSound();}
 }

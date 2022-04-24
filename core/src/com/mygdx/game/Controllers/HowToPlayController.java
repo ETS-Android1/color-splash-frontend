@@ -3,10 +3,12 @@ package com.mygdx.game.Controllers;
 import com.mygdx.game.Views.MainMenuView;
 import com.mygdx.game.Views.ViewManager;
 
-public class HowToPlayController extends ErrorController {
+public class HowToPlayController {
+
+    private ViewManager viewManager;
 
     public HowToPlayController(ViewManager viewManager) {
-        super(viewManager);
+        this.viewManager = viewManager;
     }
 
     public void setMainMenuView() {

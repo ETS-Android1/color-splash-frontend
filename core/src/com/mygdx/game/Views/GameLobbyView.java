@@ -1,13 +1,13 @@
 package com.mygdx.game.Views;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Models.Button;
 import com.mygdx.game.Models.GameObject;
 import com.mygdx.game.Controllers.GameLobbyController;
+import com.mygdx.game.dataClasses.GameInfo;
 import com.mygdx.game.dataClasses.Player;
 
 import java.util.ArrayList;
@@ -21,32 +21,53 @@ public class GameLobbyView extends View {
     private Button startButton;
     private BitmapFont font;
     private GameLobbyController controller;
+    private String diffRounds;
 
     private List<GameObject> avatars = new ArrayList<>();
-    private List<String> avatarPics = new ArrayList<>(Arrays.asList("avatar_orange.png", "avatar_green.png", "avatar_pink.png", "avatar_purple.png"));
+    private List<Texture> avatarPics = new ArrayList<>(
+            Arrays.asList(
+                    new Texture(Gdx.files.internal("avatar_orange.png")), 
+                    new Texture(Gdx.files.internal("avatar_green.png")),
+                    new Texture(Gdx.files.internal("avatar_pink.png")),
+                    new Texture(Gdx.files.internal("avatar_purple.png")),
+                    new Texture(Gdx.files.internal("empty.png"))
+            )
+    );
 
-    public GameLobbyView(ViewManager vm) {
+    public GameLobbyView(ViewManager vm, boolean isHost) {
         super();
         controller = new GameLobbyController(vm);
 
         for (int i = 0; i < 4; i++) {
-            avatars.add(new GameObject(new Texture(Gdx.files.internal("empty.png")), 0.2, 0.6 - 0.12 * i, 1, false, false));
+            avatars.add(new GameObject(avatarPics.get(4), 0.2, 0.6 - 0.12 * i, 1, false, false));
         }
 
-        boolean loading = true;
-
-        while (loading) {
-            loading = controller.isLoading();
-            if (!loading) {
-                for (Player player : controller.getGameInfo().players) {
-                    avatars.get(player.getAvatarIndex()).setFilePath(avatarPics.get(player.getAvatarIndex()));
-                }
+        if (isHost) {
+            boolean loading = true;
+            while (loading) {
+                loading = controller.isLoading();
             }
+            for (Player player : controller.getGameInfo().players) {
+                avatars.get(player.getAvatarIndex()).setImage(avatarPics.get(player.getAvatarIndex()));
+            }
+            diffRounds = "Difficulty: "+controller.getGameInfo().difficulty+"    Rounds: "+controller.getGameInfo().rounds;
         }
 
-        startButton = new Button(new Texture("button_start.png"), 0.92, 0.08, 3,false, false);
-        cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false);
+
+
+        startButton = new Button(new Texture("button_start.png"), 0.92, 0.08, 3,false, false, vm);
+        cancelButton = new Button(new Texture("button_cancel.png"), 0.08, 0.08, 3,false,false, vm);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
+
+    }
+    public GameLobbyView(ViewManager vm, boolean isHost, GameInfo gameInfo) {
+        this(vm, isHost);
+        this.controller.setGameInfo(gameInfo);
+        for (Player player : this.controller.getGameInfo().players) {
+            avatars.get(player.getAvatarIndex()).setImage(avatarPics.get(player.getAvatarIndex()));
+        }
+        diffRounds = "Difficulty: "+controller.getGameInfo().difficulty+"    Rounds: "+controller.getGameInfo().rounds;
+
     }
 
     @Override
@@ -54,13 +75,13 @@ public class GameLobbyView extends View {
         if (Gdx.input.justTouched()) {
             if (this.cancelButton.isObjectClicked()) {
                 dispose();
-                controller.setMainMenuView();
+                controller.leaveGame();
             }
-            if (this.startButton.isObjectClicked()) {
+            if (this.startButton.isObjectClicked() && this.controller.isHost()) {
                 this.controller.startGame(controller.getGameInfo().gameId);
                 boolean loading = true;
                 while (loading){
-                    loading= controller.isLoading();
+                    loading = controller.isLoading();
                     if (!loading){
                         dispose();
                         controller.setGetReadyView();
@@ -83,7 +104,7 @@ public class GameLobbyView extends View {
             startButton.drawGameObject(sb);
         }
         font.getData().setScale(1);
-        font.draw(sb, "Difficulty: "+controller.getGameInfo().difficulty+"    Rounds: "+controller.getGameInfo().rounds,(float)avatars.get(0).getXPos()-30,(float)avatars.get(0).getYPos()+400);
+        font.draw(sb, diffRounds,(float)avatars.get(0).getXPos()-30,(float)avatars.get(0).getYPos()+400);
         font.getData().setScale((float)1.5);
         this.drawPlayers(sb);
 
@@ -99,6 +120,11 @@ public class GameLobbyView extends View {
     public void dispose() {
         cancelButton.getImage().dispose();
         startButton.getImage().dispose();
+        for (int i = 0; i < this.avatars.size(); i++) {
+            this.avatars.get(0).getImage().dispose();
+        }
+        this.font.dispose();
+        this.background.getImage().dispose();
     }
 
     private void drawPlayers(SpriteBatch sb) {
@@ -106,13 +132,14 @@ public class GameLobbyView extends View {
         for (int i = 0; i < 4; i++) {
             try {
                 for (Player player : controller.getGameInfo().players) {
-                    avatars.get(player.getAvatarIndex()).setFilePath(avatarPics.get(player.getAvatarIndex()));
+                    avatars.get(player.getAvatarIndex()).setImage(avatarPics.get(player.getAvatarIndex()));
                 }
                 font.draw(sb, this.controller.getGameInfo().players.get(i).name, (float) avatars.get(i).getXPos() + 250, (float) avatars.get(i).getYPos() + 130);
             } catch (Exception e) {
-                //e.printStackTrace();
+                avatars.get(i).setImage(avatarPics.get(4));
             }
             avatars.get(i).drawGameObject(sb);
         }
+
     }
 }

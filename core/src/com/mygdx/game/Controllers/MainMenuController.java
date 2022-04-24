@@ -22,4 +22,16 @@ public class MainMenuController{
     public void setCreateGameView() {
         viewManager.set(new CreateGameView(viewManager));
     }
+
+    public void setMusic(){
+        viewManager.setMusic();
+    }
+
+    public boolean isPlaying(){return viewManager.isPLaying();}
+
+    public void setSound(){
+        viewManager.setSound();
+    }
+
+    public boolean isSound(){return viewManager.isSound();}
 }

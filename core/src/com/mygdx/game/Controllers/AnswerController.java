@@ -13,33 +13,18 @@ import java.util.List;
 
 import io.socket.emitter.Emitter;
 
-public class AnswerController extends ErrorController{
+public class AnswerController{
     private DisplayColors colorInfo;
-    private boolean isLoading = true;
+    private boolean isLoading;
     private ScoreBoardInfo scoreBoardInfo;
     private boolean isHost;
+    private ViewManager viewManager;
 
-    public AnswerController(ViewManager viewManager) {
-        super(viewManager);
-        this.getColors();
+    public AnswerController(ViewManager viewManager, DisplayColors colorInfo) {
+        this.viewManager = viewManager;
+        this.isLoading = true;
+        this.colorInfo = colorInfo;
         this.roundFinished();
-    }
-
-    public void getColors() {
-        ColorSplash.socketManager.createListener(EventsConstants.roundStarted, colorListener());
-    }
-
-    public Emitter.Listener colorListener() {
-        return new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                isLoading = true;
-                Gson gson = new Gson();
-                System.out.println(args[0]);
-                colorInfo = gson.fromJson(args[0].toString(), DisplayColors.class);
-                isLoading = false;
-            }
-        };
     }
 
     public void playerFinished(int gameId, List<Integer> answer) {
@@ -52,6 +37,7 @@ public class AnswerController extends ErrorController{
             //System.out.println("loading");
         }
         System.out.println("not loading");
+        System.out.println(scoreBoardInfo);
         viewManager.set(new ScoreBoardView(viewManager, scoreBoardInfo));
     }
 
@@ -64,7 +50,7 @@ public class AnswerController extends ErrorController{
     }
 
     public void roundFinished() {
-        ColorSplash.socketManager.createListener(EventsConstants.getEndRoundResult, scoreBoardListener());
+        ColorSplash.socketManager.createListener(EventsConstants.endRound, scoreBoardListener());
     }
 
     public Emitter.Listener scoreBoardListener() {
