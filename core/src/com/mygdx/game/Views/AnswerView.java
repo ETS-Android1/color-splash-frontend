@@ -43,9 +43,9 @@ public class AnswerView extends View{
     private List<Integer> playerAnswer = new ArrayList<>();
     private int localScore = 0;
 
-    public AnswerView(ViewManager vm) {
+    public AnswerView(ViewManager vm, DisplayColors gameInfo) {
         super();
-        this.controller = new AnswerController(vm);
+        this.controller = new AnswerController(vm, gameInfo);
         redButton = new Button(new Texture(Gdx.files.internal("button_red.png")),0.1,0.24,3,false,false, vm);
         blueButton = new Button(new Texture(Gdx.files.internal("button_blue.png")),0.1,0.1,3,false,false, vm);
         greenButton = new Button(new Texture(Gdx.files.internal("button_green.png")),0.9,0.24,3,false,false, vm);
@@ -53,9 +53,6 @@ public class AnswerView extends View{
         timerBackground = new GameObject(new Texture(Gdx.files.internal("splash_grey.png")),1,0.5,2.5,false,true);
         timer = 8;
         timeCount = 0;
-        while (controller.isLoading()) {
-            System.out.println("loading");
-        }
         correctColors = controller.getColorInfo().getNumber();
         dots = new Dots(this.correctColors);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));

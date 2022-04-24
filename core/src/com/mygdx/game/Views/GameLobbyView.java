@@ -129,7 +129,6 @@ public class GameLobbyView extends View {
 
     private void drawPlayers(SpriteBatch sb) {
 
-
         for (int i = 0; i < 4; i++) {
             try {
                 for (Player player : controller.getGameInfo().players) {
@@ -141,9 +140,6 @@ public class GameLobbyView extends View {
             }
             avatars.get(i).drawGameObject(sb);
         }
-        
-
-
 
     }
 }
