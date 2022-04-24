@@ -20,6 +20,25 @@ public class SplashController {
         this.viewManager = viewManager;
         this.colorInfo = colorInfo;
         this.displayColors();
+        this.getColors();
+    }
+
+    public void getColors() {
+        ColorSplash.socketManager.createListener(EventsConstants.roundStarted, roundStartedListener());
+    }
+
+    public Emitter.Listener roundStartedListener() {
+        return new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                System.out.println("hei");
+                isLoading = true;
+                Gson gson = new Gson();
+                System.out.println(args[0]);
+                colorInfo = gson.fromJson(args[0].toString(), DisplayColors.class);
+                isLoading = false;
+            }
+        };
     }
 
     public void displayColors() {
@@ -43,7 +62,7 @@ public class SplashController {
     }
 
     public void setAnswerView() {
-        viewManager.set(new AnswerView(viewManager));
+        viewManager.set(new AnswerView(viewManager, colorInfo));
     }
 
     public DisplayColors getColorInfo() {

@@ -23,8 +23,22 @@ public class ScoreBoardView extends View{
     private ScoreBoardController controller;
 
     private ArrayList<GameObject> avatars = new ArrayList<GameObject>();
-    private List<String> avatarFiles = Arrays.asList("avatar_orange.png", "avatar_green.png", "avatar_pink.png", "avatar_purple.png");
-    private List<String> trophy_avatar = Arrays.asList("trophy_orange.png","trophy_green.png", "trophy_pink.png", "trophy_purple.png");
+    private List<Texture> avatarFiles = new ArrayList<>(
+            Arrays.asList(
+                    new Texture(Gdx.files.internal("avatar_orange.png")),
+                    new Texture(Gdx.files.internal("avatar_green.png")),
+                    new Texture(Gdx.files.internal("avatar_pink.png")),
+                    new Texture(Gdx.files.internal("avatar_purple.png"))
+            )
+    );
+    private List<Texture> trophy_avatar = new ArrayList<>(
+            Arrays.asList(
+                    new Texture(Gdx.files.internal("trophy_orange.png")),
+                    new Texture(Gdx.files.internal("trophy_green.png")),
+                    new Texture(Gdx.files.internal("trophy_pink.png")),
+                    new Texture(Gdx.files.internal("trophy_purple.png"))
+            )
+    );
 
     public ScoreBoardView(ViewManager vm, ScoreBoardInfo scoreBoardInfo) {
         super();
@@ -35,7 +49,7 @@ public class ScoreBoardView extends View{
         }
 
         for (Result result : this.controller.getScoreBoardInfo().getResult()) {
-            avatars.get(result.getAvatarIndex()).setFilePath(avatarFiles.get(result.getAvatarIndex()));
+            avatars.get(result.getAvatarIndex()).setImage(avatarFiles.get(result.getAvatarIndex()));
         }
 
         this.roundString = "Round: "+this.controller.getScoreBoardInfo().getRound()+"/"+this.controller.getScoreBoardInfo().getMaxRound();
@@ -92,24 +106,24 @@ public class ScoreBoardView extends View{
 
     @Override
     public void dispose() {
+
     }
 
     private void drawScore(SpriteBatch sb) {
 
         if (this.controller.getScoreBoardInfo().getRound()==this.controller.getScoreBoardInfo().getMaxRound()) {
-            avatars.get(0).setFilePath(this.trophy_avatar.get(this.controller.getScoreBoardInfo().getResult().get(0).getAvatarIndex()));
+            avatars.get(0).setImage(this.trophy_avatar.get(this.controller.getScoreBoardInfo().getResult().get(0).getAvatarIndex()));
         }
         else{
-            avatars.get(0).setFilePath(this.avatarFiles.get(this.controller.getScoreBoardInfo().getResult().get(0).getAvatarIndex()));
+            avatars.get(0).setImage(this.avatarFiles.get(this.controller.getScoreBoardInfo().getResult().get(0).getAvatarIndex()));
         }
-        for (int i=1  ; i<this.controller.getScoreBoardInfo().getResult().size() ; i++){
-            avatars.get(i).setFilePath(this.avatarFiles.get(this.controller.getScoreBoardInfo().getResult().get(i).getAvatarIndex()));
-        }
-        for (int i = 0; i< this.controller.getScoreBoardInfo().getResult().size() ; i++) {
+        for (int i=0  ; i<this.controller.getScoreBoardInfo().getResult().size() ; i++){
+            avatars.get(i).setImage(this.avatarFiles.get(this.controller.getScoreBoardInfo().getResult().get(i).getAvatarIndex()));
             this.avatars.get(i).drawGameObject(sb);
             font.draw(sb, this.controller.getScoreBoardInfo().getResult().get(i).getNickname(), (float) this.avatars.get(i).getXPos()+250, (float) this.avatars.get(i).getYPos()+130);
             font.draw(sb, Integer.toString(this.controller.getScoreBoardInfo().getResult().get(i).getTotalScore()), (float) this.avatars.get(i).getXPos()+800, (float) this.avatars.get(i).getYPos()+130);
         }
+
     }
 
 }

@@ -154,7 +154,16 @@ public class CreateGameView extends View{
 
     @Override
     public void dispose() {
-            createButton.getImage().dispose();
-            cancelButton.getImage().dispose();
+        createButton.getImage().dispose();
+        cancelButton.getImage().dispose();
+        this.mediumButton.getImage().dispose();
+        this.easyButton.getImage().dispose();
+        this.fourButton.getImage().dispose();
+        this.threeButton.getImage().dispose();
+        this.hardButton.getImage().dispose();
+        this.fiveButton.getImage().dispose();
+        this.avatar.getImage().dispose();
+        this.nickname.getImage().dispose();
+        this.background.getImage().dispose();
     }
 }

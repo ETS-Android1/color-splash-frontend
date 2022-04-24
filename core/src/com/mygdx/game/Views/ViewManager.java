@@ -32,6 +32,7 @@ public class ViewManager {
     public View peek() { return views.peek(); }
 
     public void set(View state) {
+        this.peek().dispose();
         views.pop();
         views.push(state);
     }

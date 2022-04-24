@@ -79,7 +79,6 @@ public class SocketManager {
         this.socket.emit(EventsConstants.endGame, json);
     }
 
-
     public String getSocketId() {
         return socket.id();
     }
