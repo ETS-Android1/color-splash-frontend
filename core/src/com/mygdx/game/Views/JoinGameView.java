@@ -38,31 +38,29 @@ public class JoinGameView extends View{
     @Override
     public void handleInput() {
         if (Gdx.input.justTouched()) {
-            if (this.joinGame.isObjectClicked() && this.gamePin.getTextField().getText()!="" && this.nickname.getTextField().getText()!="") {
-                try{
-                    System.out.println("GameId: " + Integer.parseInt(this.gamePin.getTextField().getText()));
-                    System.out.println("Nickname: " + this.nickname.getTextField().getText());
-                    this.controller.joinGame(Integer.parseInt(this.gamePin.getTextField().getText()), this.nickname.getTextField().getText());
+            if (this.joinGame.isObjectClicked()) {
+                if (this.gamePin.getTextField().getText()!="" && this.nickname.getTextField().getText()!="") {
+                    try {
+                        System.out.println("GameId: " + Integer.parseInt(this.gamePin.getTextField().getText()));
+                        System.out.println("Nickname: " + this.nickname.getTextField().getText());
+                        this.controller.joinGame(Integer.parseInt(this.gamePin.getTextField().getText()), this.nickname.getTextField().getText());
+                    } catch (Exception e) {
+                        setError("Not valid Game Pin");
+                    }
+                } else if (this.gamePin.getTextField().getText() == "" && this.nickname.getTextField().getText() != "") {
+                    setError("Fill in Game Pin");
+                } else if (this.gamePin.getTextField().getText() != "" && this.nickname.getTextField().getText() == "") {
+                    try {
+                        Double.parseDouble(this.gamePin.getTextField().getText());
+                        setError("Fill in nickname");
+                    } catch (NumberFormatException e) {
+                        setError("Fill in nickname and \n   valid Game Pin");
+                    }
+                } else if (this.gamePin.getTextField().getText() == "" && this.nickname.getTextField().getText() == "") {
+                    setError("Fill in Game Pin and nickname");
                 }
-                catch (Exception e){
-                    setError("Not valid Game Pin");
-                }
             }
-            if (this.joinGame.isObjectClicked() && this.gamePin.getTextField().getText()=="" && this.nickname.getTextField().getText()!="") {
-                setError("Fill in Game Pin");
-            }
-            if (this.joinGame.isObjectClicked() && this.gamePin.getTextField().getText()!="" && this.nickname.getTextField().getText()=="") {
-                try {
-                    Double.parseDouble(this.gamePin.getTextField().getText());
-                    setError("Fill in nickname");
-                } catch(NumberFormatException e){
-                    setError("Fill in nickname and \n   valid Game Pin");
-                }
-            }
-            if (this.joinGame.isObjectClicked() && this.gamePin.getTextField().getText()=="" && this.nickname.getTextField().getText()=="") {
-                setError("Fill in Game Pin and nickname");
-            }
-            if (this.cancelButton.isObjectClicked()) {
+            else if (this.cancelButton.isObjectClicked()) {
                 dispose();
                 controller.setMainMenuView();
             }
