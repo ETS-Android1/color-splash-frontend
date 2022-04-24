@@ -66,7 +66,6 @@ public class ScoreBoardView extends View{
             if (this.nextButton.isObjectClicked()&& controller.isHost() && this.controller.getScoreBoardInfo().getRound()!=this.controller.getScoreBoardInfo().getMaxRound()) {
                 dispose();
                 controller.nextRound(this.controller.getScoreBoardInfo().getGameId());
-                //controller.setGetReadyView();
             }
             if (exitButton.isObjectClicked() && this.controller.getScoreBoardInfo().getRound()==this.controller.getScoreBoardInfo().getMaxRound()){
                 dispose();
@@ -79,7 +78,6 @@ public class ScoreBoardView extends View{
     @Override
     public void update(float dt) {
         handleInput();
-
     }
 
     @Override
@@ -118,7 +116,9 @@ public class ScoreBoardView extends View{
             avatars.get(0).setImage(this.avatarFiles.get(this.controller.getScoreBoardInfo().getResult().get(0).getAvatarIndex()));
         }
         for (int i=0  ; i<this.controller.getScoreBoardInfo().getResult().size() ; i++){
-            avatars.get(i).setImage(this.avatarFiles.get(this.controller.getScoreBoardInfo().getResult().get(i).getAvatarIndex()));
+            if (i != 0) {
+                avatars.get(i).setImage(this.avatarFiles.get(this.controller.getScoreBoardInfo().getResult().get(i).getAvatarIndex()));
+            }
             this.avatars.get(i).drawGameObject(sb);
             font.draw(sb, this.controller.getScoreBoardInfo().getResult().get(i).getNickname(), (float) this.avatars.get(i).getXPos()+250, (float) this.avatars.get(i).getYPos()+130);
             font.draw(sb, Integer.toString(this.controller.getScoreBoardInfo().getResult().get(i).getTotalScore()), (float) this.avatars.get(i).getXPos()+800, (float) this.avatars.get(i).getYPos()+130);

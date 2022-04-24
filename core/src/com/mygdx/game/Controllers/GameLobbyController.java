@@ -44,11 +44,6 @@ public class GameLobbyController {
         return isLoading;
     }
 
-    public DisplayColors getColorInfo() {
-        return colorInfo;
-    }
-
-
     public void displayColors() {
         ColorSplash.socketManager.createListener(EventsConstants.displayColors, colorListener());
     }
