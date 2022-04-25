@@ -55,7 +55,7 @@ git remote add origin https://github.com/FabianFoss/color-splash-frontend.git
 git fetch --all
 git reset --hard origin/main
 ```
-4. Find your build.gradle file and replace the project(":core") with this:
+4. Find your build.gradle project file and replace the project(":core") with this:
 
 ```gradle:
 project(":core") {
@@ -73,6 +73,8 @@ project(":core") {
 
 }
 ```
+Then sync the new changes to the build.gradle file.
+
 5. Add an Android Configuration to run the game in an emulator or on a connected Android device: Click the Add Configurartion-button in the upper right corner of Android Studio, hit the Android App -> "+"-button. Name it "android" and choose "color-splash-frontend.android" as module. Click OK. Click [here](https://developer.android.com/training/basics/firstapp/running-app) for a guide on how to run the app on emulator or device. 
 6. You should now be ready to run the game. Play and have fun!
 
