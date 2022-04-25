@@ -10,7 +10,8 @@ local.properties
 settings.gradle
 gradle
 android/res/*
-!android/res/values/styles.xml
+!/android/res/values/*
+!/android/res/values/
 
 ## Java
 
