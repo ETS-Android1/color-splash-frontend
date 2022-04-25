@@ -50,10 +50,10 @@ Here is how to do it:
 2. Open the libGDX project in Android Studio.
 3. Inside the project in Android Studio, clone this repository by giving your terminal these commands:
 ```
-git init 
+git init
 git remote add origin https://github.com/FabianFoss/color-splash-frontend.git
-git fetch
-git pull origin main 
+git fetch --all
+git reset --hard origin/main
 ```
 4. Find your build.gradle file and replace the project(":core") with this:
 

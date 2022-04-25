@@ -9,6 +9,7 @@ gradlew.bat
 local.properties
 settings.gradle
 gradle
+android/res
 
 ## Java
 
