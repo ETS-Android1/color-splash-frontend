@@ -3,8 +3,8 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.Views.ViewManager;
-import com.mygdx.game.Views.MainMenuView;
+import com.mygdx.game.views.ViewManager;
+import com.mygdx.game.views.MainMenuView;
 
 public class ColorSplash extends Game {
 

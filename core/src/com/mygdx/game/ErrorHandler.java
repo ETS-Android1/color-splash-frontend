@@ -1,9 +1,8 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.mygdx.game.Events.EventsConstants;
-import com.mygdx.game.Views.MainMenuView;
-import com.mygdx.game.Views.ViewManager;
+import com.mygdx.game.views.MainMenuView;
+import com.mygdx.game.views.ViewManager;
 
 import io.socket.emitter.Emitter;
 
