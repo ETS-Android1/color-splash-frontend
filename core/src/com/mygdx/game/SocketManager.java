@@ -1,7 +1,5 @@
 package com.mygdx.game;
 
-import com.mygdx.game.Events.EventsConstants;
-
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
