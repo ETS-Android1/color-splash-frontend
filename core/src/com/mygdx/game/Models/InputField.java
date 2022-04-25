@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
@@ -13,16 +12,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 public class InputField extends GameObject {
 
     protected TextField textField;
-    private TextField.TextFieldStyle style = new TextField.TextFieldStyle();
-    private Label.LabelStyle cursor = new Label.LabelStyle();
     private Pixmap cursorColor;
-    private Actor actor;
 
     public InputField(String title, Texture image, double xPos, double yPos, double scale, boolean centerHeight, boolean centerWidth) {
         super(image, xPos, yPos, scale, centerHeight, centerWidth);
+        TextField.TextFieldStyle style = new TextField.TextFieldStyle();
         style.font=new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         style.fontColor=Color.BLACK;
         style.background=new Image(image).getDrawable();
+        Label.LabelStyle cursor = new Label.LabelStyle();
         cursor.font=new BitmapFont();
         setCursor(cursor);
         style.cursor=new Image(new Texture(cursorColor)).getDrawable();

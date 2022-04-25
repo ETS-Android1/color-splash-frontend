@@ -10,8 +10,6 @@ import com.mygdx.game.Views.ViewManager;
 import com.mygdx.game.dataClasses.DisplayColors;
 import com.mygdx.game.dataClasses.GameInfo;
 
-import java.sql.PseudoColumnUsage;
-
 import io.socket.emitter.Emitter;
 
 public class GameLobbyController {
@@ -20,7 +18,7 @@ public class GameLobbyController {
     private boolean isHost;
     private boolean isLoading = true;
     private DisplayColors colorInfo;
-    private ViewManager viewManager;
+    private final ViewManager viewManager;
 
     public GameLobbyController(ViewManager viewManager) {
         this.viewManager = viewManager;
@@ -68,12 +66,17 @@ public class GameLobbyController {
         ColorSplash.socketManager.createListener(EventsConstants.gameInfo, gameCreatedListener());
     }
 
-    public void startGame(int gameId) {
-        ColorSplash.socketManager.startGame(gameId);
+    public void startGame() {
+        ColorSplash.socketManager.startGame(getGameInfo().getGameId());
+        boolean loading = true;
+        while (loading) {
+            loading = isLoading();
+        }
+        setGetReadyView();
     }
 
     public void leaveGame() {
-        ColorSplash.socketManager.leaveGame(this.gameInfo.gameId);
+        ColorSplash.socketManager.leaveGame(this.gameInfo.getGameId());
         setMainMenuView();
     }
 
@@ -84,7 +87,7 @@ public class GameLobbyController {
                 isLoading = true;
                 Gson gson = new Gson();
                 gameInfo = gson.fromJson(args[0].toString(), GameInfo.class);
-                isHost = gameInfo.hostId.equals(ColorSplash.socketManager.getSocketId());
+                isHost = gameInfo.getHostId().equals(ColorSplash.socketManager.getSocketId());
                 isLoading = false;
             }
         };

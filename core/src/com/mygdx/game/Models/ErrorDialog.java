@@ -10,17 +10,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 
 public class ErrorDialog {
-    private Window.WindowStyle style;
-    private BitmapFont font;
-    private Dialog dialog;
-    private Button button;
-    private Button.ButtonStyle btnStyle;
+    private final Dialog dialog;
+    private final Button button;
 
     public ErrorDialog(String message) {
-        style = new Window.WindowStyle();
-        btnStyle = new Button.ButtonStyle();
-        font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
-        style.titleFont = font;
+        Window.WindowStyle style = new Window.WindowStyle();
+        Button.ButtonStyle btnStyle = new Button.ButtonStyle();
+        style.titleFont = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         style.titleFontColor = Color.BLACK;
         style.background = new Image(new Texture(Gdx.files.internal("dialog_background.png"))).getDrawable();
         btnStyle.down = new Image(new Texture(Gdx.files.internal("button_ok.png"))).getDrawable();

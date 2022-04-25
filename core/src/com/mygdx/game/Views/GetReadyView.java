@@ -10,19 +10,14 @@ import com.mygdx.game.dataClasses.DisplayColors;
 
 public class GetReadyView extends View{
 
-    private BitmapFont font;
-    private GameObject placeholder;
-    private GameObject background;
-    private float timer = 0;
-    private DisplayColors colorinfo;
-    private GetReadyController controller;
+    private final BitmapFont font;
+    private final GameObject placeholder;
+    private final GameObject background;
+    private final GetReadyController controller;
 
-    public GetReadyView(ViewManager vm, DisplayColors colorinfo) {
+    public GetReadyView(ViewManager vm, DisplayColors colorInfo) {
         super();
-        System.out.println("FROM GET READY VIEW");
-        System.out.println(colorinfo);
-        this.colorinfo = colorinfo;
-        controller = new GetReadyController(vm);
+        controller = new GetReadyController(vm, colorInfo);
         background = new GameObject(new Texture(Gdx.files.internal("splash_orange.png")),1,0.05,5.3,false,true);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         placeholder = new GameObject(new Texture(Gdx.files.internal("splash.png")),0.1,0.6,1,false,false);
@@ -30,17 +25,8 @@ public class GetReadyView extends View{
     }
 
     @Override
-    protected void handleInput() {
-
-    }
-
-    @Override
     public void update(float dt) {
-        this.timer+=dt;
-        if(this.timer>=2){
-            dispose();
-            controller.setSplashView(colorinfo);
-        }
+        this.controller.addToTimer(dt);
     }
 
     @Override
@@ -54,6 +40,7 @@ public class GetReadyView extends View{
 
     @Override
     public void dispose() {
+        super.dispose();
         background.getImage().dispose();
         placeholder.getImage().dispose();
         font.dispose();

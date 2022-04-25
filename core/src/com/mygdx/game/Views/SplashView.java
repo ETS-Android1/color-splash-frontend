@@ -11,73 +11,51 @@ import com.mygdx.game.Models.GameObject;
 import com.mygdx.game.Models.Splash;
 import com.mygdx.game.dataClasses.DisplayColors;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SplashView extends View {
-    private Splash splash;
-    private GameObject textPlaceholder;
-    private float splashTimer = 0;
-    private float colorTimer = 0;
-    private int colorCounter = 0;
-    private int frameCounter = 0;
-    private int round;
-    private int totalRounds;
-    private BitmapFont font;
-    private List<Integer> colorList = new ArrayList<>();
-    private String roundsString;
-    private Sound splashSound;
+    private final Splash splash;
+    private final GameObject textPlaceholder;
+    private final BitmapFont font;
+    private final String roundsString;
+    private final Sound splashSound;
 
-    private Dots dots;
+    private final Dots dots;
 
-    private SplashController controller;
+    private final SplashController controller;
 
-    public SplashView(ViewManager vm, DisplayColors colorinfo) {
+    public SplashView(ViewManager vm, DisplayColors colorInfo) {
         super();
 
-        this.controller = new SplashController(vm, colorinfo);
-        this.colorList = colorinfo.getNumber();
-        this.round = colorinfo.getRound();
-        this.totalRounds = colorinfo.getMaxRounds();
-        this.roundsString = "Round "+this.round+"/"+this.totalRounds;
+        this.controller = new SplashController(vm, colorInfo);
+        int round = controller.getColorInfo().getRound();
+        int totalRounds = controller.getColorInfo().getMaxRounds();
+        this.roundsString = "Round "+ round +"/"+ totalRounds;
         this.splashSound = Gdx.audio.newSound(Gdx.files.internal("splash.mp3"));
-
-        this.dots = new Dots(this.colorList);
+        this.dots = new Dots(this.controller.getColorList());
         textPlaceholder = new GameObject(new Texture(Gdx.files.internal("splash.png")),0.33,0.1,1,false,false);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         font.getData().setScale((float)1.5);
         splash = new Splash(new Texture(Gdx.files.internal("splash_1_blue.png")),0.5,0.6,3,true,true);
-        this.splash.setFilePath(splash.getSplashes().get(colorList.get(this.colorCounter)).get(this.frameCounter));
-
-    }
-
-    @Override
-    protected void handleInput() {
-
+        this.splash.setFilePath(splash.getSplashes().get(this.controller.getColorList().get(this.controller.getColorCounter())).get(this.controller.getFrameCounter()));
     }
 
     @Override
     public void update(float dt) {
-        if (this.colorTimer==0 && controller.isSound()){
+
+        if (this.controller.playSound(dt)) {
             this.splashSound.play();
         }
-        this.splashTimer+=dt;
-        this.colorTimer+=dt;
 
-        if (this.splashTimer>0.05 && this.frameCounter<4){
-            this.frameCounter++;
-            this.splash.setFilePath(splash.getSplashes().get(colorList.get(this.colorCounter)).get(this.frameCounter));
-            this.splashTimer=0;
+        List<Integer> updateSplash = this.controller.updateSplash();
+        if (updateSplash.size() > 0) {
+            this.splash.setFilePath(splash.getSplashes().get(updateSplash.get(0)).get(updateSplash.get(1)));
+
         }
-        if (colorTimer>0.9 && this.colorCounter<(colorList.size()-1)){
-            this.colorCounter++;
-            this.dots.setDarkGreyDot(colorCounter);
-            this.colorTimer=0;
-            this.frameCounter=0;
-        }
-        if (colorTimer>0.5 && this.colorCounter==(colorList.size()-1)){
-            controller.displayFinished(controller.getColorInfo().getGameId());
-            controller.setAnswerView();
+
+        int color = this.controller.changeDotColor();
+        if (color >= 0) {
+            this.dots.setDarkGreyDot(color);
         }
     }
 
@@ -93,12 +71,14 @@ public class SplashView extends View {
 
     @Override
     public void dispose() {
-
+        super.dispose();
+        for (GameObject dot : this.dots.getDots()) {
+            dot.getImage().dispose();
+        }
+        this.font.dispose();
+        this.splash.getImage().dispose();
+        this.textPlaceholder.getImage().dispose();
+        this.splashSound.dispose();
     }
-
-    public List<Integer> getBackend(){
-        return this.colorList;
-    }
-
 }
 

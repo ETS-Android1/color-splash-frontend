@@ -4,26 +4,29 @@ import java.util.List;
 
 public class GameInfo {
 
-    public int gameId;
-    public List<Player> players;
-    public String hostId;
-    public String difficulty;
-    public int rounds;
+    private int gameId;
+    private List<Player> players;
+    private String hostId;
+    private String difficulty;
+    private int rounds;
 
-    public GameInfo(int gameId, List<Player> players, String hostId, String difficulty, int rounds) {
-        this.gameId = gameId;
-        this.players = players;
-        this.hostId = hostId;
-        this.difficulty = difficulty;
-        this.rounds = rounds;
+    public int getGameId() {
+        return gameId;
     }
 
-    @Override
-    public String toString() {
-        return "GameInfo{" +
-                "gameId=" + gameId +
-                ", players=" + players +
-                ", host='" + hostId + '\'' +
-                '}';
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public String getHostId() {
+        return hostId;
+    }
+
+    public int getRounds() {
+        return rounds;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
     }
 }

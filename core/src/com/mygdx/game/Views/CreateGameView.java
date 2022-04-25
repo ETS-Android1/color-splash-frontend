@@ -4,31 +4,25 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.Models.Button;
 import com.mygdx.game.Models.GameObject;
 import com.mygdx.game.Models.InputField;
 import com.mygdx.game.Controllers.CreateGameController;
 
-
 public class CreateGameView extends View{
 
-    private Button createButton;
-    private Button cancelButton;
-    private Button threeButton;
-    private Button fourButton;
-    private Button fiveButton;
-    private Button easyButton;
-    private Button mediumButton;
-    private Button hardButton;
-    private GameObject avatar;
-    private BitmapFont font;
-    private InputField nickname;
-    private String checkedRoundButton = "3";
-    private String checkedDifficultyButton = "easy";
-    private CreateGameController controller;
+    private final Button createButton;
+    private final Button cancelButton;
+    private final Button threeButton;
+    private final Button fourButton;
+    private final Button fiveButton;
+    private final Button easyButton;
+    private final Button mediumButton;
+    private final Button hardButton;
+    private final GameObject avatar;
+    private final BitmapFont font;
+    private final InputField nickname;
+    private final CreateGameController controller;
 
     public CreateGameView(ViewManager vm) {
         super();
@@ -75,52 +69,42 @@ public class CreateGameView extends View{
                         difficulty = "hard";
                     }
                     this.controller.createGame(this.nickname.getTextField().getText(), rounds, difficulty, 4);
-                    dispose();
-                    controller.setGameLobbyView();
                 }
             }
             if (this.cancelButton.isObjectClicked()) {
-                dispose();
                 controller.setMainMenuView();
             }
             if (this.easyButton.isObjectClicked()) {
-                this.checkedDifficultyButton = "easy";
                 this.easyButton.setChecked(true);
                 this.mediumButton.setChecked(false);
                 this.hardButton.setChecked(false);
             }
             if (this.mediumButton.isObjectClicked()) {
-                this.checkedDifficultyButton = "medium";
                 this.mediumButton.setChecked(true);
                 this.easyButton.setChecked(false);
                 this.hardButton.setChecked(false);
             }
             if (this.hardButton.isObjectClicked()) {
-                this.checkedDifficultyButton = "hard";
                 this.hardButton.setChecked(true);
                 this.easyButton.setChecked(false);
                 this.mediumButton.setChecked(false);
             }
             if (this.threeButton.isObjectClicked()) {
-                this.checkedRoundButton = "three";
                 this.threeButton.setChecked(true);
                 this.fourButton.setChecked(false);
                 this.fiveButton.setChecked(false);
             }
             if (this.fourButton.isObjectClicked()) {
-                this.checkedRoundButton = "four";
                 this.fourButton.setChecked(true);
                 this.threeButton.setChecked(false);
                 this.fiveButton.setChecked(false);
             }
             if (this.fiveButton.isObjectClicked()) {
-                this.checkedRoundButton = "five";
                 this.fiveButton.setChecked(true);
                 this.fourButton.setChecked(false);
                 this.threeButton.setChecked(false);
             }
         }
-
     }
 
     @Override
@@ -155,6 +139,7 @@ public class CreateGameView extends View{
 
     @Override
     public void dispose() {
+        super.dispose();
         createButton.getImage().dispose();
         cancelButton.getImage().dispose();
         this.mediumButton.getImage().dispose();
@@ -165,6 +150,5 @@ public class CreateGameView extends View{
         this.fiveButton.getImage().dispose();
         this.avatar.getImage().dispose();
         this.nickname.getImage().dispose();
-        this.background.getImage().dispose();
     }
 }

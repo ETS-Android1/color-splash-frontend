@@ -3,25 +3,23 @@ package com.mygdx.game.Views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.ColorSplash;
 import com.mygdx.game.Controllers.MainMenuController;
 import com.mygdx.game.Models.Button;
 import com.mygdx.game.Models.GameObject;
 
 public class MainMenuView extends View {
 
-    private Button howToPlay;
-    private Button newGame;
-    private Button joinGame;
-    private Button soundButton;
-    private Button musicButton;
-    private GameObject logo;
-    private MainMenuController controller;
-    private boolean isSound = true;
-    private Texture musicOff = new Texture(Gdx.files.internal("music_off.png"));
-    private Texture soundOff = new Texture(Gdx.files.internal("sound_off.png"));
-    private Texture musicOn = new Texture(Gdx.files.internal("music_on.png"));
-    private Texture soundOn = new Texture(Gdx.files.internal("sound_on.png"));
+    private final Button howToPlay;
+    private final Button newGame;
+    private final Button joinGame;
+    private final Button soundButton;
+    private final Button musicButton;
+    private final GameObject logo;
+    private final MainMenuController controller;
+    private final Texture musicOff = new Texture(Gdx.files.internal("music_off.png"));
+    private final Texture soundOff = new Texture(Gdx.files.internal("sound_off.png"));
+    private final Texture musicOn = new Texture(Gdx.files.internal("music_on.png"));
+    private final Texture soundOn = new Texture(Gdx.files.internal("sound_on.png"));
 
     public MainMenuView(ViewManager vm) {
         super();
@@ -44,39 +42,33 @@ public class MainMenuView extends View {
     public void handleInput() {
         if (Gdx.input.justTouched()) {
             if (this.joinGame.isObjectClicked()) {
-                dispose();
                 controller.setJoinGameView();
             }
             if (this.howToPlay.isObjectClicked()) {
-                dispose();
                 controller.setHowToPlayView();
             }
             if (this.newGame.isObjectClicked()) {
-                dispose();
                 controller.setCreateGameView();
             }
             if (this.musicButton.isObjectClicked()){
                 if (this.controller.isPlaying()){
                     this.musicButton.setImage(musicOff);
-                    this.controller.setMusic();
                 }
                 else {
                     this.musicButton.setImage(musicOn);
-                    this.controller.setMusic();
                 }
+                this.controller.setMusic();
             }
             if(this.soundButton.isObjectClicked()){
                 if (this.controller.isSound()){
                     this.soundButton.setImage(soundOff);
-                    this.controller.setSound();
                 }
                 else {
                     this.soundButton.setImage(soundOn);
-                    this.controller.setSound();
                 }
+                this.controller.setSound();
             }
         }
-
     }
 
     @Override
@@ -99,7 +91,7 @@ public class MainMenuView extends View {
 
     @Override
     public void dispose() {
-        background.getImage().dispose();
+        super.dispose();
         howToPlay.getImage().dispose();
         newGame.getImage().dispose();
         joinGame.getImage().dispose();
