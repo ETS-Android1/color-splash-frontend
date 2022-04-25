@@ -2,7 +2,6 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.views.MainMenuView;
-import com.mygdx.game.views.ViewManager;
 
 import io.socket.emitter.Emitter;
 

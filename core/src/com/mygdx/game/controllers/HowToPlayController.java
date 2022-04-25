@@ -1,7 +1,7 @@
 package com.mygdx.game.controllers;
 
 import com.mygdx.game.views.MainMenuView;
-import com.mygdx.game.views.ViewManager;
+import com.mygdx.game.ViewManager;
 
 public class HowToPlayController {
 

@@ -1,7 +1,7 @@
 package com.mygdx.game.controllers;
 
 import com.mygdx.game.views.SplashView;
-import com.mygdx.game.views.ViewManager;
+import com.mygdx.game.ViewManager;
 import com.mygdx.game.models.DisplayColors;
 
 public class GetReadyController {
