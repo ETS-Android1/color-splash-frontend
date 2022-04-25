@@ -1,7 +1,7 @@
 # ColorSplash Frontend
 ColorSplash is a multiplayer game created for Android devices as the main project for the course TDT4240 Software Architecture at NTNU.
 
-The game is based on the ["Hippo Splash"-minigame](https://www.youtube.com/watch?v=fXto5A-gSJA&t=91s) in Buzz! Junior: Jungle Party. The players are playing on separate devices using a Game Pin to connect. Each round a color combination will be splashed on the screen and your job is to remeber this sequence. Get as many correct colors as fast as possible to get the highest score and become the winner.
+The game is based on the ["Hippo Splash"-minigame](https://www.youtube.com/watch?v=fXto5A-gSJA&t=91s) in Buzz! Junior: Jungle Party. The players are playing on separate devices using a Game Pin to connect. Each round a color combination will be splashed on the screen and your job is to remeber this sequence. Get as many correct colors in the right order as fast as possible to get the highest score and become the winner.
 
 <div>
     <img src="https://imgur.com/VLesQlT.png" alt="Buzz! Junior: Jungle Party" width="120"/>
