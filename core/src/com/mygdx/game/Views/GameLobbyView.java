@@ -17,14 +17,14 @@ import java.util.List;
 
 public class GameLobbyView extends View {
 
-    private Button cancelButton;
+    private final Button cancelButton;
     private Button startButton;
-    private BitmapFont font;
-    private GameLobbyController controller;
+    private final BitmapFont font;
+    private final GameLobbyController controller;
     private String diffRounds;
 
-    private List<GameObject> avatars = new ArrayList<>();
-    private List<Texture> avatarPics = new ArrayList<>(
+    private final List<GameObject> avatars = new ArrayList<>();
+    private final List<Texture> avatarPics = new ArrayList<>(
             Arrays.asList(
                     new Texture(Gdx.files.internal("avatar_orange.png")), 
                     new Texture(Gdx.files.internal("avatar_green.png")),

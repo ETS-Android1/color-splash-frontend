@@ -11,35 +11,32 @@ import com.mygdx.game.Models.GameObject;
 import com.mygdx.game.Models.Splash;
 import com.mygdx.game.dataClasses.DisplayColors;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SplashView extends View {
-    private Splash splash;
-    private GameObject textPlaceholder;
+    private final Splash splash;
+    private final GameObject textPlaceholder;
     private float splashTimer = 0;
     private float colorTimer = 0;
     private int colorCounter = 0;
     private int frameCounter = 0;
-    private int round;
-    private int totalRounds;
-    private BitmapFont font;
-    private List<Integer> colorList = new ArrayList<>();
-    private String roundsString;
-    private Sound splashSound;
+    private final BitmapFont font;
+    private final List<Integer> colorList;
+    private final String roundsString;
+    private final Sound splashSound;
 
-    private Dots dots;
+    private final Dots dots;
 
-    private SplashController controller;
+    private final SplashController controller;
 
-    public SplashView(ViewManager vm, DisplayColors colorinfo) {
+    public SplashView(ViewManager vm, DisplayColors colorInfo) {
         super();
 
-        this.controller = new SplashController(vm, colorinfo);
-        this.colorList = colorinfo.getNumber();
-        this.round = colorinfo.getRound();
-        this.totalRounds = colorinfo.getMaxRounds();
-        this.roundsString = "Round "+this.round+"/"+this.totalRounds;
+        this.controller = new SplashController(vm, colorInfo);
+        this.colorList = colorInfo.getNumber();
+        int round = colorInfo.getRound();
+        int totalRounds = colorInfo.getMaxRounds();
+        this.roundsString = "Round "+ round +"/"+ totalRounds;
         this.splashSound = Gdx.audio.newSound(Gdx.files.internal("splash.mp3"));
 
         this.dots = new Dots(this.colorList);

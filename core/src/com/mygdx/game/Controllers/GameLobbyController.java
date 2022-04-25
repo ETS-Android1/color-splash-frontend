@@ -18,7 +18,7 @@ public class GameLobbyController {
     private boolean isHost;
     private boolean isLoading = true;
     private DisplayColors colorInfo;
-    private ViewManager viewManager;
+    private final ViewManager viewManager;
 
     public GameLobbyController(ViewManager viewManager) {
         this.viewManager = viewManager;

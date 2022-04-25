@@ -9,23 +9,20 @@ import com.mygdx.game.Models.GameObject;
 import com.mygdx.game.Models.InputField;
 import com.mygdx.game.Controllers.CreateGameController;
 
-
 public class CreateGameView extends View{
 
-    private Button createButton;
-    private Button cancelButton;
-    private Button threeButton;
-    private Button fourButton;
-    private Button fiveButton;
-    private Button easyButton;
-    private Button mediumButton;
-    private Button hardButton;
-    private GameObject avatar;
-    private BitmapFont font;
-    private InputField nickname;
-    private String checkedRoundButton = "3";
-    private String checkedDifficultyButton = "easy";
-    private CreateGameController controller;
+    private final Button createButton;
+    private final Button cancelButton;
+    private final Button threeButton;
+    private final Button fourButton;
+    private final Button fiveButton;
+    private final Button easyButton;
+    private final Button mediumButton;
+    private final Button hardButton;
+    private final GameObject avatar;
+    private final BitmapFont font;
+    private final InputField nickname;
+    private final CreateGameController controller;
 
     public CreateGameView(ViewManager vm) {
         super();
@@ -79,37 +76,31 @@ public class CreateGameView extends View{
                 controller.setMainMenuView();
             }
             if (this.easyButton.isObjectClicked()) {
-                this.checkedDifficultyButton = "easy";
                 this.easyButton.setChecked(true);
                 this.mediumButton.setChecked(false);
                 this.hardButton.setChecked(false);
             }
             if (this.mediumButton.isObjectClicked()) {
-                this.checkedDifficultyButton = "medium";
                 this.mediumButton.setChecked(true);
                 this.easyButton.setChecked(false);
                 this.hardButton.setChecked(false);
             }
             if (this.hardButton.isObjectClicked()) {
-                this.checkedDifficultyButton = "hard";
                 this.hardButton.setChecked(true);
                 this.easyButton.setChecked(false);
                 this.mediumButton.setChecked(false);
             }
             if (this.threeButton.isObjectClicked()) {
-                this.checkedRoundButton = "three";
                 this.threeButton.setChecked(true);
                 this.fourButton.setChecked(false);
                 this.fiveButton.setChecked(false);
             }
             if (this.fourButton.isObjectClicked()) {
-                this.checkedRoundButton = "four";
                 this.fourButton.setChecked(true);
                 this.threeButton.setChecked(false);
                 this.fiveButton.setChecked(false);
             }
             if (this.fiveButton.isObjectClicked()) {
-                this.checkedRoundButton = "five";
                 this.fiveButton.setChecked(true);
                 this.fourButton.setChecked(false);
                 this.threeButton.setChecked(false);

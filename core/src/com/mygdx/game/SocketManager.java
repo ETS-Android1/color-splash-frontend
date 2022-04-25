@@ -1,12 +1,10 @@
 package com.mygdx.game;
 
-import com.google.gson.Gson;
 import com.mygdx.game.Events.EventsConstants;
 
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
-import java.util.Arrays;
 import java.util.List;
 
 import io.socket.client.IO;
@@ -65,13 +63,13 @@ public class SocketManager {
     }
 
     public void playerFinished(int gameId, List<Integer> answer) {
-        String answerString = "";
+        StringBuilder answerString = new StringBuilder();
         for (Integer answerInteger : answer) {
-            answerString += answerInteger.toString();
+            answerString.append(answerInteger.toString());
         }
         JSONObject json = new JSONObject();
         json.put("gameId", gameId);
-        json.put("answer", answerString);
+        json.put("answer", answerString.toString());
         this.socket.emit(EventsConstants.playerFinished, json);
     }
 

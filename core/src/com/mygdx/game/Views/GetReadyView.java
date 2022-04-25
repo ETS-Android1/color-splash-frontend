@@ -10,12 +10,12 @@ import com.mygdx.game.dataClasses.DisplayColors;
 
 public class GetReadyView extends View{
 
-    private BitmapFont font;
-    private GameObject placeholder;
-    private GameObject background;
+    private final BitmapFont font;
+    private final GameObject placeholder;
+    private final GameObject background;
     private float timer = 0;
-    private DisplayColors colorInfo;
-    private GetReadyController controller;
+    private final DisplayColors colorInfo;
+    private final GetReadyController controller;
 
     public GetReadyView(ViewManager vm, DisplayColors colorInfo) {
         super();

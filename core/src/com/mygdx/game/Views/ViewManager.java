@@ -8,8 +8,8 @@ import java.util.Stack;
 
 public class ViewManager {
 
-    private Stack<View> views;
-    private Music music;
+    private final Stack<View> views;
+    private final Music music;
     private boolean isPLaying = true;
     private boolean isSound = true;
 

@@ -10,12 +10,12 @@ import com.mygdx.game.Controllers.JoinGameController;
 
 public class JoinGameView extends View{
 
-    private Button joinGame;
-    private InputField gamePin;
-    private InputField nickname;
-    private Button cancelButton;
-    private GameObject timerBackground;
-    private JoinGameController controller;
+    private final Button joinGame;
+    private final InputField gamePin;
+    private final InputField nickname;
+    private final Button cancelButton;
+    private final GameObject timerBackground;
+    private final JoinGameController controller;
 
     public JoinGameView(ViewManager vm) {
         super();

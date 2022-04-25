@@ -7,10 +7,10 @@ import com.mygdx.game.dataClasses.ScoreBoardInfo;
 
 public class ScoreBoardController {
 
-    private ScoreBoardInfo scoreBoardInfo;
-    private boolean isHost;
-    private boolean isLastRound;
-    private ViewManager viewManager;
+    private final ScoreBoardInfo scoreBoardInfo;
+    private final boolean isHost;
+    private final boolean isLastRound;
+    private final ViewManager viewManager;
 
     public ScoreBoardController(ViewManager viewManager, ScoreBoardInfo scoreBoardInfo){
         this.viewManager = viewManager;

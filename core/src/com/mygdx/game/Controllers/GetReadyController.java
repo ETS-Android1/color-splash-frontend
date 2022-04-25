@@ -6,7 +6,7 @@ import com.mygdx.game.dataClasses.DisplayColors;
 
 public class GetReadyController {
 
-    private ViewManager viewManager;
+    private final ViewManager viewManager;
 
     public GetReadyController(ViewManager viewManager) {
         this.viewManager = viewManager;

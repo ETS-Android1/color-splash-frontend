@@ -5,7 +5,7 @@ import com.mygdx.game.Views.ViewManager;
 
 public class HowToPlayController {
 
-    private ViewManager viewManager;
+    private final ViewManager viewManager;
 
     public HowToPlayController(ViewManager viewManager) {
         this.viewManager = viewManager;

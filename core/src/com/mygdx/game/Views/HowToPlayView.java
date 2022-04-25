@@ -9,9 +9,9 @@ import com.mygdx.game.Models.Button;
 
 public class HowToPlayView extends View{
 
-    private Background background;
-    private Button exitButton;
-    private HowToPlayController controller;
+    private final Background background;
+    private final Button exitButton;
+    private final HowToPlayController controller;
 
     public HowToPlayView(ViewManager vm) {
         super();

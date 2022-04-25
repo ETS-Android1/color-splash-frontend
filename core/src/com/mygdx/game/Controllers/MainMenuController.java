@@ -7,7 +7,7 @@ import com.mygdx.game.Views.ViewManager;
 
 public class MainMenuController{
 
-    private ViewManager viewManager;
+    private final ViewManager viewManager;
 
     public MainMenuController(ViewManager viewManager) {
         this.viewManager = viewManager;

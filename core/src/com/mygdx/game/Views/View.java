@@ -47,7 +47,6 @@ public abstract class View {
         background.getImage().dispose();
         sb.dispose();
         stage.dispose();
-        System.out.println("Disposed\n\n\n\n\nDisp");
     }
 
     public void renderStage() {

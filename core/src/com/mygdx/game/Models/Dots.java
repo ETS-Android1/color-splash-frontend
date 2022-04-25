@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Dots {
-    private List<Integer> colors;
-    private List<GameObject> dots;
-    private Texture lightGreyDot = new Texture(Gdx.files.internal("circle_lightgrey.png"));
-    private Texture darkGreyDot = new Texture(Gdx.files.internal("circle_darkgrey.png"));
+    private final List<Integer> colors;
+    private final List<GameObject> dots;
+    private final Texture lightGreyDot = new Texture(Gdx.files.internal("circle_lightgrey.png"));
+    private final Texture darkGreyDot = new Texture(Gdx.files.internal("circle_darkgrey.png"));
 
     public Dots(List<Integer> colorList) {
         this.colors = colorList;

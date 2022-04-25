@@ -12,8 +12,7 @@ import io.socket.emitter.Emitter;
 public class SplashController {
 
     private DisplayColors colorInfo;
-    private boolean isLoading = true;
-    private ViewManager viewManager;
+    private final ViewManager viewManager;
 
     public SplashController(ViewManager viewManager, DisplayColors colorInfo) {
         this.viewManager = viewManager;
@@ -30,10 +29,8 @@ public class SplashController {
         return new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                isLoading = true;
                 Gson gson = new Gson();
                 colorInfo = gson.fromJson(args[0].toString(), DisplayColors.class);
-                isLoading = false;
             }
         };
     }
@@ -46,10 +43,8 @@ public class SplashController {
         return new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                isLoading = true;
                 Gson gson = new Gson();
                 colorInfo = gson.fromJson(args[0].toString(), DisplayColors.class);
-                isLoading = false;
             }
         };
     }

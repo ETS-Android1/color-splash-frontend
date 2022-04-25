@@ -9,18 +9,17 @@ import com.mygdx.game.Models.GameObject;
 
 public class MainMenuView extends View {
 
-    private Button howToPlay;
-    private Button newGame;
-    private Button joinGame;
-    private Button soundButton;
-    private Button musicButton;
-    private GameObject logo;
-    private MainMenuController controller;
-    private boolean isSound = true;
-    private Texture musicOff = new Texture(Gdx.files.internal("music_off.png"));
-    private Texture soundOff = new Texture(Gdx.files.internal("sound_off.png"));
-    private Texture musicOn = new Texture(Gdx.files.internal("music_on.png"));
-    private Texture soundOn = new Texture(Gdx.files.internal("sound_on.png"));
+    private final Button howToPlay;
+    private final Button newGame;
+    private final Button joinGame;
+    private final Button soundButton;
+    private final Button musicButton;
+    private final GameObject logo;
+    private final MainMenuController controller;
+    private final Texture musicOff = new Texture(Gdx.files.internal("music_off.png"));
+    private final Texture soundOff = new Texture(Gdx.files.internal("sound_off.png"));
+    private final Texture musicOn = new Texture(Gdx.files.internal("music_on.png"));
+    private final Texture soundOn = new Texture(Gdx.files.internal("sound_on.png"));
 
     public MainMenuView(ViewManager vm) {
         super();

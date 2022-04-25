@@ -15,15 +15,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ScoreBoardView extends View{
-    private BitmapFont font;
+    private final BitmapFont font;
     private Button nextButton;
     private Button exitButton;
-    private String roundString;
+    private final String roundString;
 
-    private ScoreBoardController controller;
+    private final ScoreBoardController controller;
 
-    private List<GameObject> avatars = new ArrayList<>();
-    private List<Texture> avatarFiles = new ArrayList<>(
+    private final List<GameObject> avatars = new ArrayList<>();
+    private final List<Texture> avatarFiles = new ArrayList<>(
             Arrays.asList(
                     new Texture(Gdx.files.internal("avatar_orange.png")),
                     new Texture(Gdx.files.internal("avatar_green.png")),
@@ -31,7 +31,7 @@ public class ScoreBoardView extends View{
                     new Texture(Gdx.files.internal("avatar_purple.png"))
             )
     );
-    private List<Texture> trophy_avatar = new ArrayList<>(
+    private final List<Texture> trophy_avatar = new ArrayList<>(
             Arrays.asList(
                     new Texture(Gdx.files.internal("trophy_orange.png")),
                     new Texture(Gdx.files.internal("trophy_green.png")),

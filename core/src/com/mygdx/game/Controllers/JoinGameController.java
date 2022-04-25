@@ -13,7 +13,7 @@ import io.socket.emitter.Emitter;
 
 public class JoinGameController{
 
-    private ViewManager viewManager;
+    private final ViewManager viewManager;
 
     public JoinGameController(ViewManager viewManager) {
         this.viewManager = viewManager;

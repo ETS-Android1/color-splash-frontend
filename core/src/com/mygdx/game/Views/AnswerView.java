@@ -15,31 +15,29 @@ import java.util.List;
 
 public class AnswerView extends View{
 
-    private Button redButton;
-    private Button blueButton;
-    private Button yellowButton;
-    private Button greenButton;
-    private GameObject timerBackground;
-    private Dots dots;
+    private final Button redButton;
+    private final Button blueButton;
+    private final Button yellowButton;
+    private final Button greenButton;
+    private final GameObject timerBackground;
+    private final Dots dots;
     private Integer timer;
-    private List<Integer> correctColors;
-    private AnswerController controller;
+    private final List<Integer> correctColors;
+    private final AnswerController controller;
 
-    private Texture circleLightGrey = new Texture(Gdx.files.internal("circle_lightgrey.png"));
-    private Texture circleRed = new Texture(Gdx.files.internal("circle_red.png"));
-    private Texture circleGreen = new Texture(Gdx.files.internal("circle_green.png"));
-    private Texture circleBlue = new Texture(Gdx.files.internal("circle_blue.png"));
-    private Texture circleYellow = new Texture(Gdx.files.internal("circle_yellow.png"));
-    private Texture right = new Texture(Gdx.files.internal("result_right.png"));
-    private Texture wrong = new Texture(Gdx.files.internal("result_wrong.png"));
+    private final Texture circleRed = new Texture(Gdx.files.internal("circle_red.png"));
+    private final Texture circleGreen = new Texture(Gdx.files.internal("circle_green.png"));
+    private final Texture circleBlue = new Texture(Gdx.files.internal("circle_blue.png"));
+    private final Texture circleYellow = new Texture(Gdx.files.internal("circle_yellow.png"));
+    private final Texture right = new Texture(Gdx.files.internal("result_right.png"));
+    private final Texture wrong = new Texture(Gdx.files.internal("result_wrong.png"));
 
     private float timeCount;
-    private BitmapFont font;
+    private final BitmapFont font;
     private int buttonCount = 0;
     private boolean playerFinished = false;
-    private double finishedTime = 0;
     private String feedback = "";
-    private List<Integer> playerAnswer = new ArrayList<>();
+    private final List<Integer> playerAnswer = new ArrayList<>();
     private int localScore = 0;
 
     public AnswerView(ViewManager vm, DisplayColors gameInfo) {
@@ -55,6 +53,7 @@ public class AnswerView extends View{
         correctColors = controller.getColorInfo().getNumber();
         dots = new Dots(this.correctColors);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
+        Texture circleLightGrey = new Texture(Gdx.files.internal("circle_lightgrey.png"));
         dots.getDots().get(0).setImage(circleLightGrey);
     }
 
@@ -86,14 +85,14 @@ public class AnswerView extends View{
                     this.controller.playerFinished(controller.getColorInfo().getGameId(),this.playerAnswer);
                 }
                 this.playerFinished=true;
-                this.finishedTime = this.timer;
-                if(this.finishedTime > 6){
+                double finishedTime = this.timer;
+                if(finishedTime > 6){
                     this.feedback = "Too fast..?";
                 }
-                else if(this.finishedTime > 4){
+                else if(finishedTime > 4){
                     this.feedback = "  Speedy!!";
                 }
-                else if(this.finishedTime > 2) {
+                else if(finishedTime > 2) {
                     this.feedback = "Too slow..?";
                 }
             }

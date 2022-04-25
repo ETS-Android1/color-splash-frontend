@@ -9,7 +9,5 @@ public class Player {
         return this.avatarIndex;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 }

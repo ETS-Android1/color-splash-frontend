@@ -1,8 +1,6 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.mygdx.game.ColorSplash;
 import com.mygdx.game.Events.EventsConstants;
 import com.mygdx.game.Views.MainMenuView;
 import com.mygdx.game.Views.ViewManager;

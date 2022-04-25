@@ -13,10 +13,10 @@ import java.util.List;
 import io.socket.emitter.Emitter;
 
 public class AnswerController{
-    private DisplayColors colorInfo;
+    private final DisplayColors colorInfo;
     private boolean isLoading;
     private ScoreBoardInfo scoreBoardInfo;
-    private ViewManager viewManager;
+    private final ViewManager viewManager;
 
     public AnswerController(ViewManager viewManager, DisplayColors colorInfo) {
         this.viewManager = viewManager;
@@ -30,7 +30,7 @@ public class AnswerController{
     }
 
     public void setScoreBoardView() {
-        while (scoreBoardInfo == null) {
+        while (isLoading) {
         }
         viewManager.set(new ScoreBoardView(viewManager, scoreBoardInfo));
     }
