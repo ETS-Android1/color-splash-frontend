@@ -73,7 +73,7 @@ project(":core") {
 
 }
 ```
-5. Add an Android Configuration to run the game in an emulator or on a connected Android device: Click the Add Configurartion-button in the upper right corner of Android Studio, hit the Android App -> "+"-button. Name it "android" and choose "color-splash-frontend.android" as module. Click OK. 
+5. Add an Android Configuration to run the game in an emulator or on a connected Android device: Click the Add Configurartion-button in the upper right corner of Android Studio, hit the Android App -> "+"-button. Name it "android" and choose "color-splash-frontend.android" as module. Click OK. [Guide](https://developer.android.com/training/basics/firstapp/running-app) on how to run the app on emulator or device. 
 6. You should now be ready to run the game. Play and have fun!
 
 
