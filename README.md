@@ -30,12 +30,13 @@ The game is based on the ["Hippo Splash"-minigame](https://www.youtube.com/watch
 ├── core/src/com/mygdx/game   # Core logic built on MVC pattern
     ├── controllers             # Controllers for all views. Collecting and sending data from/to server
     ├── models                  # Java classes for types received from server
-    ├── gameObjects             # Components used in views
     ├── views                   # Game views extended from View.java, managed by ViewManager.java
+        └── gameObjects             # Components used in views
     ├── ColorSplash.java        # File for setting up and starting our application. Extends com.badlogic.gdx.Game
     ├── ErrorHandler.java       # Managing errors
     ├── EventConstants.java     # All event constants, both server and client
-    └── SocketManager.java      # Managing server connection, sending and listening on events
+    ├── SocketManager.java      # Managing server connection, sending and listening on events
+    └── ViewManager.java        # Using a stack to manage which view is showing. 
 ├── .gitignore               
 └──  README.md
 ```
