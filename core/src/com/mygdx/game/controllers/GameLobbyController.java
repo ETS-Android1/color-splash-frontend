@@ -6,7 +6,7 @@ import com.mygdx.game.ColorSplash;
 import com.mygdx.game.EventsConstants;
 import com.mygdx.game.views.GetReadyView;
 import com.mygdx.game.views.MainMenuView;
-import com.mygdx.game.views.ViewManager;
+import com.mygdx.game.ViewManager;
 import com.mygdx.game.models.DisplayColors;
 import com.mygdx.game.models.GameInfo;
 

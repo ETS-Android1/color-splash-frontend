@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.ViewManager;
 import com.mygdx.game.controllers.SplashController;
 import com.mygdx.game.views.gameObjects.Dots;
 import com.mygdx.game.views.gameObjects.GameObject;

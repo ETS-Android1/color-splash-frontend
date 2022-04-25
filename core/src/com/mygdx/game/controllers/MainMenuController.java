@@ -3,7 +3,7 @@ package com.mygdx.game.controllers;
 import com.mygdx.game.views.CreateGameView;
 import com.mygdx.game.views.HowToPlayView;
 import com.mygdx.game.views.JoinGameView;
-import com.mygdx.game.views.ViewManager;
+import com.mygdx.game.ViewManager;
 
 public class MainMenuController{
 

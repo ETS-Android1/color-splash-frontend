@@ -3,6 +3,7 @@ package com.mygdx.game.views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.ViewManager;
 import com.mygdx.game.controllers.HowToPlayController;
 import com.mygdx.game.views.gameObjects.Background;
 import com.mygdx.game.views.gameObjects.Button;

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.ViewManager;
 import com.mygdx.game.controllers.ScoreBoardController;
 import com.mygdx.game.views.gameObjects.Button;
 import com.mygdx.game.views.gameObjects.GameObject;

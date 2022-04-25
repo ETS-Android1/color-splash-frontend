@@ -3,7 +3,7 @@ package com.mygdx.game.views.gameObjects;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.mygdx.game.views.ViewManager;
+import com.mygdx.game.ViewManager;
 
 public class Button extends GameObject{
 
