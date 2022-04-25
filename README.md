@@ -26,7 +26,7 @@ The game is based on the ["Hippo Splash"-minigame](https://www.youtube.com/watch
 ```
 .
 ├── android                   # Platform specific configurations
-├── assets                    # png- and mp3-files
+├── assets                    # Font-, png- and mp3-files
 ├── core/src/com/mygdx/game   # Core logic built on MVC pattern
 ├── .gitignore               
 └──  README.md
@@ -40,7 +40,13 @@ You only need the frontend part of the project to run. As different operating sy
 Here is how to do it:
 1. Create a libGDX project using the libGDX Project Setup Tool. Click [here](https://libgdx.com/wiki/start/project-generation) for guide/download. 
 2. Open the libGDX project in Android Studio.
-3. Inside the project in Android Studio, clone this repository. 
+3. Inside the project in Android Studio, clone this repository by giving your terminal these commands:
+```
+git init 
+git remote add origin https://github.com/FabianFoss/color-splash-frontend.git
+git fetch
+git pull origin main 
+```
 4. Find your build.gradle file and replace the project(":core") with this:
 
 ```gradle:
