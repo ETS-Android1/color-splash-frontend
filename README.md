@@ -76,7 +76,7 @@ All art work is created and done by us.
 ### Music:
 **music.mp3:** "Smilin And Vibin" by David Renda, [fesliyanstudios.com](https://www.fesliyanstudios.com/royalty-free-music/download/smilin-and-vibin/1197).
 
-### Font
+### Font:
 **Bebas Kai** by Ryoichi Tsunekaw. Click [here](https://www.dafont.com/bebas-neue.font) to download. 
 
 ## Contributors
