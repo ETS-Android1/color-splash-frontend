@@ -28,6 +28,14 @@ The game is based on the ["Hippo Splash"-minigame](https://www.youtube.com/watch
 ├── android                   # Platform specific configurations
 ├── assets                    # Font-, png- and mp3-files
 ├── core/src/com/mygdx/game   # Core logic built on MVC pattern
+    ├── controllers             # Controllers for views, managing listeners and emitters
+    ├── models                  # Java classes for types received from server
+    ├── gameObjects             # Game objects used in views
+    ├── views                   # Game views extended from View.java, managed by ViewManager.java
+    ├── ColorSplash.java        # 
+    ├── ErrorHandler.java       # Managing errors
+    ├── EventConstants.java     # All event constants, both server and client
+    └── SocketManager.java      # Managing server connection, sending and listening on events
 ├── .gitignore               
 └──  README.md
 ```
