@@ -1,4 +1,26 @@
 # ColorSplash Frontend
+ColorSplash is a multiplayer game created for Android devices as the main project for the course TDT4240 Software Architecture at NTNU.
+
+The game is based on the ["Hippo Splash"-minigame](https://www.youtube.com/watch?v=fXto5A-gSJA&t=91s) in Buzz! Junior: Jungle Party. The players are playing on separate devices using a Game Pin to connect. Each round a color combination will be splashed on the screen and your job is to remeber this sequence. Get as many correct colors as fast as possible to get the highest score and become the winner.
+
+<div>
+    <img src="https://imgur.com/VLesQlT.png" alt="Buzz! Junior: Jungle Party" width="120"/>
+    <img src="https://imgur.com/7A5KONj.png" alt="Hippo Splash-minigame" width="300"/>
+</div>
+
+ **ColorSplash game views:**
+ 
+<div>
+    <img src="https://imgur.com/lqlnZNJ.png" alt="Buzz! Junior: Jungle Party" width="105"/>
+    <img src="https://imgur.com/pP4FkTe.png" alt="Buzz! Junior: Jungle Party" width="105"/>
+    <img src="https://imgur.com/j3u7vSp.png" alt="Buzz! Junior: Jungle Party" width="105"/>
+    <img src="https://imgur.com/GEwWEMj.png" alt="Buzz! Junior: Jungle Party" width="105"/>
+    <img src="https://imgur.com/JoL78Hc.png" alt="Buzz! Junior: Jungle Party" width="105"/>
+    <img src="https://imgur.com/hNrqEBx.png" alt="Buzz! Junior: Jungle Party" width="105"/>
+    <img src="https://imgur.com/CUh0u6o.png" alt="Buzz! Junior: Jungle Party" width="105"/>
+    <img src="https://imgur.com/0os9ble.png" alt="Buzz! Junior: Jungle Party" width="105"/>
+    <img src="https://imgur.com/D2jMNVA.png" alt="Buzz! Junior: Jungle Party" width="105"/>
+</div>
 
 ## Structure
 ```
@@ -37,7 +59,7 @@ project(":core") {
 
 }
 ```
-5. Add an Android Configuration to run the game in an emulator or on a connected Android phone: Click the Add Configurartion-button in the upper right corner of Android Studio, hit the Android App -> "+"-button. Name it "android" and choose "color-splash-frontend.android" as module. Click OK. 
+5. Add an Android Configuration to run the game in an emulator or on a connected Android device: Click the Add Configurartion-button in the upper right corner of Android Studio, hit the Android App -> "+"-button. Name it "android" and choose "color-splash-frontend.android" as module. Click OK. 
 6. You should now be ready to run the game. Play and have fun!
 
 
@@ -56,3 +78,13 @@ All art work is created and done by us.
 
 ### Font
 **Bebas Kai** by Ryoichi Tsunekaw. Click [here](https://www.dafont.com/bebas-neue.font) to download. 
+
+## Contributors
+**The group consists of:**<br>
+[Fabian Foss Budal](https://github.com/FabianFoss)<br>
+[Carl Valdemar Ebbesen](https://github.com/Carlvebbesen)<br>
+[Ingrid Hagen](https://github.com/hageningrid)<br>
+[Karen Hompland](https://github.com/karenhompland)<br>
+[Marius Nåvli Sjølie](https://github.com/mariussjolie)<br>
+[Håkon Telje](https://github.com/vaarantnu)<br>
+[Vår Åsheim](https://github.com/haakonte)<br>
