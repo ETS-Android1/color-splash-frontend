@@ -74,7 +74,6 @@ public class ScoreBoardView extends View{
             if (this.controller.getScoreBoardInfo().getRound() == this.controller.getScoreBoardInfo().getMaxRound()) {
                 if (exitButton.isObjectClicked() && this.controller.getScoreBoardInfo().getRound() == this.controller.getScoreBoardInfo().getMaxRound()) {
                     controller.endGame(this.controller.getScoreBoardInfo().getGameId());
-                    controller.setMainMenuView();
                 }
             }
         }

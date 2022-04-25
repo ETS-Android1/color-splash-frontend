@@ -69,7 +69,6 @@ public class CreateGameView extends View{
                         difficulty = "hard";
                     }
                     this.controller.createGame(this.nickname.getTextField().getText(), rounds, difficulty, 4);
-                    controller.setGameLobbyView();
                 }
             }
             if (this.cancelButton.isObjectClicked()) {

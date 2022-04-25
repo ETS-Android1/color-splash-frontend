@@ -54,4 +54,25 @@ public class JoinGameController{
         viewManager.set(new MainMenuView(viewManager));
     }
 
+    public String validateInput(String gamePin, String nickname) {
+        if (!gamePin.equals("") && !nickname.equals("")) {
+            try {
+                this.joinGame(Integer.parseInt(gamePin), nickname);
+                return "";
+            } catch (Exception e) {
+                return "Not valid Game Pin";
+            }
+        } else if (gamePin.equals("") && !nickname.equals("")) {
+            return "Fill in Game Pin";
+        } else if (!gamePin.equals("") && nickname.equals("")) {
+            try {
+                Double.parseDouble(gamePin);
+                return "Fill in nickname";
+            } catch (NumberFormatException e) {
+                return "Fill in nickname and \n   valid Game Pin";
+            }
+        } else {
+            return "Fill in Game Pin and nickname";
+        }
+    }
 }

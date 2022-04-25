@@ -15,6 +15,7 @@ public class CreateGameController {
 
     public void createGame(String nickname, int rounds, String difficulty, int maxPlayers) {
         ColorSplash.socketManager.createGame(nickname, rounds, difficulty, maxPlayers);
+        setGameLobbyView();
     }
 
     public void setGameLobbyView() {

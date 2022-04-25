@@ -10,7 +10,6 @@ import com.mygdx.game.Models.Dots;
 import com.mygdx.game.Models.GameObject;
 import com.mygdx.game.dataClasses.DisplayColors;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AnswerView extends View{
@@ -21,8 +20,6 @@ public class AnswerView extends View{
     private final Button greenButton;
     private final GameObject timerBackground;
     private final Dots dots;
-    private Integer timer;
-    private final List<Integer> correctColors;
     private final AnswerController controller;
 
     private final Texture circleRed = new Texture(Gdx.files.internal("circle_red.png"));
@@ -32,13 +29,7 @@ public class AnswerView extends View{
     private final Texture right = new Texture(Gdx.files.internal("result_right.png"));
     private final Texture wrong = new Texture(Gdx.files.internal("result_wrong.png"));
 
-    private float timeCount;
     private final BitmapFont font;
-    private int buttonCount = 0;
-    private boolean playerFinished = false;
-    private String feedback = "";
-    private final List<Integer> playerAnswer = new ArrayList<>();
-    private int localScore = 0;
 
     public AnswerView(ViewManager vm, DisplayColors gameInfo) {
         super();
@@ -48,10 +39,8 @@ public class AnswerView extends View{
         greenButton = new Button(new Texture(Gdx.files.internal("button_green.png")),0.9,0.24,3,false,false, vm);
         yellowButton = new Button(new Texture(Gdx.files.internal("button_yellow.png")),0.9,0.1,3,false,false, vm);
         timerBackground = new GameObject(new Texture(Gdx.files.internal("splash_grey.png")),1,0.5,2.5,false,true);
-        timer = 8;
-        timeCount = 0;
-        correctColors = controller.getColorInfo().getNumber();
-        dots = new Dots(this.correctColors);
+
+        dots = new Dots(this.controller.getCorrectColors());
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         Texture circleLightGrey = new Texture(Gdx.files.internal("circle_lightgrey.png"));
         dots.getDots().get(0).setImage(circleLightGrey);
@@ -59,65 +48,36 @@ public class AnswerView extends View{
 
     @Override
     protected void handleInput() {
-        if (Gdx.input.justTouched() && !this.playerFinished) {
+        if (Gdx.input.justTouched() && !this.controller.isPlayerFinished()) {
             if (redButton.isObjectClicked()){
-                this.dots.getDots().get(buttonCount).setImage(circleRed);
-                this.playerAnswer.add(1);
-                this.buttonCount++;
+                this.dots.getDots().get(this.controller.redButtonClicked()).setImage(circleRed);
             }
             if (greenButton.isObjectClicked()){
-                this.dots.getDots().get(buttonCount).setImage(circleGreen);
-                this.playerAnswer.add(2);
-                this.buttonCount++;
+                this.dots.getDots().get(this.controller.greenButtonClicked()).setImage(circleGreen);
             }
             if (blueButton.isObjectClicked()){
-                this.dots.getDots().get(buttonCount).setImage(circleBlue);
-                this.playerAnswer.add(0);
-                this.buttonCount++;
+                this.dots.getDots().get(this.controller.blueButtonClicked()).setImage(circleBlue);
             }
             if (yellowButton.isObjectClicked()){
-                this.dots.getDots().get(buttonCount).setImage(circleYellow);
-                this.playerAnswer.add(3);
-                this.buttonCount++;
+                this.dots.getDots().get(this.controller.yellowButtonClicked()).setImage(circleYellow);
             }
-            if(this.buttonCount==this.dots.getDots().size()){
-                if(!this.playerFinished){
-                    this.controller.playerFinished(controller.getColorInfo().getGameId(),this.playerAnswer);
-                }
-                this.playerFinished=true;
-                double finishedTime = this.timer;
-                if(finishedTime > 6){
-                    this.feedback = "Too fast..?";
-                }
-                else if(finishedTime > 4){
-                    this.feedback = "  Speedy!!";
-                }
-                else if(finishedTime > 2) {
-                    this.feedback = "Too slow..?";
-                }
-            }
+
+            this.controller.setPlayerFinished(this.dots.getDots().size());
+
         }
     }
 
     @Override
     public void update(float dt) {
         handleInput();
-        this.timeCount += dt;
-        if (this.timeCount >= 1) {
-            this.timer--;
-            this.timeCount = 0;
-        }
-        if(this.timer==0){
-            if(!this.playerFinished){
-                this.controller.playerFinished(controller.getColorInfo().getGameId(),this.playerAnswer);
+        this.controller.updateTimeCount(dt);
+        if (this.controller.getTimer() == 0) {
+            List<Boolean> answers = this.controller.setAnswers();
+            for (int i = 0; i < answers.size(); i++) {
+                this.dots.getDots().get(i).setImage(answers.get(i) ? right : wrong);
             }
-            this.playerFinished=true;
-            this.feedback="Time's up!";
-            this.gameFinished();
         }
-        if(this.timer==-3){
-            this.controller.setScoreBoardView();
-        }
+
     }
 
     @Override
@@ -128,21 +88,21 @@ public class AnswerView extends View{
         greenButton.drawGameObject(sb);
         yellowButton.drawGameObject(sb);
         dots.drawDots(sb);
-        if (this.playerFinished) {
+        if (this.controller.isPlayerFinished()) {
             this.font.getData().setScale(2);
-            this.font.draw(sb,feedback,(float)(timerBackground.getXPos())+100,(float)(timerBackground.getYPos()-100));
+            this.font.draw(sb,this.controller.getFeedback(),(float)(timerBackground.getXPos())+100,(float)(timerBackground.getYPos()-100));
             this.timerBackground.drawGameObject(sb);
-            if(this.timer>0) {
+            if(this.controller.getTimer()>0) {
                 this.font.getData().setScale(3);
-                this.font.draw(sb, timer.toString(), (float) (timerBackground.getXPos()) + 310, (float) (timerBackground.getYPos() + 380));
+                this.font.draw(sb, this.controller.getTimer().toString(), (float) (timerBackground.getXPos()) + 310, (float) (timerBackground.getYPos() + 380));
             }
             else{
-                this.font.draw(sb, ""+this.localScore+"/"+this.correctColors.size(), (float) (timerBackground.getXPos()) + 270, (float) (timerBackground.getYPos() + 350));
+                this.font.draw(sb, ""+this.controller.getLocalScore()+"/"+this.controller.getCorrectColors().size(), (float) (timerBackground.getXPos()) + 270, (float) (timerBackground.getYPos() + 350));
             }
         } else {
             this.font.getData().setScale(3);
             this.timerBackground.drawGameObject(sb);
-            this.font.draw(sb,timer.toString(),(float)(timerBackground.getXPos())+310,(float)(timerBackground.getYPos()+380));
+            this.font.draw(sb,this.controller.getTimer().toString(),(float)(timerBackground.getXPos())+310,(float)(timerBackground.getYPos()+380));
         }
         sb.end();
         super.renderStage();
@@ -162,21 +122,5 @@ public class AnswerView extends View{
         this.font.dispose();
     }
 
-    public void gameFinished() {
-        this.localScore = 0;
-        for (int i = 0; i<this.correctColors.size(); i ++) {
-            try {
-                if (this.correctColors.get(i).equals(this.playerAnswer.get(i))) {
-                    this.localScore++;
-                    this.dots.getDots().get(i).setImage(right);
-                }
-                else {
-                    this.dots.getDots().get(i).setImage(wrong);
-                }
-            }
-            catch (IndexOutOfBoundsException e) {
-                this.dots.getDots().get(i).setImage(wrong);
-            }
-        }
-    }
+
 }

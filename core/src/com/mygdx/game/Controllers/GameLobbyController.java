@@ -66,8 +66,13 @@ public class GameLobbyController {
         ColorSplash.socketManager.createListener(EventsConstants.gameInfo, gameCreatedListener());
     }
 
-    public void startGame(int gameId) {
-        ColorSplash.socketManager.startGame(gameId);
+    public void startGame() {
+        ColorSplash.socketManager.startGame(getGameInfo().getGameId());
+        boolean loading = true;
+        while (loading) {
+            loading = isLoading();
+        }
+        setGetReadyView();
     }
 
     public void leaveGame() {

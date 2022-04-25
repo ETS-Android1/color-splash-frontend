@@ -76,12 +76,7 @@ public class GameLobbyView extends View {
             }
             if (this.controller.isHost()) {
                 if (this.startButton.isObjectClicked()) {
-                    this.controller.startGame(controller.getGameInfo().getGameId());
-                    boolean loading = true;
-                    while (loading) {
-                        loading = controller.isLoading();
-                    }
-                    controller.setGetReadyView();
+                    this.controller.startGame();
                 }
             }
         }
