@@ -11,15 +11,15 @@ The game is based on the ["Hippo Splash"-minigame](https://www.youtube.com/watch
  **ColorSplash game views:**
  
 <div>
-    <img src="https://imgur.com/lqlnZNJ.png" alt="Buzz! Junior: Jungle Party" width="105"/>
-    <img src="https://imgur.com/pP4FkTe.png" alt="Buzz! Junior: Jungle Party" width="105"/>
-    <img src="https://imgur.com/j3u7vSp.png" alt="Buzz! Junior: Jungle Party" width="105"/>
-    <img src="https://imgur.com/GEwWEMj.png" alt="Buzz! Junior: Jungle Party" width="105"/>
-    <img src="https://imgur.com/JoL78Hc.png" alt="Buzz! Junior: Jungle Party" width="105"/>
-    <img src="https://imgur.com/hNrqEBx.png" alt="Buzz! Junior: Jungle Party" width="105"/>
-    <img src="https://imgur.com/CUh0u6o.png" alt="Buzz! Junior: Jungle Party" width="105"/>
-    <img src="https://imgur.com/0os9ble.png" alt="Buzz! Junior: Jungle Party" width="105"/>
-    <img src="https://imgur.com/D2jMNVA.png" alt="Buzz! Junior: Jungle Party" width="105"/>
+    <img src="https://imgur.com/lqlnZNJ.png" alt="MainMenuView" width="105"/>
+    <img src="https://imgur.com/pP4FkTe.png" alt="HowToPLayView" width="105"/>
+    <img src="https://imgur.com/j3u7vSp.png" alt="JoinGameView" width="105"/>
+    <img src="https://imgur.com/GEwWEMj.png" alt="CreateGameView" width="105"/>
+    <img src="https://imgur.com/JoL78Hc.png" alt="GameLobbyView" width="105"/>
+    <img src="https://imgur.com/hNrqEBx.png" alt="SplashView" width="105"/>
+    <img src="https://imgur.com/CUh0u6o.png" alt="AnswerView" width="105"/>
+    <img src="https://imgur.com/0os9ble.png" alt="AnswerView with results" width="105"/>
+    <img src="https://imgur.com/D2jMNVA.png" alt="ScoreBoardView" width="105"/>
 </div>
 
 ## Structure
