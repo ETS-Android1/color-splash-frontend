@@ -94,7 +94,6 @@ All art work is created and done by us.
 **Bebas Kai** by Ryoichi Tsunekaw. Click [here](https://www.dafont.com/bebas-neue.font) to download. 
 
 ## Contributors
-**The group consists of:**<br>
 [Fabian Foss Budal](https://github.com/FabianFoss)<br>
 [Carl Valdemar Ebbesen](https://github.com/Carlvebbesen)<br>
 [Ingrid Hagen](https://github.com/hageningrid)<br>
