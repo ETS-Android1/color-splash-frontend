@@ -47,16 +47,16 @@ Our project is divided into two distinct repositories as they are not dependent 
 You only need the frontend part of the project to run. As different operating systems and processors need different setup and configurations for Android Studio to work, we have not included the build.gradle files in the repository. These are local for each developer and .gitignore prevents it from being added. Thus you need to to build your own Libgdx-project to generate the right configurations for your computer to run. 
 
 Here is how to do it:
-1. Create a libGDX project using the libGDX Project Setup Tool. Click [here](https://libgdx.com/wiki/start/project-generation) for guide/download. 
+1. Create a libGDX project using the libGDX Project Setup Tool. Click [here](https://libgdx.com/wiki/start/project-generation) for guide/download. Answer yes on both questions about newer version if libGDX Project Setup Tool asks.
 2. Open the libGDX project in Android Studio.
 3. Inside the project in Android Studio, clone this repository by giving your terminal these commands:
 ```
-git init 
+git init
 git remote add origin https://github.com/FabianFoss/color-splash-frontend.git
-git fetch
-git pull origin main 
+git fetch --all
+git reset --hard origin/main
 ```
-4. Find your build.gradle file and replace the project(":core") with this:
+4. Find your build.gradle project file and replace the project(":core") with this:
 
 ```gradle:
 project(":core") {
@@ -74,6 +74,8 @@ project(":core") {
 
 }
 ```
+Then sync the new changes to the build.gradle file.
+
 5. Add an Android Configuration to run the game in an emulator or on a connected Android device: Click the Add Configurartion-button in the upper right corner of Android Studio, hit the Android App -> "+"-button. Name it "android" and choose "color-splash-frontend.android" as module. Click OK. Click [here](https://developer.android.com/training/basics/firstapp/running-app) for a guide on how to run the app on emulator or device. 
 6. You should now be ready to run the game. Play and have fun!
 
