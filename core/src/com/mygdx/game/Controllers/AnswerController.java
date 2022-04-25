@@ -3,7 +3,6 @@ package com.mygdx.game.Controllers;
 import com.google.gson.Gson;
 import com.mygdx.game.ColorSplash;
 import com.mygdx.game.Events.EventsConstants;
-import com.mygdx.game.Views.GetReadyView;
 import com.mygdx.game.Views.ScoreBoardView;
 import com.mygdx.game.Views.ViewManager;
 import com.mygdx.game.dataClasses.DisplayColors;

@@ -3,7 +3,6 @@ package com.mygdx.game.Views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.ColorSplash;
 import com.mygdx.game.Controllers.MainMenuController;
 import com.mygdx.game.Models.Button;
 import com.mygdx.game.Models.GameObject;
@@ -44,39 +43,33 @@ public class MainMenuView extends View {
     public void handleInput() {
         if (Gdx.input.justTouched()) {
             if (this.joinGame.isObjectClicked()) {
-                dispose();
                 controller.setJoinGameView();
             }
             if (this.howToPlay.isObjectClicked()) {
-                dispose();
                 controller.setHowToPlayView();
             }
             if (this.newGame.isObjectClicked()) {
-                dispose();
                 controller.setCreateGameView();
             }
             if (this.musicButton.isObjectClicked()){
                 if (this.controller.isPlaying()){
                     this.musicButton.setImage(musicOff);
-                    this.controller.setMusic();
                 }
                 else {
                     this.musicButton.setImage(musicOn);
-                    this.controller.setMusic();
                 }
+                this.controller.setMusic();
             }
             if(this.soundButton.isObjectClicked()){
                 if (this.controller.isSound()){
                     this.soundButton.setImage(soundOff);
-                    this.controller.setSound();
                 }
                 else {
                     this.soundButton.setImage(soundOn);
-                    this.controller.setSound();
                 }
+                this.controller.setSound();
             }
         }
-
     }
 
     @Override
@@ -99,7 +92,7 @@ public class MainMenuView extends View {
 
     @Override
     public void dispose() {
-        background.getImage().dispose();
+        super.dispose();
         howToPlay.getImage().dispose();
         newGame.getImage().dispose();
         joinGame.getImage().dispose();

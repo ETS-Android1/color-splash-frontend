@@ -4,9 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.Models.Button;
 import com.mygdx.game.Models.GameObject;
 import com.mygdx.game.Models.InputField;
@@ -75,12 +72,10 @@ public class CreateGameView extends View{
                         difficulty = "hard";
                     }
                     this.controller.createGame(this.nickname.getTextField().getText(), rounds, difficulty, 4);
-                    dispose();
                     controller.setGameLobbyView();
                 }
             }
             if (this.cancelButton.isObjectClicked()) {
-                dispose();
                 controller.setMainMenuView();
             }
             if (this.easyButton.isObjectClicked()) {
@@ -120,7 +115,6 @@ public class CreateGameView extends View{
                 this.threeButton.setChecked(false);
             }
         }
-
     }
 
     @Override
@@ -155,6 +149,7 @@ public class CreateGameView extends View{
 
     @Override
     public void dispose() {
+        super.dispose();
         createButton.getImage().dispose();
         cancelButton.getImage().dispose();
         this.mediumButton.getImage().dispose();
@@ -165,6 +160,5 @@ public class CreateGameView extends View{
         this.fiveButton.getImage().dispose();
         this.avatar.getImage().dispose();
         this.nickname.getImage().dispose();
-        this.background.getImage().dispose();
     }
 }

@@ -3,13 +3,11 @@ package com.mygdx.game.Models;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 public class GameObject {
     protected Texture image;
-    protected TextureRegion animatedImage;
     protected double xPos;
     protected double yPos;
     protected double scale;
@@ -17,7 +15,6 @@ public class GameObject {
     protected int screenHeight;
     protected boolean isRendered=false;
     protected Rectangle bounds;
-    //protected BitmapFont font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
 
     public GameObject(Texture image, double xPos, double yPos, double scale, boolean centerHeight, boolean centerWidth) {
         this.image = image;
@@ -70,11 +67,4 @@ public class GameObject {
 
     public void setFilePath(String filepath){this.image=new Texture(Gdx.files.internal(filepath));}
 
-
-    @Override
-    public String toString() {
-        return "GameObject{" +
-                "xPos=" + xPos +
-                '}';
-    }
 }

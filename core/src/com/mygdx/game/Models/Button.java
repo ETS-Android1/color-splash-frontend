@@ -1,10 +1,8 @@
 package com.mygdx.game.Models;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
-import com.mygdx.game.Views.View;
 import com.mygdx.game.Views.ViewManager;
 
 public class Button extends GameObject{
@@ -12,7 +10,6 @@ public class Button extends GameObject{
     private boolean checked = false;
     private Sound clickSound;
     private ViewManager vm;
-
 
     public Button(Texture image, double xPos, double yPos, double scale, boolean centerHeight, boolean centerWidth, ViewManager vm) {
         super(image, xPos, yPos, scale, centerHeight, centerWidth);

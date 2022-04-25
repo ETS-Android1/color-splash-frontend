@@ -4,30 +4,11 @@ import java.util.List;
 
 public class ScoreBoardInfo {
 
-    public int gameId;
-    public int round;
-    public int maxRound;
-    public List<Result> result;
-    public String hostId;
-
-    public ScoreBoardInfo (int gameId, int round, int maxRound, List<Result> result, String hostId) {
-        this.gameId = gameId;
-        this.round = round;
-        this.maxRound = maxRound;
-        this.result = result;
-        this.hostId = hostId;
-    }
-
-    @Override
-    public String toString() {
-        return "ScoreBoardInfo{" +
-                "gameId=" + gameId +
-                ", round=" + round +
-                ", maxRound=" + maxRound +
-                ", result=" + result +
-                ", host='" + hostId + '\'' +
-                '}';
-    }
+    private int gameId;
+    private int round;
+    private int maxRound;
+    private List<Result> result;
+    private String hostId;
 
     public int getGameId() {
         return gameId;

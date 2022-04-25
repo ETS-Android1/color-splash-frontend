@@ -3,10 +3,7 @@ package com.mygdx.game.Views;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.Models.Button;
-import com.mygdx.game.Models.ErrorDialog;
 import com.mygdx.game.Models.GameObject;
 import com.mygdx.game.Models.InputField;
 import com.mygdx.game.Controllers.JoinGameController;
@@ -32,36 +29,32 @@ public class JoinGameView extends View{
         nickname.getTextField().setMaxLength(12);
         stage.addActor(gamePin.getTextField());
         stage.addActor(nickname.getTextField());
-
     }
 
     @Override
     public void handleInput() {
         if (Gdx.input.justTouched()) {
             if (this.joinGame.isObjectClicked()) {
-                if (this.gamePin.getTextField().getText()!="" && this.nickname.getTextField().getText()!="") {
+                if (!this.gamePin.getTextField().getText().equals("") && !this.nickname.getTextField().getText().equals("")) {
                     try {
-                        System.out.println("GameId: " + Integer.parseInt(this.gamePin.getTextField().getText()));
-                        System.out.println("Nickname: " + this.nickname.getTextField().getText());
                         this.controller.joinGame(Integer.parseInt(this.gamePin.getTextField().getText()), this.nickname.getTextField().getText());
                     } catch (Exception e) {
                         setError("Not valid Game Pin");
                     }
-                } else if (this.gamePin.getTextField().getText() == "" && this.nickname.getTextField().getText() != "") {
+                } else if (this.gamePin.getTextField().getText().equals("") && !this.nickname.getTextField().getText().equals("")) {
                     setError("Fill in Game Pin");
-                } else if (this.gamePin.getTextField().getText() != "" && this.nickname.getTextField().getText() == "") {
+                } else if (!this.gamePin.getTextField().getText().equals("") && this.nickname.getTextField().getText().equals("")) {
                     try {
                         Double.parseDouble(this.gamePin.getTextField().getText());
                         setError("Fill in nickname");
                     } catch (NumberFormatException e) {
                         setError("Fill in nickname and \n   valid Game Pin");
                     }
-                } else if (this.gamePin.getTextField().getText() == "" && this.nickname.getTextField().getText() == "") {
+                } else if (this.gamePin.getTextField().getText().equals("") && this.nickname.getTextField().getText().equals("")) {
                     setError("Fill in Game Pin and nickname");
                 }
             }
             else if (this.cancelButton.isObjectClicked()) {
-                dispose();
                 controller.setMainMenuView();
             }
         }
@@ -86,7 +79,7 @@ public class JoinGameView extends View{
 
     @Override
     public void dispose() {
-        background.getImage().dispose();
+        super.dispose();
         timerBackground.getImage().dispose();
         cancelButton.getImage().dispose();
         joinGame.getImage().dispose();

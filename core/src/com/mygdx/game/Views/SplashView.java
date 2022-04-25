@@ -48,12 +48,6 @@ public class SplashView extends View {
         font.getData().setScale((float)1.5);
         splash = new Splash(new Texture(Gdx.files.internal("splash_1_blue.png")),0.5,0.6,3,true,true);
         this.splash.setFilePath(splash.getSplashes().get(colorList.get(this.colorCounter)).get(this.frameCounter));
-
-    }
-
-    @Override
-    protected void handleInput() {
-
     }
 
     @Override
@@ -93,12 +87,14 @@ public class SplashView extends View {
 
     @Override
     public void dispose() {
-
+        super.dispose();
+        for (GameObject dot : this.dots.getDots()) {
+            dot.getImage().dispose();
+        }
+        this.font.dispose();
+        this.splash.getImage().dispose();
+        this.textPlaceholder.getImage().dispose();
+        this.splashSound.dispose();
     }
-
-    public List<Integer> getBackend(){
-        return this.colorList;
-    }
-
 }
 

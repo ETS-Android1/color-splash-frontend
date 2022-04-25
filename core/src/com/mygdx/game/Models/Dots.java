@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Dots {
@@ -42,7 +41,6 @@ public class Dots {
         for (int i = 0; i < colors.size()/2; i++) {
             double x = i + move;
             double xPos = screenWidth/2000.0 + x * space;
-            System.out.println(xPos);
             GameObject newDot = new GameObject(this.lightGreyDot, xPos,0.88, scale,false,false);
             this.dots.add(newDot);
         }
@@ -62,10 +60,6 @@ public class Dots {
 
     public void setDarkGreyDot(int index) {
         this.dots.get(index).setImage(darkGreyDot);
-    }
-
-    public int getColor(int index) {
-        return this.colors.get(index);
     }
 
 }

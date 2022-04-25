@@ -1,8 +1,6 @@
 package com.mygdx.game.Views;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -16,10 +14,8 @@ public abstract class View {
     protected Background background;
     protected Stage stage;
     protected ErrorDialog error;
-    //private Sound clickSound;
 
     protected View() {
-        //clickSound = Gdx.audio.newSound(Gdx.files.internal("click.mp3"));
         stage= new Stage(new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
         Gdx.input.setInputProcessor(stage);
         sb = new SpriteBatch();
@@ -36,22 +32,26 @@ public abstract class View {
 
     protected void handleInput() {
         if(error!=null && error.getButton().isPressed()) {
-            //clickSound.play();
             error.getDialog().hide();
         }
-    };
+    }
+
     public abstract void update(float dt);
+
     public void render(SpriteBatch sb) {
         sb.begin();
         background.drawGameObject(sb);
     }
-    public abstract void dispose();
+
+    public void dispose() {
+        background.getImage().dispose();
+        sb.dispose();
+        stage.dispose();
+        System.out.println("Disposed\n\n\n\n\nDisp");
+    }
 
     public void renderStage() {
         stage.draw();
         stage.act();
     }
-
-
-
 }

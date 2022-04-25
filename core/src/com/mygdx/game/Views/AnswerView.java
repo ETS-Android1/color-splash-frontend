@@ -11,7 +11,6 @@ import com.mygdx.game.Models.GameObject;
 import com.mygdx.game.dataClasses.DisplayColors;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class AnswerView extends View{
@@ -23,7 +22,7 @@ public class AnswerView extends View{
     private GameObject timerBackground;
     private Dots dots;
     private Integer timer;
-    private List<Integer> correctColors = new ArrayList<>();
+    private List<Integer> correctColors;
     private AnswerController controller;
 
     private Texture circleLightGrey = new Texture(Gdx.files.internal("circle_lightgrey.png"));
@@ -57,15 +56,11 @@ public class AnswerView extends View{
         dots = new Dots(this.correctColors);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
         dots.getDots().get(0).setImage(circleLightGrey);
-
     }
-
 
     @Override
     protected void handleInput() {
-
         if (Gdx.input.justTouched() && !this.playerFinished) {
-
             if (redButton.isObjectClicked()){
                 this.dots.getDots().get(buttonCount).setImage(circleRed);
                 this.playerAnswer.add(1);
@@ -86,10 +81,8 @@ public class AnswerView extends View{
                 this.playerAnswer.add(3);
                 this.buttonCount++;
             }
-
             if(this.buttonCount==this.dots.getDots().size()){
                 if(!this.playerFinished){
-                    System.out.println("HELLLO THIS PLAYER FINISHED");
                     this.controller.playerFinished(controller.getColorInfo().getGameId(),this.playerAnswer);
                 }
                 this.playerFinished=true;
@@ -105,8 +98,6 @@ public class AnswerView extends View{
                 }
             }
         }
-
-
     }
 
     @Override
@@ -160,7 +151,7 @@ public class AnswerView extends View{
 
     @Override
     public void dispose() {
-        this.background.getImage().dispose();
+        super.dispose();
         for (int i = 0; i < this.dots.getDots().size(); i++) {
             this.dots.getDots().get(i).getImage().dispose();
         }
@@ -176,7 +167,7 @@ public class AnswerView extends View{
         this.localScore = 0;
         for (int i = 0; i<this.correctColors.size(); i ++) {
             try {
-                if (this.correctColors.get(i) == this.playerAnswer.get(i)) {
+                if (this.correctColors.get(i).equals(this.playerAnswer.get(i))) {
                     this.localScore++;
                     this.dots.getDots().get(i).setImage(right);
                 }

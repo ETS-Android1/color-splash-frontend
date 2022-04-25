@@ -24,11 +24,9 @@ public class HowToPlayView extends View{
     public void handleInput() {
         if (Gdx.input.justTouched()) {
             if (this.exitButton.isObjectClicked()) {
-                dispose();
                 controller.setMainMenuView();
             }
         }
-
     }
 
     @Override
@@ -47,9 +45,9 @@ public class HowToPlayView extends View{
 
     @Override
     public void dispose() {
+        super.dispose();
         background.getImage().dispose();
         exitButton.getImage().dispose();
-
     }
 
 }

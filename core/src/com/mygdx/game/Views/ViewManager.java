@@ -1,6 +1,5 @@
 package com.mygdx.game.Views;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -25,14 +24,10 @@ public class ViewManager {
         views.push(state);
     }
 
-    public void pop() {
-        views.pop();
-    }
-
     public View peek() { return views.peek(); }
 
     public void set(View state) {
-        this.peek().dispose();
+        views.peek().dispose();
         views.pop();
         views.push(state);
     }

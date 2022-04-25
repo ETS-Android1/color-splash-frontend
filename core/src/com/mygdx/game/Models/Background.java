@@ -1,8 +1,6 @@
 package com.mygdx.game.Models;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Background extends GameObject{
 
@@ -11,7 +9,4 @@ public class Background extends GameObject{
 
     }
 
-    public void drawBackground(SpriteBatch sb) {
-        sb.draw(this.image, 0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-    }
 }

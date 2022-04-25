@@ -14,14 +14,12 @@ public class GetReadyView extends View{
     private GameObject placeholder;
     private GameObject background;
     private float timer = 0;
-    private DisplayColors colorinfo;
+    private DisplayColors colorInfo;
     private GetReadyController controller;
 
-    public GetReadyView(ViewManager vm, DisplayColors colorinfo) {
+    public GetReadyView(ViewManager vm, DisplayColors colorInfo) {
         super();
-        System.out.println("FROM GET READY VIEW");
-        System.out.println(colorinfo);
-        this.colorinfo = colorinfo;
+        this.colorInfo = colorInfo;
         controller = new GetReadyController(vm);
         background = new GameObject(new Texture(Gdx.files.internal("splash_orange.png")),1,0.05,5.3,false,true);
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
@@ -30,16 +28,10 @@ public class GetReadyView extends View{
     }
 
     @Override
-    protected void handleInput() {
-
-    }
-
-    @Override
     public void update(float dt) {
         this.timer+=dt;
         if(this.timer>=2){
-            dispose();
-            controller.setSplashView(colorinfo);
+            controller.setSplashView(colorInfo);
         }
     }
 
@@ -54,6 +46,7 @@ public class GetReadyView extends View{
 
     @Override
     public void dispose() {
+        super.dispose();
         background.getImage().dispose();
         placeholder.getImage().dispose();
         font.dispose();

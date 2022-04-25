@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.ColorSplash;
 import com.mygdx.game.Controllers.ScoreBoardController;
 import com.mygdx.game.Models.Button;
 import com.mygdx.game.Models.GameObject;
@@ -23,7 +22,7 @@ public class ScoreBoardView extends View{
 
     private ScoreBoardController controller;
 
-    private ArrayList<GameObject> avatars = new ArrayList<GameObject>();
+    private List<GameObject> avatars = new ArrayList<>();
     private List<Texture> avatarFiles = new ArrayList<>(
             Arrays.asList(
                     new Texture(Gdx.files.internal("avatar_orange.png")),
@@ -55,28 +54,25 @@ public class ScoreBoardView extends View{
 
         this.roundString = "Round: "+this.controller.getScoreBoardInfo().getRound()+"/"+this.controller.getScoreBoardInfo().getMaxRound();
 
-        if (this.controller.getScoreBoardInfo().getHostId().equals(ColorSplash.socketManager.getSocketId())) {
+        if (this.controller.isHost() && !this.controller.isLastRound()) {
             nextButton = new Button(new Texture("button_next.png"), 0.92, 0.08, 3, false, false, vm);
         }
-        if (this.controller.getScoreBoardInfo().getRound() == this.controller.getScoreBoardInfo().getMaxRound()) {
+        if (this.controller.isLastRound()) {
             exitButton = new Button(new Texture("button_exit.png"), 0.92, 0.08, 3,false, false, vm);
         }
         font = new BitmapFont(Gdx.files.internal("bebaskai.fnt"));
-
     }
 
     @Override
     protected void handleInput() {
         if (Gdx.input.justTouched()) {
-            if (controller.isHost()) {
+            if (controller.isHost() && !controller.isLastRound()) {
                 if (this.nextButton.isObjectClicked() && this.controller.getScoreBoardInfo().getRound() != this.controller.getScoreBoardInfo().getMaxRound()) {
-                    dispose();
                     controller.nextRound(this.controller.getScoreBoardInfo().getGameId());
                 }
             }
             if (this.controller.getScoreBoardInfo().getRound() == this.controller.getScoreBoardInfo().getMaxRound()) {
                 if (exitButton.isObjectClicked() && this.controller.getScoreBoardInfo().getRound() == this.controller.getScoreBoardInfo().getMaxRound()) {
-                    dispose();
                     controller.endGame(this.controller.getScoreBoardInfo().getGameId());
                     controller.setMainMenuView();
                 }
@@ -108,16 +104,25 @@ public class ScoreBoardView extends View{
         }
         sb.end();
         super.renderStage();
-
     }
 
     @Override
     public void dispose() {
-
+        if (this.controller.isHost() && !this.controller.isLastRound()) {
+            this.nextButton.getImage().dispose();
+        }
+        if (this.controller.isLastRound()) {
+            this.exitButton.getImage().dispose();
+        }
+        this.font.dispose();
+        this.background.getImage().dispose();
+        for (GameObject avatar : this.avatars) {
+            avatar.getImage().dispose();
+        }
+        super.dispose();
     }
 
     private void drawScore(SpriteBatch sb) {
-
         if (this.controller.getScoreBoardInfo().getRound()==this.controller.getScoreBoardInfo().getMaxRound()) {
             avatars.get(0).setImage(this.trophy_avatar.get(this.controller.getScoreBoardInfo().getResult().get(0).getAvatarIndex()));
         }
@@ -132,7 +137,5 @@ public class ScoreBoardView extends View{
             font.draw(sb, this.controller.getScoreBoardInfo().getResult().get(i).getNickname(), (float) this.avatars.get(i).getXPos()+250, (float) this.avatars.get(i).getYPos()+130);
             font.draw(sb, Integer.toString(this.controller.getScoreBoardInfo().getResult().get(i).getTotalScore()), (float) this.avatars.get(i).getXPos()+800, (float) this.avatars.get(i).getYPos()+130);
         }
-
     }
-
 }

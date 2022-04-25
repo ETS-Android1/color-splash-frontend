@@ -6,7 +6,6 @@ import com.mygdx.game.Events.EventsConstants;
 import com.mygdx.game.Views.AnswerView;
 import com.mygdx.game.Views.ViewManager;
 import com.mygdx.game.dataClasses.DisplayColors;
-import com.mygdx.game.dataClasses.GameInfo;
 
 import io.socket.emitter.Emitter;
 
@@ -31,7 +30,6 @@ public class SplashController {
         return new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                System.out.println("hei");
                 isLoading = true;
                 Gson gson = new Gson();
                 colorInfo = gson.fromJson(args[0].toString(), DisplayColors.class);
@@ -66,10 +64,6 @@ public class SplashController {
 
     public DisplayColors getColorInfo() {
         return colorInfo;
-    }
-
-    public boolean isLoading() {
-        return isLoading;
     }
 
     public boolean isSound(){return viewManager.isSound();}
