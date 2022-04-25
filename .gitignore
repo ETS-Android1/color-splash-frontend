@@ -9,7 +9,8 @@ gradlew.bat
 local.properties
 settings.gradle
 gradle
-android/res
+android/res/*
+!android/res/values/styles.xml
 
 ## Java
 

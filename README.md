@@ -46,7 +46,7 @@ Our project is divided into two distinct repositories as they are not dependent 
 You only need the frontend part of the project to run. As different operating systems and processors need different setup and configurations for Android Studio to work, we have not included the build.gradle files in the repository. These are local for each developer and .gitignore prevents it from being added. Thus you need to to build your own Libgdx-project to generate the right configurations for your computer to run. 
 
 Here is how to do it:
-1. Create a libGDX project using the libGDX Project Setup Tool. Click [here](https://libgdx.com/wiki/start/project-generation) for guide/download. 
+1. Create a libGDX project using the libGDX Project Setup Tool. Click [here](https://libgdx.com/wiki/start/project-generation) for guide/download. Answer yes on both questions about newer version if libGDX Project Setup Tool asks.
 2. Open the libGDX project in Android Studio.
 3. Inside the project in Android Studio, clone this repository by giving your terminal these commands:
 ```
